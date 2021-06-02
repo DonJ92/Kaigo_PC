@@ -25,10 +25,10 @@
                     <div class="mv-r-regist-login">
                         <div class="mv-r-regist-login-wrapper">
                             <div class="mv-r-rl-item mv-r-regist">
-                                <a href="register.html"><span>新規登録</span></a>
+                                <a href="register.html"><span>{{ trans('button.register') }}</span></a>
                             </div>
                             <div class="mv-r-rl-item mv-r-login">
-                                <a href="login.html"><span>ログイン</span></a>
+                                <a href="login.html"><span>{{ trans('button.login') }}</span></a>
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                 <div class="mv-r-search-row search-row">
                     <a href="jobs.html" class="mv-r-search-link search-link">
                         <i class="fa fa-search"></i>
-                        <span>案件を探す</span>
+                        <span>{{ trans('button.search_job') }}</span>
                         <i class="ti-arrow-circle-right"></i>
                     </a>
                 </div>
@@ -50,9 +50,9 @@
                 </h2>
 
                 <div class="mv-ttl">
-                    <h2 class="mv-ttl-main">あなたにピッタリな<br>ヘルパーと出会う</h2>
+                    <h2 class="mv-ttl-main">{{ trans('home.main_title_pre') }}<br>{{ trans('home.main_title_sur') }}</h2>
                     <h3 class="mv-ttl-sub">
-                        「人出が足りない介護施設」と「働き手であるヘルパー」との<br>マッチングプラットフォーム
+                        {{ trans('home.main_desc_pre') }}<br>{{ trans('home.main_desc_sur') }}
                     </h3>
                 </div>
 
@@ -65,8 +65,8 @@
                     <div class="mv-lead-infos cta-block-infos">
                         <p class="mv-lead-txt cta-block-txt has-img">
                             <span class="txt-img"><img src="{{ asset('/images/logo-txt.svg') }}" alt="" /></span>
-                            <span class="for-space"></span>アプリを今すぐ<br>
-                            ダウンロード
+                            <span class="for-space"></span>{{ trans('home.download_desc_pre') }}<br>
+                            {{ trans('home.download_desc_sur') }}
                         </p>
                         <div class="mv-lead-links cta-block-links">
                             <a href="#"><img src="{{ asset('/images/link-app-store.png') }}" alt="" /></a>
@@ -106,29 +106,29 @@
             <div class="search-inner">
                 <div class="search-box">
                     <form>
-                        <p class="search-ttl">カンタン検索</p>
+                        <p class="search-ttl">{{ trans('home.search_panel_title') }}</p>
 
                         <div class="search-field-item">
-                            <p class="search-field-ttl">職種</p>
+                            <p class="search-field-ttl">{{ trans('common.job_type') }}</p>
                             <select>
-                                <option value="" selected="">生活相談員</option>
+                                <option value="" selected=""></option>
                             </select>
                         </div>
 
                         <div class="search-field-item">
-                            <p class="search-field-ttl">地域</p>
+                            <p class="search-field-ttl">{{ trans('common.area') }}</p>
                             <select>
-                                <option value="" selected="">東京都</option>
+                                <option value="" selected=""></option>
                             </select>
                         </div>
 
                         <div class="search-field-item">
-                            <p class="search-field-ttl">日時</p>
+                            <p class="search-field-ttl">{{ trans('common.datetime') }}</p>
                             <select>
-                                <option value="" selected="">日付を選択</option>
+                                <option value="" selected=""></option>
                             </select>
                         </div>
-                        <a href="jobs.html" class="btn-search"><span>検索</span><i class="ti-arrow-circle-right"></i></a>
+                        <a href="jobs.html" class="btn-search"><span>{{ trans('button.search') }}</span><i class="ti-arrow-circle-right"></i></a>
                         <!--                    <button type="submit" class="btn-search"><span>検索</span><i class="ti-arrow-circle-right"></i></button>-->
                     </form>
                 </div>
@@ -139,7 +139,7 @@
             <div class="job-tr"></div>
             <div class="job-bl"></div>
             <div class="job-inner">
-                <h3 class="job-ttl sec-ttl"><span><i></i>新着案件一覧</span></h3>
+                <h3 class="job-ttl sec-ttl"><span><i></i>{{ trans('home.job_list_title') }}</span></h3>
 
                 <div class="job-list">
                     @for ($i = 0; $i < 6; $i++)
@@ -156,11 +156,11 @@
 
                         <h4 class="job-item-ttl">案件タイトル</h4>
                         <div class="job-item-meta">
-                            <p class="job-item-meta-head">日時</p>
+                            <p class="job-item-meta-head">{{ trans('common.datetime') }}</p>
                             <p class="job-item-meta-data">12/15(金) 14:00~18:00</p>
                         </div>
                         <div class="job-item-meta">
-                            <p class="job-item-meta-head">時給</p>
+                            <p class="job-item-meta-head">{{ trans('common.cost') }}</p>
                             <p class="job-item-meta-data">¥3,000~ / 1h</p>
                         </div>
                         <div class="job-item-figure" style="background: url({{ asset('/images/common/job-figure.jpg') }});"></div>
@@ -168,11 +168,11 @@
                             <i class="fa fa-share-alt"></i>
                             <div class="job-item-share-r">
                                 <a onclick="loginPopup()">
-                                    <span>応募する</span>
+                                    <span>{{ trans('button.bid') }}</span>
                                     <i class="ti-comment "></i>
                                 </a>
                                 <a onclick="loginPopup()">
-                                    <span>お気に入り</span>
+                                    <span>{{ trans('button.favourite') }}</span>
                                     <i class="ti-heart"></i>
                                 </a>
                             </div>
@@ -184,7 +184,7 @@
                 <div class="search-row">
                     <a href="jobs.html" class="search-link">
                         <i class="fa fa-search"></i>
-                        <span>案件を探す</span>
+                        <span>{{ trans('button.search_job') }}</span>
                         <i class="ti-arrow-circle-right"></i>
                     </a>
                 </div>
@@ -192,7 +192,7 @@
 
             <a class="btn-contact job-contact" onclick="loginPopup()">
                 <div class="job-contact-inner">
-                    <span>新規案件申し込みはコチラ</span>
+                    <span>{{ trans('home.new_job') }}</span>
                     <i class="ti-arrow-circle-right"></i>
                 </div>
             </a>
@@ -213,7 +213,7 @@
                                 <div class="worker-item-ttl">
                                     <span>ニックネーム</span>
                                     <div class="worker-item-review">
-                                        <p class="worker-item-txt">レビュー　4</p>
+                                        <p class="worker-item-txt">{{ trans('common.review') }}　4</p>
                                         <i class="fa fa-star st-act"></i>
                                         <i class="fa fa-star st-act"></i>
                                         <i class="fa fa-star st-act"></i>
@@ -239,21 +239,21 @@
                             <div class="worker-item-attr-item">
                                 <div class="worker-item-attr-item-inner">
                                     <p class="worker-item-attr-item-txt-large">25~30</p>
-                                    <p class="worker-item-attr-item-txt-small">年齢</p>
+                                    <p class="worker-item-attr-item-txt-small">{{ trans('common.age') }}</p>
                                 </div>
                             </div>
 
                             <div class="worker-item-attr-item">
                                 <div class="worker-item-attr-item-inner">
                                     <p class="worker-item-attr-item-txt-large">生活相談員資格</p>
-                                    <p class="worker-item-attr-item-txt-small">資格・スキル</p>
+                                    <p class="worker-item-attr-item-txt-small">{{ trans('common.skill') }}</p>
                                 </div>
                             </div>
 
                             <div class="worker-item-attr-item">
                                 <div class="worker-item-attr-item-inner">
                                     <p class="worker-item-attr-item-txt-large">¥3,000〜</p>
-                                    <p class="worker-item-attr-item-txt-small">希望時給</p>
+                                    <p class="worker-item-attr-item-txt-small">{{ trans('common.desired_cost') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -261,11 +261,11 @@
                         <div class="worker-item-cta">
                             <div class="worker-item-cta-inner">
                                 <a onclick="loginPopup()">
-                                    <span>メッセージ</span>
+                                    <span>{{ trans('button.message') }}</span>
                                     <i class="ti-comment"></i>
                                 </a>
                                 <a onclick="loginPopup()">
-                                    <span>お気に入り</span>
+                                    <span>{{ trans('button.favourite') }}</span>
                                     <i class="ti-heart"></i>
                                 </a>
                             </div>
@@ -277,7 +277,7 @@
                 <div class="search-row search-row-l">
                     <a href="workers.html" class="search-link">
                         <i class="fa fa-search"></i>
-                        <span>ヘルパーを探す</span>
+                        <span>{{ trans('button.search_helper') }}</span>
                         <i class="ti-arrow-circle-right"></i>
                     </a>
                 </div>
@@ -285,7 +285,7 @@
 
             <a class="btn-contact worker-contact" href="register.html">
                 <div class="job-contact-inner">
-                    <span>ヘルパー登録はコチラ</span>
+                    <span>{{ trans('home.new_helper') }}</span>
                     <i class="ti-arrow-circle-right"></i>
                 </div>
             </a>
@@ -404,8 +404,8 @@
                         <div class="footer-cta-infos cta-block-infos">
                             <p class="footer-cta-txt has-img cta-block-txt">
                                 <span class="txt-img"><img src="{{ asset('/images/logo-txt.svg') }}" alt="" /></span>
-                                <span class="for-space"></span>アプリを今すぐ<br>
-                                ダウンロード
+                                <span class="for-space"></span>{{ trans('home.download_desc_pre') }}<br>
+                                {{ trans('home.download_desc_sur') }}
                             </p>
                             <div class="footer-cta-links cta-block-links">
                                 <a href="#"><img src="{{ asset('/images/link-app-store.png') }}" alt="" /></a>
@@ -419,7 +419,7 @@
             <div class="footer-bottom">
                 <div class="footer-contact">
                     <div class="footer-contact-inner">
-                        <p class="footer-contact-ttl">サービスへのご相談はこちらから</p>
+                        <p class="footer-contact-ttl">{{ trans('home.footer_desc') }}</p>
                         <a class="footer-contact-link" onclick="loginPopup()"><span>新規申し込み</span></a>
                         <a class="footer-contact-link" href="register.html"><span>ヘルパー登録</span></a>
                     </div>
@@ -427,7 +427,7 @@
                     <a class="scroll-to-top" href="#">
                         <div class="scroll-to-top-inner">
                             <i class="fa fa-arrow-up"></i>
-                            <span>PAGE TOP</span>
+                            <span>{{ trans('common.page_top') }}</span>
                         </div>
                     </a>
                 </div>
@@ -440,10 +440,10 @@
                         <div id="footer-nav" class="footer-nav">
                             <nav>
                                 <ul class="footer-nav-list">
-                                    <li class="foonter-nav-item"><a href="#"><span>TOP</span></a></li>
-                                    <li class="foonter-nav-item"><a href="#"><span>NEWS</span></a></li>
-                                    <li class="foonter-nav-item"><a href="jobs.html"><span>案件を探す</span></a></li>
-                                    <li class="foonter-nav-item"><a href="contactus.html"><span>お問い合わせ</span></a></li>
+                                    <li class="foonter-nav-item"><a href="#"><span>{{ trans('common.footer_menu.top') }}</span></a></li>
+                                    <li class="foonter-nav-item"><a href="#"><span>{{ trans('common.footer_menu.news') }}</span></a></li>
+                                    <li class="foonter-nav-item"><a href="jobs.html"><span>{{ trans('common.footer_menu.search_job') }}</span></a></li>
+                                    <li class="foonter-nav-item"><a href="contactus.html"><span>{{ trans('common.footer_menu.contact_us') }}</span></a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -451,11 +451,11 @@
 
                     <div class="footer-menu-bottom">
                         <div class="fmb-right">
-                            <a href="#"><span>利用規約</span></a>
+                            <a href="#"><span>{{ trans('common.term') }}</span></a>
                             <span class="sep">/</span>
-                            <a href="#"><span>PRIVACY POLICY</span></a>
+                            <a href="#"><span>{{ trans('common.privacy') }}</span></a>
                         </div>
-                        <p class="copyright">COPYRIGHT(C) 〇〇 INC. ALL RIGHT RESERVED.</p>
+                        <p class="copyright">{{ trans('common.copyright') }}</p>
                     </div>
                 </div>
             </div>
@@ -470,5 +470,7 @@
             <a href="login.html" class="btn primary-btn">ログイン</a>
             <p class="sub-desc">アカウントをお持ちでない場合<a href="register.html">新規登録</a></p>
         </div>
+
+        <script src="{{ asset('/js/script.js') }}"></script>
     </body>
 </html>
