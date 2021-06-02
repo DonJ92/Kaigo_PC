@@ -1,0 +1,75 @@
+/* Example - styles */
+
+#container {
+    visibility: visible;
+    margin: 0 auto;
+}
+
+#loader {
+    color: #008cff;
+    height: 40px;
+    width: 30%;
+    position: absolute;
+    top: 45%;
+    left: 45%;
+}
+
+#element {
+    max-width: calc(400 / 1920 * 100vw);
+    display: block;
+    border: unset;
+    margin: 0 auto;
+
+    td {
+        padding: calc(10 / 1920 * 100vw);
+    }
+
+    th,.e-day {
+        font-size: calc(17 / 1920 * 100vw);
+        height: calc(30 / 1920 * 100vw);
+        line-height: calc(30 / 1920 * 100vw);
+        width: calc(30 / 1920 * 100vw);
+    }
+
+    .e-title {
+        font-family: AXIS Std-B;
+        font-size: calc(24 / 1920 * 100vw);
+        width: unset;
+    }
+}
+
+.e-calendar {
+    min-width: unset;
+}
+
+#register-element {
+    max-width: calc(750 / 1920 * 100vw);
+    display: block;
+    border: unset;
+    margin: calc(100 / 1920 * 100vw) auto;
+
+    td {
+        padding: calc(10 / 1920 * 100vw);
+    }
+
+    th,.e-day {
+        font-size: calc(23 / 1920 * 100vw);
+        height: calc(50 / 1920 * 100vw);
+        line-height: calc(50 / 1920 * 100vw);
+        width: calc(50 / 1920 * 100vw);
+    }
+
+    .e-title {
+        font-family: AXIS Std-B;
+        font-size: calc(32 / 1920 * 100vw);
+        width: unset;
+    }
+}
+
+.e-calendar .e-content td.e-selected span.e-day {
+    background-color: $primary-color;
+}
+
+.e-btn {
+    font-size: calc(14 / 1920 * 100vw) !important;
+}

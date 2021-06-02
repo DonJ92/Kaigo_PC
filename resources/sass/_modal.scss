@@ -1,0 +1,148 @@
+#dialog-overlay {
+
+	/* set it to fill the whil screen */
+	width:100%; 
+	height:100%;
+	
+	/* transparency for different browsers */
+	filter:alpha(opacity=50); 
+	-moz-opacity:0.5; 
+	-khtml-opacity: 0.5; 
+	opacity: 0.5; 
+	background:#000; 
+
+	/* make sure it appear behind the dialog box but above everything else */
+	position:absolute; 
+	top:0; left:0; 
+	z-index:3000; 
+
+	/* hide it by default */
+	display:none;
+}
+
+
+.dialog-box {
+	width: calc(510 / 1920 * 100vw);
+    height: calc(660 / 1920 * 100vw);
+
+    top: calc(100 / 1920 * 100vw);
+    left: calc(50% - 255 / 1920 * 100vw);
+
+	border-radius: calc(27 / 1920 * 100vw);	
+	background:#eee;
+
+	position:absolute; 
+	z-index:5000; 
+
+    padding: calc(20 / 1920 * 100vw);
+    text-align: center;
+
+	display:none;
+
+    &.logout {
+        width: calc(510 / 1920 * 100vw);
+        height: calc(200 / 1920 * 100vw);
+        background: transparent;
+    }
+
+    .close-btn {
+        text-align: right;
+        margin: 0 0 calc(30 / 1920 * 100vw);
+        color: $content_grey;
+        cursor: pointer;
+    }
+
+    .dialog-title {
+        font-family: AXIS Std-B;
+        font-size: calc(28 / 1920 * 100vw);
+        line-height: calc(39 / 1920 * 100vw);
+        letter-spacing: calc(1.4 / 1920 * 100vw);
+        color: $content_grey;
+        margin: 0 0 calc(50 / 1920 * 100vw);
+    }
+
+    img {
+        width: calc(140 / 1920 * 100vw);
+        margin: 0 auto calc(40 / 1920 * 100vw);
+
+        &.identify {
+            width: calc(300 / 1920 * 100vw);
+        }
+    }
+
+    .dialog-subtitle {
+        font-family: AXIS Std-B;
+        font-size: calc(24 / 1920 * 100vw);
+        line-height: calc(32 / 1920 * 100vw);
+        letter-spacing: calc(2.4 / 1920 * 100vw);
+        color: $primary_color;
+        margin: 0 calc(90 / 1920 * 100vw) calc(50 / 1920 * 100vw);
+    }
+
+    .btn {
+        @include flex-center;
+        width: 100%;
+        height: calc(90 / 1920 * 100vw);
+        font-family: AXIS Std-M;
+        font-size: calc(24 / 1920 * 100vw);
+        letter-spacing: calc(0.7 / 1920 * 100vw);
+        line-height: calc(33 / 1920 * 100vw);
+        color: white;
+        border-radius: 50px;
+        margin: 0 0 calc(10 / 1920 * 100vw) 0;
+        
+        &.reset-btn {
+            background: $border_color_grey;
+        }
+
+        &.default-btn {
+            background: $border_color_grey;
+            color: $content-grey;
+        }
+
+        &.default-btn:hover {
+            background: $dark_grey;
+            color: white;
+        }
+
+        &.primary-btn {
+            background: $primary_color;
+        }
+
+        &.secondary-btn {
+            background: $secondary_color;
+        }
+
+        &.right-align {
+            margin: 0 0 0 auto;
+        }
+
+        &.logout-btn {
+            width: calc(300 / 1920 * 100vw);
+            height: calc(60 / 1920 * 100vw);
+            margin: 0 0 calc(30 / 1920 * 100vw);
+            font-size: calc(16 / 1920 * 100vw);
+        }
+    }
+
+    .desc {
+        font-family: AXIS Std-L;
+        font-size: calc(21 / 1920 * 100vw);
+        letter-spacing: calc(1.05 / 1920 * 100vw);
+        line-height: calc(33 / 1920 * 100vw);
+        color: $content_grey;
+        margin: calc(40 / 1920 * 100vw) calc(40 / 1920 * 100vw);
+    }
+
+    .sub-desc {
+        font-family: AXIS Std-M;
+        font-size: calc(14 / 1920 * 100vw);
+        letter-spacing: calc(0.7 / 1920 * 100vw);
+        line-height: calc(22 / 1920 * 100vw);
+        color: $content_grey;
+
+        a {
+            color: $secondary_color;
+        }
+    }
+}

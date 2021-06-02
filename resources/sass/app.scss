@@ -1,8 +1,21 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@charset "utf-8";
 
-// Variables
-@import 'variables';
+@import "../libs/font-awesome/css/font-awesome.min.css";
+@import "../libs/themify-icons/css/themify-icons.css";
+@import "../libs/slick/slick.min.css";
+@import "../libs/slick/slick-theme.min.css";
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "./font";
+@import "./color";
+@import "./variables";
+@import "./base";
+@import "./calendar";
+@import "./common";
+@import "./nav";
+@import "./modal";
+@import "./page-home";
+@import "./page-register";
+@import "./page-login";
+@import "./page-profile-register";
+@import "./page-no-auth";
+@import "./dashboard/page-dashboard";

@@ -1,19 +1,42 @@
-// Body
-$body-bg: #f8fafc;
+@charset "utf-8";
 
-// Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+/* 変数 */
+$color01: #000000;
 
-// Colors
-$blue: #3490dc;
-$indigo: #6574cd;
-$purple: #9561e2;
-$pink: #f66d9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #38c172;
-$teal: #4dc0b5;
-$cyan: #6cb2eb;
+$fs-bold: bold;
+$fs-normal: normal;
+
+/*画面サイズ*/
+$res1-width: 1920;
+$res2-width: 1500;
+$res3-width: 992;
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-center-v {
+    display: flex;
+    align-items: center;
+}
+
+@mixin absolute-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin absolute-center-x {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@mixin absolute-center-y {
+    position: absolute;    
+    top: 50%;
+    transform: translateY(-50%);
+}
