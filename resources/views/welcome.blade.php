@@ -4,9 +4,12 @@
         <meta charset="utf-8">
         <meta http-equiv="Content-Script-Type" content="text/javascript" />
         <meta http-equiv="Content-Style-Type" content="text/css" />
-        <meta name="description" content="">
+        <meta name="description" content="{{ config('app.name', 'Kaigo') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title></title>
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <title>{{ config('app.name', 'Helper') . ' - ' . trans('top.title') }}</title>
 
         <!-- css -->
         <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
@@ -50,9 +53,9 @@
                 </h2>
 
                 <div class="mv-ttl">
-                    <h2 class="mv-ttl-main">{{ trans('home.main_title_pre') }}<br>{{ trans('home.main_title_sur') }}</h2>
+                    <h2 class="mv-ttl-main">{{ trans('top.main_title_pre') }}<br>{{ trans('top.main_title_sur') }}</h2>
                     <h3 class="mv-ttl-sub">
-                        {{ trans('home.main_desc_pre') }}<br>{{ trans('home.main_desc_sur') }}
+                        {{ trans('top.main_desc_pre') }}<br>{{ trans('top.main_desc_sur') }}
                     </h3>
                 </div>
 
@@ -65,8 +68,8 @@
                     <div class="mv-lead-infos cta-block-infos">
                         <p class="mv-lead-txt cta-block-txt has-img">
                             <span class="txt-img"><img src="{{ asset('/images/logo-txt.svg') }}" alt="" /></span>
-                            <span class="for-space"></span>{{ trans('home.download_desc_pre') }}<br>
-                            {{ trans('home.download_desc_sur') }}
+                            <span class="for-space"></span>{{ trans('top.download_desc_pre') }}<br>
+                            {{ trans('top.download_desc_sur') }}
                         </p>
                         <div class="mv-lead-links cta-block-links">
                             <a href="#"><img src="{{ asset('/images/link-app-store.png') }}" alt="" /></a>
@@ -106,7 +109,7 @@
             <div class="search-inner">
                 <div class="search-box">
                     <form>
-                        <p class="search-ttl">{{ trans('home.search_panel_title') }}</p>
+                        <p class="search-ttl">{{ trans('top.search_panel_title') }}</p>
 
                         <div class="search-field-item">
                             <p class="search-field-ttl">{{ trans('common.job_type') }}</p>
@@ -139,7 +142,7 @@
             <div class="job-tr"></div>
             <div class="job-bl"></div>
             <div class="job-inner">
-                <h3 class="job-ttl sec-ttl"><span><i></i>{{ trans('home.job_list_title') }}</span></h3>
+                <h3 class="job-ttl sec-ttl"><span><i></i>{{ trans('top.job_list_title') }}</span></h3>
 
                 <div class="job-list">
                     @for ($i = 0; $i < 6; $i++)
@@ -192,7 +195,7 @@
 
             <a class="btn-contact job-contact" onclick="loginPopup()">
                 <div class="job-contact-inner">
-                    <span>{{ trans('home.new_job') }}</span>
+                    <span>{{ trans('top.new_job') }}</span>
                     <i class="ti-arrow-circle-right"></i>
                 </div>
             </a>
@@ -285,7 +288,7 @@
 
             <a class="btn-contact worker-contact" href="register.html">
                 <div class="job-contact-inner">
-                    <span>{{ trans('home.new_helper') }}</span>
+                    <span>{{ trans('top.new_helper') }}</span>
                     <i class="ti-arrow-circle-right"></i>
                 </div>
             </a>
@@ -404,8 +407,8 @@
                         <div class="footer-cta-infos cta-block-infos">
                             <p class="footer-cta-txt has-img cta-block-txt">
                                 <span class="txt-img"><img src="{{ asset('/images/logo-txt.svg') }}" alt="" /></span>
-                                <span class="for-space"></span>{{ trans('home.download_desc_pre') }}<br>
-                                {{ trans('home.download_desc_sur') }}
+                                <span class="for-space"></span>{{ trans('top.download_desc_pre') }}<br>
+                                {{ trans('top.download_desc_sur') }}
                             </p>
                             <div class="footer-cta-links cta-block-links">
                                 <a href="#"><img src="{{ asset('/images/link-app-store.png') }}" alt="" /></a>
@@ -419,15 +422,15 @@
             <div class="footer-bottom">
                 <div class="footer-contact">
                     <div class="footer-contact-inner">
-                        <p class="footer-contact-ttl">{{ trans('home.footer_desc') }}</p>
-                        <a class="footer-contact-link" onclick="loginPopup()"><span>新規申し込み</span></a>
-                        <a class="footer-contact-link" href="register.html"><span>ヘルパー登録</span></a>
+                        <p class="footer-contact-ttl">{{ trans('top.footer_desc') }}</p>
+                        <a class="footer-contact-link" onclick="loginPopup()"><span>{{ trans('button.register_job') }}</span></a>
+                        <a class="footer-contact-link" href="register.html"><span>{{ trans('button.register_helper') }}</span></a>
                     </div>
 
                     <a class="scroll-to-top" href="#">
                         <div class="scroll-to-top-inner">
                             <i class="fa fa-arrow-up"></i>
-                            <span>{{ trans('common.page_top') }}</span>
+                            <span>{{ trans('button.page_top') }}</span>
                         </div>
                     </a>
                 </div>
@@ -464,11 +467,11 @@
         <div id="dialog-overlay"></div>
         <div id="dialog-box" class="dialog-box">
             <div id="close" class="close-btn"><a><i class="fa fa-close"></i></a></div>
-            <h2 class="dialog-title">ログイン後操作可能です</h2>
+            <h2 class="dialog-title">{{ trans('common.login_dialog.title') }}</h2>
             <img src="{{ asset('/images/dialog-icon.svg') }}">
-            <h2 class="dialog-subtitle">あなたにピッタリな ヘルパーと出会う</h2>
-            <a href="login.html" class="btn primary-btn">ログイン</a>
-            <p class="sub-desc">アカウントをお持ちでない場合<a href="register.html">新規登録</a></p>
+            <h2 class="dialog-subtitle">{{ trans('common.login_dialog.desc') }}</h2>
+            <a href="login.html" class="btn primary-btn">{{ trans('button.login') }}</a>
+            <p class="sub-desc">{{ trans('common.login_dialog.register_desc') }}<a href="register.html">{{ trans('button.register') }}</a></p>
         </div>
 
         <script src="{{ asset('/js/script.js') }}"></script>

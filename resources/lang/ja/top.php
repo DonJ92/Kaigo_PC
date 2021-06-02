@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'ホーム',
+    'title' => 'トップ',
 
     'main_title_pre' => 'あなたにピッタリな',
     'main_title_sur' => 'ヘルパーと出会う',
