@@ -1,9 +1,20 @@
 @extends('layouts.register')
 
 @section('content')
+    <script>
+        $(window).on('load', function() {
+            $('#sidemenu_admin_list').addClass('active');
+
+            @if ($errors->has('failed'))
+                toastr.error('{{ $errors->first('failed') }}', '', { "closeButton": true });
+            @endif
+
+        });
+    </script>
+
     <h2>{{ trans('register.title') }}</h2>
 
-    <form method="POST" action="{{ route('register.info') }}">
+    <form method="POST" action="{{ route('register.password') }}">
         @csrf
 
         <div class="field-row field-block">
@@ -17,9 +28,9 @@
         </div>
         <div class="field-row field-block">
             <p class="field-ttl">{{ trans('register.first_name') }}</p>
-            <input class="form @error('last_name') is-invalid @enderror" type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" placeholder="名前"/>
+            <input class="form @error('first_name') is-invalid @enderror" type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" placeholder="名前"/>
             @error('first_name')
-            <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror

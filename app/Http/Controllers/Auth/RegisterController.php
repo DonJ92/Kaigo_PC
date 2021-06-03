@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
@@ -82,7 +83,18 @@ class RegisterController extends Controller
         return view('auth.register', $data);
     }
 
-    public function registerInfo(Request $request)
+    public function passwordForm()
+    {
+        $old_input = session()->getOldInput();
+        if (empty($old_input['last_name']) || empty($old_input['first_name']) || empty($old_input['province']))
+            return redirect()->route('register');
+
+        $data['step'] = 2;
+
+        return view('auth.register2', $data);
+    }
+
+    public function registerPassword(Request $request)
     {
         $data = $request->all();
 
@@ -95,7 +107,7 @@ class RegisterController extends Controller
         ], [
         ], [
             'last_name' => trans('register.last_name'),
-            'first_name' => trans('register.last_name'),
+            'first_name' => trans('register.first_name'),
             'gender' => trans('register.gender'),
             'province' => trans('register.province'),
             'address' => trans('register.address'),
@@ -106,7 +118,79 @@ class RegisterController extends Controller
             return redirect()->back()->withInput()->withErrors($errors);
         }
 
-        print_r($data);
-        die;
+        $data['step'] = 2;
+
+        return view('auth.register2', $data);
+    }
+
+    public function smsForm()
+    {
+        $old_input = session()->getOldInput();
+        if (empty($old_input['last_name']) || empty($old_input['first_name']) || empty($old_input['province']) || empty($old_input['phone']) || empty($old_input['password']))
+            return redirect()->route('register');
+
+        $data['step'] = 3;
+
+        return view('auth.register3', $data);
+    }
+
+    public function registerSMS(Request $request)
+    {
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
+            'phone' => 'required|string|max:24',
+            'password' => 'required|string|min:6|max:32|confirmed',
+        ], [
+        ], [
+            'phone' => trans('register.phone'),
+            'password' => trans('register.password'),
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return redirect()->route('register.passwordform')->withInput()->withErrors($errors);
+        }
+
+        $data['step'] = 3;
+
+        return view('auth.register3', $data);
+    }
+
+    public function registerConfirm(Request $request)
+    {
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
+            'sms_code' => 'required|string',
+        ], [
+        ], [
+            'sms_code' => trans('register.sms_code'),
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return redirect()->route('register.smsform')->withInput()->withErrors($errors);
+        }
+
+        try {
+            User::create([
+                'phone' => $data['phone'],
+                'password' => Hash::make($data['password']),
+                'last_name' => $data['last_name'],
+                'first_name' => $data['first_name'],
+                'gender' => $data['gender'],
+                'province_id' => $data['province'],
+                'address' => $data['address'],
+            ]);
+        } catch (QueryException $e) {
+            print_r($e->getMessage());
+            die();
+            return redirect()->route('register')->withInput()->withErrors(['failed' => trans('register.register_failed')]);
+        }
+
+        $data['step'] = 4;
+
+        return view('auth.register4', $data);
     }
 }
