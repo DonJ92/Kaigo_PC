@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
+Route::post('/register', 'Auth\RegisterController@registerInfo')->name('register.info');
 
 Route::get('/', 'TopController@index')->name('top');
+Route::get('/job/search', 'JobController@search')->name('job.search');
+
 Route::get('/home', 'HomeController@index')->name('home');

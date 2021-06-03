@@ -594,3 +594,24 @@ border-radius: 34px;
 .switch-slider.round:before {
 border-radius: 50%;
 }
+
+.invalid-feedback {
+    color: crimson;
+    font-size: calc(16 / 1920 * 100vw);;
+}
+
+.is-invalid {
+    border-color: crimson !important;
+}
+
+@media only screen and (max-width: 992px) {
+    .invalid-feedback {
+        font-size: calc(16 / 992 * 100vw);;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .invalid-feedback {
+        font-size: calc(16 / 600 * 100vw);;
+    }
+}

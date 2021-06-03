@@ -9,7 +9,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Helper') . ' - ' . trans('top.title') }}</title>
+        <title>{{ trans('top.title') }} - {{ config('app.name', 'Helper')}}</title>
 
         <!-- css -->
         <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
@@ -28,7 +28,7 @@
                     <div class="mv-r-regist-login">
                         <div class="mv-r-regist-login-wrapper">
                             <div class="mv-r-rl-item mv-r-regist">
-                                <a href="register.html"><span>{{ trans('button.register') }}</span></a>
+                                <a href="{{ route('register') }}"><span>{{ trans('button.register') }}</span></a>
                             </div>
                             <div class="mv-r-rl-item mv-r-login">
                                 <a href="login.html"><span>{{ trans('button.login') }}</span></a>
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="mv-r-search-row search-row">
-                    <a href="jobs.html" class="mv-r-search-link search-link">
+                    <a href="{{ route('job.search') }}" class="mv-r-search-link search-link">
                         <i class="fa fa-search"></i>
                         <span>{{ trans('button.search_job') }}</span>
                         <i class="ti-arrow-circle-right"></i>
@@ -91,8 +91,8 @@
                     <nav>
                         <ul class="nav-list">
                             <li class="nav-item news"><a href="#"><span>NEWS</span></a></li>
-                            <li class="nav-item search"><a href="jobs.html"><i class="fa fa-search"></i><span>案件を探す</span></a></li>
-                            <li class="nav-item regist"><a href="register.html"><span>新規登録</span></a></li>
+                            <li class="nav-item search"><a href="{{ route('job.search') }}"><i class="fa fa-search"></i><span>案件を探す</span></a></li>
+                            <li class="nav-item regist"><a href="{{ route('register') }}"><span>新規登録</span></a></li>
                             <li class="nav-item login"><a href="login.html"><span>ログイン</span></a></li>
                         </ul>
                     </nav>
@@ -131,7 +131,7 @@
                                 <option value="" selected=""></option>
                             </select>
                         </div>
-                        <a href="jobs.html" class="btn-search"><span>{{ trans('button.search') }}</span><i class="ti-arrow-circle-right"></i></a>
+                        <a href="{{ route('job.search') }}" class="btn-search"><span>{{ trans('button.search') }}</span><i class="ti-arrow-circle-right"></i></a>
                         <!--                    <button type="submit" class="btn-search"><span>検索</span><i class="ti-arrow-circle-right"></i></button>-->
                     </form>
                 </div>
@@ -185,7 +185,7 @@
                 </div>
 
                 <div class="search-row">
-                    <a href="jobs.html" class="search-link">
+                    <a href="{{ route('job.search') }}" class="search-link">
                         <i class="fa fa-search"></i>
                         <span>{{ trans('button.search_job') }}</span>
                         <i class="ti-arrow-circle-right"></i>
@@ -286,7 +286,7 @@
                 </div>
             </div>
 
-            <a class="btn-contact worker-contact" href="register.html">
+            <a class="btn-contact worker-contact" href="{{ route('register') }}">
                 <div class="job-contact-inner">
                     <span>{{ trans('top.new_helper') }}</span>
                     <i class="ti-arrow-circle-right"></i>
@@ -424,7 +424,7 @@
                     <div class="footer-contact-inner">
                         <p class="footer-contact-ttl">{{ trans('top.footer_desc') }}</p>
                         <a class="footer-contact-link" onclick="loginPopup()"><span>{{ trans('button.register_job') }}</span></a>
-                        <a class="footer-contact-link" href="register.html"><span>{{ trans('button.register_helper') }}</span></a>
+                        <a class="footer-contact-link" href="{{ route('register') }}"><span>{{ trans('button.register_helper') }}</span></a>
                     </div>
 
                     <a class="scroll-to-top" href="#">
@@ -443,9 +443,9 @@
                         <div id="footer-nav" class="footer-nav">
                             <nav>
                                 <ul class="footer-nav-list">
-                                    <li class="foonter-nav-item"><a href="#"><span>{{ trans('common.footer_menu.top') }}</span></a></li>
+                                    <li class="foonter-nav-item"><a href="{{ route('top') }}"><span>{{ trans('common.footer_menu.top') }}</span></a></li>
                                     <li class="foonter-nav-item"><a href="#"><span>{{ trans('common.footer_menu.news') }}</span></a></li>
-                                    <li class="foonter-nav-item"><a href="jobs.html"><span>{{ trans('common.footer_menu.search_job') }}</span></a></li>
+                                    <li class="foonter-nav-item"><a href="{{ route('job.search') }}"><span>{{ trans('common.footer_menu.search_job') }}</span></a></li>
                                     <li class="foonter-nav-item"><a href="contactus.html"><span>{{ trans('common.footer_menu.contact_us') }}</span></a></li>
                                 </ul>
                             </nav>
@@ -471,7 +471,7 @@
             <img src="{{ asset('/images/dialog-icon.svg') }}">
             <h2 class="dialog-subtitle">{{ trans('common.login_dialog.desc') }}</h2>
             <a href="login.html" class="btn primary-btn">{{ trans('button.login') }}</a>
-            <p class="sub-desc">{{ trans('common.login_dialog.register_desc') }}<a href="register.html">{{ trans('button.register') }}</a></p>
+            <p class="sub-desc">{{ trans('common.login_dialog.register_desc') }}<a href="{{ route('register') }}">{{ trans('button.register') }}</a></p>
         </div>
 
         <script src="{{ asset('/js/script.js') }}"></script>

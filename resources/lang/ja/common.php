@@ -17,9 +17,12 @@ return [
 
     'download_desc' => 'アプリを今すぐダウンロード',
 
+    'address' => '場所',
+    'time_zone' => '時間帯',
     'job_type' => '職種',
     'area' => '地域',
     'datetime' => '日時',
+    'open_job' => '募集中の仕事のみ',
     'cost' => '時給',
     'age' => '年齢',
     'skill' => '資格・スキル',

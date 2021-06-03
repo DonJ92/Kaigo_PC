@@ -9,19 +9,21 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Helper')}} - @yield('title')</title>
+    <title>@yield('title') - {{ config('app.name', 'Helper')}}</title>
 
     <!-- css -->
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 
     <!-- javascript -->
     <script src="{{ asset('/js/app.js') }}"></script>
+
+    @yield('header')
 </head>
 <body class="no-auth">
     <header id="header" class="active">
         <div class="site-header">
             <h1 class="logo">
-                <a href="index.html">
+                <a href="{{ route('top') }}">
                     <img src="{{ asset('/images/logo.svg') }}" alt="" />
                 </a>
             </h1>
@@ -29,7 +31,7 @@
                 <nav>
                     <ul class="nav-list">
                         <li class="nav-item news"><a href="#"><span>{{ trans('common.top_menu.news') }}</span></a></li>
-                        <li class="nav-item search"><a href="jobs.html"><i class="fa fa-search"></i><span>{{ trans('common.top_menu.search_job') }}</span></a></li>
+                        <li class="nav-item search"><a href="{{ route('job.search') }}"><i class="fa fa-search"></i><span>{{ trans('common.top_menu.search_job') }}</span></a></li>
                         <li class="nav-item regist"><a href="register.html"><span>{{ trans('common.top_menu.register') }}</span></a></li>
                         <li class="nav-item login"><a href="login.html"><span>{{ trans('common.top_menu.login') }}</span></a></li>
                     </ul>
@@ -64,6 +66,15 @@
 
         <main>
             @yield('content')
+
+            <div class="main-r main-block main-block-white">
+                <a class="back-btn" href="{{ url()->previous() }}">
+                    <div>
+                        <p>{{ trans('button.back_page') }}</p>
+                        <p class="arrow">←</p>
+                    </div>
+                </a>
+            </div>
         </main>
 
         <script src="{{ asset('/js/script.js') }}"></script>

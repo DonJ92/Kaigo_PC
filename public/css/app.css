@@ -1987,6 +1987,27 @@ input:checked + .switch-slider:before {
   border-radius: 50%;
 }
 
+.invalid-feedback {
+  color: crimson;
+  font-size: calc(16 / 1920 * 100vw);
+}
+
+.is-invalid {
+  border-color: crimson !important;
+}
+
+@media only screen and (max-width: 992px) {
+  .invalid-feedback {
+    font-size: calc(16 / 992 * 100vw);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .invalid-feedback {
+    font-size: calc(16 / 600 * 100vw);
+  }
+}
+
 /* ナビーメニュー */
 
 #dialog-overlay {
@@ -3816,8 +3837,6 @@ body.register .primary main .btn-div {
   justify-content: space-between;
   width: 100%;
   position: absolute;
-  font-family: AXIS Std-M;
-  font-size: calc(25 / 1920 * 100vw);
   bottom: calc(50 / 1920 * 100vw);
   left: 0;
   padding: 0 calc(240 / 1920 * 100vw) 0 calc(140 / 1920 * 100vw);
@@ -3834,16 +3853,20 @@ body.register .primary main .btn-div .btn {
   width: calc(310 / 1920 * 100vw);
   height: calc(65 / 1920 * 100vw);
   border-radius: 50px;
+  cursor: pointer;
+  font-family: AXIS Std-M;
 }
 
 body.register .primary main .btn-div .btn.btn-back {
   background: #F2F2F2;
   color: #3B3B3B;
+  font-size: calc(25 / 1920 * 100vw);
 }
 
 body.register .primary main .btn-div .btn.btn-next {
   background: #E56274;
   color: #FFF;
+  font-size: calc(25 / 1920 * 100vw);
 }
 
 @media only screen and (max-width: 992px) {
@@ -4029,8 +4052,6 @@ body.register .primary main .btn-div .btn.btn-next {
     justify-content: space-between;
     width: 100%;
     position: relative;
-    font-family: AXIS Std-M;
-    font-size: calc(25 / 992 * 100vw);
     bottom: unset;
     left: 0;
     padding: unset;
@@ -4047,16 +4068,20 @@ body.register .primary main .btn-div .btn.btn-next {
     width: calc(310 / 992 * 100vw);
     height: calc(65 / 992 * 100vw);
     border-radius: 50px;
+    font-family: AXIS Std-M;
+    cursor: pointer;
   }
 
   body.register .primary main .btn-div .btn.btn-back {
     background: #F2F2F2;
     color: #3B3B3B;
+    font-size: calc(25 / 992 * 100vw);
   }
 
   body.register .primary main .btn-div .btn.btn-next {
     background: #E56274;
     color: #FFF;
+    font-size: calc(25 / 992 * 100vw);
   }
 }
 
@@ -4243,8 +4268,6 @@ body.register .primary main .btn-div .btn.btn-next {
     justify-content: space-between;
     width: 100%;
     position: relative;
-    font-family: AXIS Std-M;
-    font-size: calc(25 / 600 * 100vw);
     bottom: unset;
     left: 0;
     padding: unset;
@@ -4261,16 +4284,20 @@ body.register .primary main .btn-div .btn.btn-next {
     width: calc(310 / 600 * 100vw);
     height: calc(65 / 600 * 100vw);
     border-radius: 50px;
+    cursor: pointer;
+    font-family: AXIS Std-M;
   }
 
   body.register .primary main .btn-div .btn.btn-back {
     background: #F2F2F2;
     color: #3B3B3B;
+    font-size: calc(25 / 600 * 100vw);
   }
 
   body.register .primary main .btn-div .btn.btn-next {
     background: #E56274;
     color: #FFF;
+    font-size: calc(25 / 600 * 100vw);
   }
 }
 

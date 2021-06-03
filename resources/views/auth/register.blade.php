@@ -1,77 +1,68 @@
-@extends('layouts.app')
+@extends('layouts.register')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+    <h2>{{ trans('register.title') }}</h2>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+    <form method="POST" action="{{ route('register.info') }}">
+        @csrf
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+        <div class="field-row field-block">
+            <p class="field-ttl">{{ trans('register.last_name') }}</p>
+            <input class="form @error('last_name') is-invalid @enderror" type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" placeholder="氏名"/>
+            @error('last_name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
-    </div>
-</div>
+        <div class="field-row field-block">
+            <p class="field-ttl">{{ trans('register.first_name') }}</p>
+            <input class="form @error('last_name') is-invalid @enderror" type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" placeholder="名前"/>
+            @error('first_name')
+            <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        <div class="field-row">
+            <p class="field-ttl">{{ trans('register.gender') }}</p>
+            <select class="form @error('gender') is-invalid @enderror" id="gender" name="gender">
+                @foreach($gender_list as $gender_info)
+                    <option value="{{ $gender_info['id'] }}" @if( old('gender') == $gender_info['id']) selected @endif>{{ $gender_info['name'] }}</option>
+                @endforeach
+            </select>
+            @error('gender')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        <div class="field-row">
+            <p class="field-ttl">{{ trans('register.province') }}</p>
+            <select class="form @error('province') is-invalid @enderror" id="province" name="province">
+                <option></option>
+                @foreach($province_list as $province_info)
+                    <option value="{{ $province_info['id'] }}" @if( old('province') == $province_info['id']) selected @endif>{{ $province_info['name'] }}</option>
+                @endforeach
+            </select>
+            @error('province')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        <div class="field-row field-merge">
+            <p class="field-ttl">{{ trans('register.address') }}</p>
+            <input class="form @error('address') is-invalid @enderror" type="text" id="address" name="address" value="{{ old('address') }}" placeholder="{{ trans('register.address') }}"/>
+            @error('address')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        <div class="btn-div">
+            <a class="btn btn-back" href="{{ url()->previous() }}">{{ trans('button.back') }}</a>
+            <button type="submit" class="btn btn-next">{{ trans('button.next') }}</button>
+        </div>
+    </form>
 @endsection
