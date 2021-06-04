@@ -184,8 +184,6 @@ class RegisterController extends Controller
                 'address' => $data['address'],
             ]);
         } catch (QueryException $e) {
-            print_r($e->getMessage());
-            die();
             return redirect()->route('register')->withInput()->withErrors(['failed' => trans('register.register_failed')]);
         }
 

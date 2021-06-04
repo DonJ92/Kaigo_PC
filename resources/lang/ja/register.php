@@ -8,8 +8,6 @@ return [
     'sms_verify' => 'SMSで届いた番号を入力',
     'confirm' => 'Confirm',
 
-    'to_top' => 'TOPに戻る',
-
     'last_name' => 'お名前（姓）',
     'first_name' => 'お名前（名）',
     'gender' => '性別',

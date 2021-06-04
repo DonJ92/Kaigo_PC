@@ -29,6 +29,9 @@ return [
     'desired_cost' => '希望時給',
     'review' => 'レビュー',
 
+    'to_top' => 'TOPに戻る',
+    'here' => 'こちら',
+
     'copyright' => 'COPYRIGHT(C) 〇〇 INC. ALL RIGHT RESERVED.',
     'term' => '利用規約',
     'privacy' => 'PRIVACY POLICY',

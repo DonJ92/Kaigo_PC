@@ -615,3 +615,8 @@ border-radius: 50%;
         font-size: calc(16 / 600 * 100vw);;
     }
 }
+
+button:disabled,
+button[disabled] {
+    background-color: #ccc !important;
+}

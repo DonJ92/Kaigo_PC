@@ -24,6 +24,8 @@ return [
     'favourite' => 'お気に入り',
     'message' => 'メッセージ',
 
+    'register_profile' => '登録する',
+
     'page_top' => 'PAGE TOP',
 
     'back' => '戻る',

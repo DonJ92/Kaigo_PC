@@ -11,7 +11,7 @@
             <img src="{{ asset('images/confirm.svg') }}">
         </div>
         <div class="btn-div last">
-            <a class="btn btn-next btn-login" href="login.html">{{ trans('register.to_login') }}</a>
+            <a class="btn btn-next btn-login" href="{{ route('login') }}">{{ trans('register.to_login') }}</a>
         </div>
     </form>
 @endsection

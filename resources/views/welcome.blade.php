@@ -31,7 +31,7 @@
                                 <a href="{{ route('register') }}"><span>{{ trans('button.register') }}</span></a>
                             </div>
                             <div class="mv-r-rl-item mv-r-login">
-                                <a href="login.html"><span>{{ trans('button.login') }}</span></a>
+                                <a href="{{ route('login') }}"><span>{{ trans('button.login') }}</span></a>
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                             <li class="nav-item news"><a href="#"><span>NEWS</span></a></li>
                             <li class="nav-item search"><a href="{{ route('job.search') }}"><i class="fa fa-search"></i><span>案件を探す</span></a></li>
                             <li class="nav-item regist"><a href="{{ route('register') }}"><span>新規登録</span></a></li>
-                            <li class="nav-item login"><a href="login.html"><span>ログイン</span></a></li>
+                            <li class="nav-item login"><a href="{{ route('login') }}"><span>ログイン</span></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -470,7 +470,7 @@
             <h2 class="dialog-title">{{ trans('common.login_dialog.title') }}</h2>
             <img src="{{ asset('/images/dialog-icon.svg') }}">
             <h2 class="dialog-subtitle">{{ trans('common.login_dialog.desc') }}</h2>
-            <a href="login.html" class="btn primary-btn">{{ trans('button.login') }}</a>
+            <a href="{{ route('login') }}" class="btn primary-btn">{{ trans('button.login') }}</a>
             <p class="sub-desc">{{ trans('common.login_dialog.register_desc') }}<a href="{{ route('register') }}">{{ trans('button.register') }}</a></p>
         </div>
 

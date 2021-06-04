@@ -3,12 +3,9 @@
 @section('content')
     <script>
         $(window).on('load', function() {
-            $('#sidemenu_admin_list').addClass('active');
-
             @if ($errors->has('failed'))
                 toastr.error('{{ $errors->first('failed') }}', '', { "closeButton": true });
             @endif
-
         });
     </script>
 

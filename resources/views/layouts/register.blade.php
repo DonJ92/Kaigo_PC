@@ -40,7 +40,7 @@
         </div>
 
         <a class="back-to-top" href="{{ route('top') }}">
-            <i class="ti-arrow-circle-left"></i>{{ trans('register.to_top') }}
+            <i class="ti-arrow-circle-left"></i>{{ trans('common.to_top') }}
         </a>
     </aside>
 

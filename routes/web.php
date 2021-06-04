@@ -24,3 +24,8 @@ Route::get('/', 'TopController@index')->name('top');
 Route::get('/job/search', 'JobController@search')->name('job.search');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/profile', 'ProfileController@selectForm')->name('profile.select');
+Route::post('/profile', 'ProfileController@select')->name('profile.select.submit');
+Route::get('/profile/register', 'ProfileController@registerForm')->name('profile.register');
+Route::post('/profile/register', 'ProfileController@register')->name('profile.register.submit');

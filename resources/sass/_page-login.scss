@@ -189,8 +189,6 @@ body.login {
                 justify-content: space-between;
                 width: 100%;
                 position: absolute;
-                font-family: AXIS Std-M;
-                font-size: calc(25 / 1920 * 100vw);
                 bottom: calc(50 / 1920 * 100vw);
                 left: 0;
                 padding: 0 calc(240 / 1920 * 100vw) 0 calc(140 / 1920 * 100vw);
@@ -204,15 +202,19 @@ body.login {
                     width: calc(310 / 1920 * 100vw);
                     height: calc(65 / 1920 * 100vw);
                     border-radius: 50px;
+                    font-family: AXIS Std-M;
+                    cursor: pointer;
 
                     &.btn-back {
                         background: $back_btn;
                         color: $dark_grey;
+                        font-size: calc(25 / 1920 * 100vw);
                     }
     
                     &.btn-next {
                         background: $primary_color;
                         color: #FFF;
+                        font-size: calc(25 / 1920 * 100vw);
                     }
                 }
             }
@@ -410,8 +412,6 @@ body.login {
                     justify-content: space-between;
                     width: 100%;
                     position: absolute;
-                    font-family: AXIS Std-M;
-                    font-size: calc(25 / 992 * 100vw);
                     bottom: calc(50 / 992 * 100vw);
                     left: 0;
                     padding: 0 calc(240 / 992 * 100vw) 0 calc(140 / 992 * 100vw);
@@ -425,15 +425,19 @@ body.login {
                         width: calc(310 / 992 * 100vw);
                         height: calc(65 / 992 * 100vw);
                         border-radius: 50px;
+                        font-family: AXIS Std-M;
+                        cursor: pointer;
     
                         &.btn-back {
                             background: $back_btn;
                             color: $dark_grey;
+                            font-size: calc(25 / 992 * 100vw);
                         }
         
                         &.btn-next {
                             background: $primary_color;
                             color: #FFF;
+                            font-size: calc(25 / 992 * 100vw);
                         }
                     }
                 }
@@ -632,8 +636,6 @@ body.login {
                     justify-content: space-between;
                     width: 100%;
                     position: absolute;
-                    font-family: AXIS Std-M;
-                    font-size: calc(25 / 600 * 100vw);
                     bottom: calc(50 / 600 * 100vw);
                     left: 0;
                     padding: 0 calc(240 / 600 * 100vw) 0 calc(140 / 600 * 100vw);
@@ -647,10 +649,13 @@ body.login {
                         width: calc(310 / 600 * 100vw);
                         height: calc(65 / 600 * 100vw);
                         border-radius: 50px;
+                        font-family: AXIS Std-M;
+                        cursor: pointer;
     
                         &.btn-back {
                             background: $back_btn;
                             color: $dark_grey;
+                            font-size: calc(25 / 600 * 100vw);
                         }
         
                         &.btn-next {
