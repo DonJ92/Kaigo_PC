@@ -29,3 +29,7 @@ Route::get('/profile', 'ProfileController@selectForm')->name('profile.select');
 Route::post('/profile', 'ProfileController@select')->name('profile.select.submit');
 Route::get('/profile/register', 'ProfileController@registerForm')->name('profile.register');
 Route::post('/profile/register', 'ProfileController@register')->name('profile.register.submit');
+
+Route::get('/identification', 'IdentificationController@selectForm')->name('identification.select');
+Route::get('/identification/register', 'IdentificationController@registerForm')->name('identification.register');
+Route::get('/skill/register', 'IdentificationController@skillForm')->name('skill.register');

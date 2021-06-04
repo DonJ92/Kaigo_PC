@@ -66,23 +66,23 @@ class ProfileController extends Controller
                 'age' => trans('profile.age'),
             ]);
 
-            $data['experience'] = '';
+            $data['experience_years'] = '';
             $data['certificate'] = '';
         } else
             $validator = Validator::make($data, [
                 'introduction' => 'nullable|string|max:1024',
                 'age' => 'nullable',
-                'experience' => 'required',
+                'experience_years' => 'required',
                 'certificate' => 'required|exists:tbl_certificate_type,id',
-                'cost' => 'required',
+                'hourly_cost' => 'required',
                 'agree' => 'required',
             ], [
             ], [
                 'introduction' => trans('profile.introduction'),
                 'age' => trans('profile.age'),
-                'experience' => trans('profile.experience'),
+                'experience_years' => trans('profile.experience_years'),
                 'certificate' => trans('profile.certificate'),
-                'cost' => trans('profile.hourly_cost'),
+                'hourly_cost' => trans('profile.hourly_cost'),
             ]);
 
         if ($validator->fails()) {
@@ -90,22 +90,20 @@ class ProfileController extends Controller
             return redirect()->back()->withInput()->withErrors($errors);
         }
 
-        return redirect()->back()->withInput()->withErrors(['failed' => trans('profile.register_failed')]);
-
         try {
             $res = Profile::insert([
                 'user_id' => Auth::user()->id,
                 'introduction' => $data['introduction'],
                 'age' => $data['age'],
-                'experience' => $data['experience'],
+                'experience_years' => $data['experience_years'],
                 'certificate' => $data['certificate'],
-                'cost' => $data['cost'],
+                'hourly_cost' => $data['hourly_cost'],
             ]);
         } catch (QueryException $e) {
             return redirect()->back()->withInput()->withErrors(['failed' => trans('profile.register_failed')]);
         }
 
-
+        return redirect()->route('identification.select')->with('success', trans('profile.register_success'));
     }
 
 }

@@ -61,14 +61,14 @@
         </div>
         @if(auth()->user()->type == HELPER)
         <div class="field-row">
-            <p class="field-ttl">{{ trans('profile.experience') }}</p>
-            <select class="form @error('experience') is-invalid @enderror" id="experience" name="experience">
+            <p class="field-ttl">{{ trans('profile.experience_years') }}</p>
+            <select class="form @error('experience_years') is-invalid @enderror" id="experience_years" name="experience_years">
                 <option></option>
                 @foreach ($experience_list as $experience_info)
-                    <option value="{{ $experience_info['id'] }}" @if(old('experience') == $experience_info['id']) selected @endif>{{ $experience_info['name'] }}</option>
+                    <option value="{{ $experience_info['id'] }}" @if(old('experience_years') == $experience_info['id']) selected @endif>{{ $experience_info['name'] }}</option>
                 @endforeach
             </select>
-            @error('experience')
+            @error('experience_years')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -90,20 +90,20 @@
         </div>
         <div class="field-row">
             <p class="field-ttl">{{ trans('profile.hourly_cost') }}</p>
-            <select class="form @error('cost') is-invalid @enderror" id="cost" name="cost">
+            <select class="form @error('hourly_cost') is-invalid @enderror" id="hourly_cost" name="hourly_cost">
                 <option></option>
-                <option value="1" @if(old('cost') == 1) selected @endif>1,000円</option>
-                <option value="2" @if(old('cost') == 2) selected @endif>2,000円</option>
-                <option value="3" @if(old('cost') == 3) selected @endif>3,000円</option>
-                <option value="4" @if(old('cost') == 4) selected @endif>4,000円</option>
-                <option value="5" @if(old('cost') == 5) selected @endif>5,000円</option>
-                <option value="6" @if(old('cost') == 6) selected @endif>6,000円</option>
-                <option value="7" @if(old('cost') == 7) selected @endif>7,000円</option>
-                <option value="8" @if(old('cost') == 8) selected @endif>8,000円</option>
-                <option value="9" @if(old('cost') == 9) selected @endif>9,000円</option>
-                <option value="10" @if(old('cost') == 10) selected @endif>10,000円</option>
+                <option value="1" @if(old('hourly_cost') == 1) selected @endif>1,000円</option>
+                <option value="2" @if(old('hourly_cost') == 2) selected @endif>2,000円</option>
+                <option value="3" @if(old('hourly_cost') == 3) selected @endif>3,000円</option>
+                <option value="4" @if(old('hourly_cost') == 4) selected @endif>4,000円</option>
+                <option value="5" @if(old('hourly_cost') == 5) selected @endif>5,000円</option>
+                <option value="6" @if(old('hourly_cost') == 6) selected @endif>6,000円</option>
+                <option value="7" @if(old('hourly_cost') == 7) selected @endif>7,000円</option>
+                <option value="8" @if(old('hourly_cost') == 8) selected @endif>8,000円</option>
+                <option value="9" @if(old('hourly_cost') == 9) selected @endif>9,000円</option>
+                <option value="10" @if(old('hourly_cost') == 10) selected @endif>10,000円</option>
             </select>
-            @error('cost')
+            @error('hourly_cost')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

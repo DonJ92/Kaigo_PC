@@ -46,7 +46,7 @@
             <div class="mv-lead-infos cta-block-infos">
                 <p class="mv-lead-txt cta-block-txt has-img">
                     <span class="txt-img"><img src="{{ asset('/images/logo-txt.svg') }}" alt="" /></span>
-                    <span class="for-space"></span>アプリを今すぐダウンロード
+                    <span class="for-space"></span>{{ trans('login.download_pre') }}<br>{{ trans('login.download_sur') }}
                 </p>
                 <div class="mv-lead-links cta-block-links">
                     <a href="#"><img src="{{ asset('/images/link-app-store.png') }}" alt="" /></a>

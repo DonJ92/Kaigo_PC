@@ -13,7 +13,7 @@ return [
     'introduction_placeholder' => '例）はじめまして！生活相談員の〇〇です！（1000文字以内）',
     'age' => '年齢',
     'user_type' => '施設・ヘルパー',
-    'experience' => '経験年数',
+    'experience_years' => '経験年数',
     'certificate' => '保有資格',
     'hourly_cost' => '希望時給',
     'rule' => 'ルール事項',
