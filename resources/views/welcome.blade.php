@@ -113,22 +113,28 @@
 
                         <div class="search-field-item">
                             <p class="search-field-ttl">{{ trans('common.job_type') }}</p>
-                            <select>
-                                <option value="" selected=""></option>
+                            <select id="certificate" name="certiciate">
+                                <option value="" disabled selected>{{ trans('top.job_type_placeholder') }}</option>
+                                @foreach($certificate_list as $certificate_info)
+                                    <option value="{{ $certificate_info['id'] }}">{{ $certificate_info['certificate'] }}</option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="search-field-item">
                             <p class="search-field-ttl">{{ trans('common.area') }}</p>
-                            <select>
-                                <option value="" selected=""></option>
+                            <select id="province" name="province">
+                                <option value="" disabled selected>{{ trans('top.area_placeholder') }}</option>
+                                @foreach($province_list as $province_info)
+                                    <option value="{{ $province_info['id'] }}">{{ $province_info['name'] }}</option>
+                                @endforeach
                             </select>
                         </div>
 
                         <div class="search-field-item">
                             <p class="search-field-ttl">{{ trans('common.datetime') }}</p>
                             <select>
-                                <option value="" selected=""></option>
+                                <option value="" disabled selected>{{ trans('top.datetime_placeholder') }}</option>
                             </select>
                         </div>
                         <a href="{{ route('job.search') }}" class="btn-search"><span>{{ trans('button.search') }}</span><i class="ti-arrow-circle-right"></i></a>
@@ -203,7 +209,7 @@
 
         <section id="worker" class="worker">
             <div class="worker-inner">
-                <h3 class="worker-ttl sec-ttl sec-ttl-r"><span><i></i>人気ヘルパー</span></h3>
+                <h3 class="worker-ttl sec-ttl sec-ttl-r"><span><i></i>{{ trans('top.helper_list_title') }}</span></h3>
 
                 <div class="worker-list">
                     @for ($i = 0; $i < 9; $i++)
@@ -400,7 +406,7 @@
                 <div class="footer-cta-inner">
                     <div class="cta-block">
                         <div class="footer-cta-icon cta-block-icon">
-                            <a href="#">
+                            <a>
                                 <img src="{{ asset('/images/icon.svg') }}" alt="" />
                             </a>
                         </div>

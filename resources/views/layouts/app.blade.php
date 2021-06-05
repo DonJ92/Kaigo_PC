@@ -32,8 +32,8 @@
                     <ul class="nav-list">
                         <li class="nav-item news"><a href="#"><span>{{ trans('common.top_menu.news') }}</span></a></li>
                         <li class="nav-item search"><a href="{{ route('job.search') }}"><i class="fa fa-search"></i><span>{{ trans('common.top_menu.search_job') }}</span></a></li>
-                        <li class="nav-item regist"><a href="register.html"><span>{{ trans('common.top_menu.register') }}</span></a></li>
-                        <li class="nav-item login"><a href="login.html"><span>{{ trans('common.top_menu.login') }}</span></a></li>
+                        <li class="nav-item regist"><a href="{{ route('register') }}"><span>{{ trans('common.top_menu.register') }}</span></a></li>
+                        <li class="nav-item login"><a href="{{ route('login') }}"><span>{{ trans('common.top_menu.login') }}</span></a></li>
                     </ul>
                 </nav>
             </div>

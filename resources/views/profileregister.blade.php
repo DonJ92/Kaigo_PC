@@ -10,23 +10,90 @@
             @if ($errors->has('failed'))
             toastr.error('{{ $errors->first('failed') }}', '', { "closeButton": true });
             @endif
+
+            $("#photo1_preview").click(function() {
+                $("#photo1").click();
+            });
+
+            $("#photo2_preview").click(function() {
+                $("#photo2").click();
+            });
+
+            $("#photo3_preview").click(function() {
+                $("#photo3").click();
+            });
+
+            $("#photo4_preview").click(function() {
+                $("#photo4").click();
+            });
+
+            $("#photo5_preview").click(function() {
+                $("#photo5").click();
+            });
         });
+        
+        function preview(id, preview_id) {
+            var file = $("#"+id).get(0).files[0];
+
+            if(file){
+                var reader = new FileReader();
+
+                reader.onload = function(){
+                    $("#"+preview_id).attr("src", reader.result);
+                    $("#"+preview_id).addClass("border-radius-50");
+                }
+
+                reader.readAsDataURL(file);
+            }
+        }
     </script>
 
     <h2>{{ trans('profile.title') }}</h2>
 
-    <form method="POST" action="{{ route('profile.register.submit') }}">
+    <form method="POST" action="{{ route('profile.register.submit') }}" enctype="multipart/form-data">
         @csrf
 
         <div class="field-row">
             <p class="field-ttl">{{ trans('profile.input_desc') }}</p>
         </div>
+        <div class="field-row">
+            @error('photo1')
+            <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+            @error('photo2')
+            <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+            @error('photo3')
+            <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+            @error('photo4')
+            <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+            @error('photo5')
+            <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
         <div class="photo-div">
-            <img class="main-photo" src="{{ asset('/images/photo-upload.svg') }}">
-            <img class="sub-photo" src="{{ asset('/images/photo-upload.svg') }}">
-            <img class="sub-photo" src="{{ asset('/images/photo-upload.svg') }}">
-            <img class="sub-photo" src="{{ asset('/images/photo-upload.svg') }}">
-            <img class="sub-photo" src="{{ asset('/images/photo-upload.svg') }}">
+            <img class="main-photo cursor-pointer" id="photo1_preview" src="{{ asset('/images/photo-upload.svg') }}">
+            <input type="file" id="photo1" name="photo1" class="display-none" onchange="preview('photo1', 'photo1_preview')"/>
+            <img class="sub-photo cursor-pointer" id="photo2_preview" src="{{ asset('/images/photo-upload.svg') }}">
+            <input type="file" id="photo2" name="photo2" class="display-none" onchange="preview('photo2', 'photo2_preview')"/>
+            <img class="sub-photo cursor-pointer" id="photo3_preview" src="{{ asset('/images/photo-upload.svg') }}">
+            <input type="file" id="photo3" name="photo3" class="display-none" onchange="preview('photo3', 'photo3_preview')"/>
+            <img class="sub-photo cursor-pointer" id="photo4_preview" src="{{ asset('/images/photo-upload.svg') }}">
+            <input type="file" id="photo4" name="photo4" class="display-none" onchange="preview('photo4', 'photo4_preview')"/>
+            <img class="sub-photo cursor-pointer" id="photo5_preview" src="{{ asset('/images/photo-upload.svg') }}">
+            <input type="file" id="photo5" name="photo5" class="display-none" onchange="preview('photo5', 'photo5_preview')"/>
         </div>
         <div class="field-row field-merge">
             <p class="field-ttl">{{ trans('profile.introduction') }}</p>

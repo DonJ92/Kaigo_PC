@@ -207,6 +207,7 @@ body.profile-register {
                         margin: 0 calc(72 / 1920 * 100vw) 0 0;
                         width: calc(188 / 1920 * 100vw);
                         height: calc(188 / 1920 * 100vw);
+                        object-fit: cover;
                     }
 
                     .sub-photo {
@@ -214,6 +215,7 @@ body.profile-register {
                         margin: 0 calc(20 / 1920 * 100vw) 0 0;
                         width: calc(70 / 1920 * 100vw);
                         height: calc(70 / 1920 * 100vw);
+                        object-fit: cover;
                     }
                 }
 

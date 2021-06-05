@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Auth;
 
 class Controller extends BaseController
 {
@@ -52,5 +53,19 @@ class Controller extends BaseController
         }
 
         return $certificate_list;
+    }
+
+    protected function uploadProfilePhoto($file)
+    {
+        $filename = $file->getClientOriginalName();
+
+        $location = 'uploads\profile';
+        $user_id_location = '\\' . Auth::user()->id;
+
+        $file->move($location.$user_id_location, $filename);
+
+        $url = $user_id_location.'\\'.$filename;
+
+        return $url;
     }
 }

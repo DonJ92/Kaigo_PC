@@ -22,6 +22,7 @@ Route::post('/register/confirm', 'Auth\RegisterController@registerConfirm')->nam
 
 Route::get('/', 'TopController@index')->name('top');
 Route::get('/job/search', 'JobController@search')->name('job.search');
+Route::get('/contactus', 'ContactUSController@index')->name('contactus');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -32,4 +33,5 @@ Route::post('/profile/register', 'ProfileController@register')->name('profile.re
 
 Route::get('/identification', 'IdentificationController@selectForm')->name('identification.select');
 Route::get('/identification/register', 'IdentificationController@registerForm')->name('identification.register');
+Route::post('/identification/register', 'IdentificationController@registerForm')->name('identification.register.submit');
 Route::get('/skill/register', 'IdentificationController@skillForm')->name('skill.register');

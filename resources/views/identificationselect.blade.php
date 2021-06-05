@@ -15,7 +15,7 @@
         </div>
         <div class="select-div">
             <a class="select-btn auth-btn active" id="sel_identify">{{ trans('identification.identify') }}</a>
-                <a class="select-btn req-btn" id="sel_skill">{{ trans('identification.skill') }}</a>
+            <a class="select-btn req-btn" id="sel_skill">{{ trans('identification.skill') }}</a>
         </div>
         <div class="btn-div last">
             <a class="btn btn-next" id="btn_next" href="{{ route('identification.register') }}">{{ trans('button.next') }}</a>

@@ -9,6 +9,11 @@ return [
     'client' => '人出が足りない介護施設',
     'helper' => '働き手であるヘルパー',
 
+    'photo1' => '写真1',
+    'photo2' => '写真2',
+    'photo3' => '写真3',
+    'photo4' => '写真4',
+    'photo5' => '写真5',
     'introduction' => '自己紹介',
     'introduction_placeholder' => '例）はじめまして！生活相談員の〇〇です！（1000文字以内）',
     'age' => '年齢',

@@ -2013,6 +2013,22 @@ button[disabled] {
   background-color: #ccc !important;
 }
 
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.display-none {
+  display: none !important;
+}
+
+.border-radius-50 {
+  border-radius: 50%;
+}
+
+.col-12 {
+  width: 100vw;
+}
+
 /* ナビーメニュー */
 
 #dialog-overlay {
@@ -5195,6 +5211,8 @@ body.profile-register .primary main form .photo-div .main-photo {
   margin: 0 calc(72 / 1920 * 100vw) 0 0;
   width: calc(188 / 1920 * 100vw);
   height: calc(188 / 1920 * 100vw);
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 body.profile-register .primary main form .photo-div .sub-photo {
@@ -5202,6 +5220,8 @@ body.profile-register .primary main form .photo-div .sub-photo {
   margin: 0 calc(20 / 1920 * 100vw) 0 0;
   width: calc(70 / 1920 * 100vw);
   height: calc(70 / 1920 * 100vw);
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 body.profile-register .primary main form .select-div {

@@ -7,6 +7,9 @@ class TopController extends Controller
 {
     public function index()
     {
-        return view('welcome');
+        $data['certificate_list'] = $this->getCertificateTypeList();
+        $data['province_list'] = $this->getProvinceList();
+
+        return view('welcome', $data);
     }
 }

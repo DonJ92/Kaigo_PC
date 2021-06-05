@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Profile;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,19 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer([
+            'layouts.dashboard'
+        ], function($view) {
+            $profile = Profile::where('user_id', Auth::user()->id)->first();
+
+            if (is_null($profile))
+                $photo = '';
+            else {
+                $photo = url('uploads/profile') . $profile->photo1;
+            }
+
+            $data['photo'] = $photo;
+            view()->share('data', $data);
+        });
     }
 }

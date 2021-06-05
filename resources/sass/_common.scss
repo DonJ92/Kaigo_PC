@@ -620,3 +620,19 @@ button:disabled,
 button[disabled] {
     background-color: #ccc !important;
 }
+
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+.display-none {
+    display: none !important;
+}
+
+.border-radius-50 {
+    border-radius: 50%;
+}
+
+.col-12 {
+    width: 100vw;
+}
