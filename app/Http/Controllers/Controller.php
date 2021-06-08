@@ -72,12 +72,11 @@ class Controller extends BaseController
     {
         $filename = $file->getClientOriginalName();
 
-        $location = 'uploads\profile';
-        $user_id_location = '\\' . Auth::user()->id;
+        $location = 'uploads\profile\\'.Auth::user()->id;
 
-        $file->move($location.$user_id_location, $filename);
+        $file->move($location, $filename);
 
-        $url = $user_id_location.'\\'.$filename;
+        $url = $filename;
 
         return $url;
     }

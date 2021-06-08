@@ -50,6 +50,7 @@ class ProfileController extends Controller
         $data['age_list'] = Config::get('constants.age');
         $data['type_list'] = Config::get('constants.type');
         $data['experience_list'] = Config::get('constants.experience');
+        $data['job_list'] = $this->getJobTypeList();
         $data['certificate_list'] = $this->getCertificateTypeList();
 
         return view('profileregister', $data);
@@ -82,7 +83,8 @@ class ProfileController extends Controller
 
             $data['experience_years'] = null;
             $data['certificate'] = null;
-            $data['hourly_cost'] = null;
+            $data['hourly_cost_from'] = null;
+            $data['hourly_cost_to'] = null;
         } else
             $validator = Validator::make($data, [
                 'photo1' => 'nullable|image|mimes:jpeg,png,jpg,gif,bmp,svg',
@@ -92,9 +94,11 @@ class ProfileController extends Controller
                 'photo5' => 'nullable|image|mimes:jpeg,png,jpg,gif,bmp,svg',
                 'introduction' => 'nullable|string|max:1024',
                 'age' => 'nullable',
+                'job_type' => 'required|exists:tbl_job_type,id',
                 'experience_years' => 'required',
-                'certificate' => 'required|exists:tbl_certificate_type,id',
-                'hourly_cost' => 'required',
+                'certificate' => 'required',
+                'hourly_cost_from' => 'required|numeric',
+                'hourly_cost_to' => 'required|numeric|gte:hourly_cost_from',
                 'agree' => 'required',
             ], [
             ], [
@@ -105,15 +109,19 @@ class ProfileController extends Controller
                 'photo5' => trans('profile.photo5'),
                 'introduction' => trans('profile.introduction'),
                 'age' => trans('profile.age'),
+                'job_type' => trans('profile.job_type'),
                 'experience_years' => trans('profile.experience_years'),
                 'certificate' => trans('profile.certificate'),
-                'hourly_cost' => trans('profile.hourly_cost'),
+                'hourly_cost_from' => trans('profile.hourly_cost'),
+                'hourly_cost_to' => trans('profile.hourly_cost'),
             ]);
 
         if ($validator->fails()) {
             $errors = $validator->errors();
             return redirect()->back()->withInput()->withErrors($errors);
         }
+
+        $data['certificate'] = implode(',', $data['certificate']);
 
         if($request->hasFile('photo1'))
         {
@@ -160,9 +168,11 @@ class ProfileController extends Controller
                 'photo4' => $photo4,
                 'photo5' => $photo5,
                 'age' => $data['age'],
+                'job_type' => $data['job_type'],
                 'experience_years' => $data['experience_years'],
                 'certificate' => $data['certificate'],
-                'hourly_cost' => $data['hourly_cost'],
+                'hourly_cost_from' => $data['hourly_cost_from'],
+                'hourly_cost_to' => $data['hourly_cost_to'],
             ]);
         } catch (QueryException $e) {
             return redirect()->back()->withInput()->withErrors(['failed' => trans('profile.register_failed')]);

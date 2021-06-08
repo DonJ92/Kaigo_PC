@@ -43,7 +43,12 @@ return [
     'register_failed' => '本人確認書類提出が失敗しました。',
     'register_success' => '本人確認書類提出が成功しました。',
 
+    'skill_register_failed' => '資格・スキル申請書類提出が失敗しました。',
+    'skill_register_success' => '資格・スキル申請書類提出が成功しました。',
+
     'confirm_title' => '本人確認書類提出完了',
     'confirm_desc_pre' => '審査が完了するまで',
     'confirm_desc_sur' => 'もうしばらくお待ちください',
+
+    'skill_confirm_title' => '資格・スキル申請書類提出完了',
 ];

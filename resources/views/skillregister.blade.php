@@ -8,6 +8,8 @@
     <h2>{{ trans('identification.skill') }}</h2>
 
     <form method="POST" action="{{ route('skill.register.submit') }}" enctype="multipart/form-data">
+        @csrf
+
         <div class="identyfy-div">
             <h3>{{ trans('identification.sub_title') }}</h3>
             <p class="identify-desc">{{ trans('identification.skill_desc') }}</p>

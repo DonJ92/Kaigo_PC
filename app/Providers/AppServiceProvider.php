@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
             if (is_null($profile))
                 $photo = '';
             else {
-                $photo = url('uploads/profile') . $profile->photo1;
+                $photo = url('uploads/profile') . '/' . Auth::user()->id . '/' . $profile->photo1;
             }
 
             $data['photo'] = $photo;

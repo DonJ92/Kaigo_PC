@@ -37,3 +37,4 @@ Route::post('/identification/register', 'IdentificationController@register')->na
 Route::get('/identification/confirm', 'IdentificationController@confirm')->name('identification.confirm');
 Route::get('/skill/register', 'IdentificationController@skillForm')->name('skill.register');
 Route::post('/skill/register', 'IdentificationController@skillRegister')->name('skill.register.submit');
+Route::get('/skill/confirm', 'IdentificationController@skillConfirm')->name('skill.confirm');

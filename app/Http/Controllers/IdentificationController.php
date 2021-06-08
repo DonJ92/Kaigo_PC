@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\CertificateAuth;
 use App\KYCAuth;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -19,6 +20,10 @@ class IdentificationController extends Controller
 
     public function selectForm()
     {
+        $profile = $this->getProfile(Auth::user()->id);
+        if (is_null($profile))
+            return redirect()->route('profile.select');
+
         return view('identificationselect');
     }
 
@@ -56,12 +61,11 @@ class IdentificationController extends Controller
             $file = $request->file('doc');
             $filename = $file->getClientOriginalName();
 
-            $location = 'uploads\kyc';
-            $user_id_location = '\\' . Auth::user()->id;
+            $location = 'uploads\kyc\\' . Auth::user()->id;
 
-            $file->move($location.$user_id_location, $filename);
+            $file->move($location, $filename);
 
-            $doc = $user_id_location.'\\'.$filename;
+            $doc = $filename;
         } else
             $doc = '';
 
@@ -88,8 +92,13 @@ class IdentificationController extends Controller
         $profile = $this->getProfile(Auth::user()->id);
         $certificate_list = $this->getCertificateTypeList();
 
-        $key = array_search($profile->certificate, array_column($certificate_list, 'id'));
-        $data['certificate'] = $certificate_list[$key]['certificate'];
+        $cert_list = explode(',', $profile->certificate);
+
+        foreach ($cert_list as $cert_id) {
+            $key = array_search($cert_id, array_column($certificate_list, 'id'));
+            $cert_arr[] = $certificate_list[$key]['certificate'];
+        }
+        $data['certificate'] = implode(',', $cert_arr);
         $data['certificate_id'] = $profile->certificate;
         $data['certificate_list'] = $certificate_list;
 
@@ -119,25 +128,29 @@ class IdentificationController extends Controller
             $file = $request->file('doc');
             $filename = $file->getClientOriginalName();
 
-            $location = 'uploads\certificate';
-            $user_id_location = '\\' . Auth::user()->id;
+            $location = 'uploads\certificate\\' . Auth::user()->id;
 
-            $file->move($location.$user_id_location, $filename);
+            $file->move($location, $filename);
 
-            $doc = $user_id_location.'\\'.$filename;
+            $doc = $filename;
         } else
             $doc = '';
 
         try {
-            $res = KYCAuth::insert([
+            $res = CertificateAuth::insert([
                 'user_id' => Auth::user()->id,
                 'doc' => $doc,
-                'birthday' => $data['birthday'],
+                'certificate' => $data['certificate'],
             ]);
         } catch (QueryException $e) {
-            return redirect()->back()->withInput()->withErrors(['failed' => trans('identification.register_failed')]);
+            return redirect()->back()->withInput()->withErrors(['failed' => trans('identification.skill_register_failed')]);
         }
 
-        return redirect()->route('identification.confirm')->with('success', trans('identification.register_success'));
+        return redirect()->route('skill.confirm')->with('success', trans('identification.skill_register_success'));
+    }
+
+    public function skillConfirm()
+    {
+        return view('skillconfirm');
     }
 }

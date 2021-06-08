@@ -128,6 +128,20 @@
         </div>
         @if(auth()->user()->type == HELPER)
         <div class="field-row">
+            <p class="field-ttl">{{ trans('profile.job_type') }}</p>
+            <select class="form @error('job_type') is-invalid @enderror" id="job_type" name="job_type">
+                <option></option>
+                @foreach ($job_list as $job_info)
+                    <option value="{{ $job_info['id'] }}" @if(old('job_type') == $job_info['id']) selected @endif>{{ $job_info['job_type'] }}</option>
+                @endforeach
+            </select>
+            @error('job_type')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+        <div class="field-row">
             <p class="field-ttl">{{ trans('profile.experience_years') }}</p>
             <select class="form @error('experience_years') is-invalid @enderror" id="experience_years" name="experience_years">
                 <option></option>
@@ -143,10 +157,10 @@
         </div>
         <div class="field-row">
             <p class="field-ttl">{{ trans('profile.certificate') }}</p>
-            <select class="form @error('certificate') is-invalid @enderror" id="certificate" name="certificate">
+            <select class="form @error('certificate') is-invalid @enderror" id="certificate" name="certificate[]" multiple>
                 <option></option>
                 @foreach ($certificate_list as $certificate_info)
-                    <option value="{{ $certificate_info['id'] }}" @if(old('certificate') == $certificate_info['id']) selected @endif>{{ $certificate_info['certificate'] }}</option>
+                    <option value="{{ $certificate_info['id'] }}" @if(old('certificate') !== null && in_array($certificate_info['id'], old('certificate'))) selected @endif>{{ $certificate_info['certificate'] }}</option>
                 @endforeach
             </select>
             @error('certificate')
@@ -155,22 +169,19 @@
                 </span>
             @enderror
         </div>
-        <div class="field-row">
+        <div class="field-row field-block">
             <p class="field-ttl">{{ trans('profile.hourly_cost') }}</p>
-            <select class="form @error('hourly_cost') is-invalid @enderror" id="hourly_cost" name="hourly_cost">
-                <option></option>
-                <option value="1" @if(old('hourly_cost') == 1) selected @endif>1,000円</option>
-                <option value="2" @if(old('hourly_cost') == 2) selected @endif>2,000円</option>
-                <option value="3" @if(old('hourly_cost') == 3) selected @endif>3,000円</option>
-                <option value="4" @if(old('hourly_cost') == 4) selected @endif>4,000円</option>
-                <option value="5" @if(old('hourly_cost') == 5) selected @endif>5,000円</option>
-                <option value="6" @if(old('hourly_cost') == 6) selected @endif>6,000円</option>
-                <option value="7" @if(old('hourly_cost') == 7) selected @endif>7,000円</option>
-                <option value="8" @if(old('hourly_cost') == 8) selected @endif>8,000円</option>
-                <option value="9" @if(old('hourly_cost') == 9) selected @endif>9,000円</option>
-                <option value="10" @if(old('hourly_cost') == 10) selected @endif>10,000円</option>
-            </select>
-            @error('hourly_cost')
+            <input type="number" min="0" class="form @error('hourly_cost_from') is-invalid @enderror" id="hourly_cost_to" name="hourly_cost_from" value="{{ old('hourly_cost_from') }}">
+            @error('hourly_cost_from')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+        </div>
+        <div class="field-row field-block">
+            <p class="field-ttl"></p>
+            <input type="number" min="0" class="form @error('hourly_cost_to') is-invalid @enderror" id="hourly_cost_to" name="hourly_cost_to" {{ old('hourly_cost_to') }}>
+            @error('hourly_cost_to')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
