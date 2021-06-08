@@ -26,6 +26,8 @@ return [
 
     'register_profile' => '登録する',
 
+    'to_mypage' => 'マイページへ',
+
     'page_top' => 'PAGE TOP',
 
     'back' => '戻る',

@@ -7,7 +7,9 @@
 @section('content')
     <h2>{{ trans('identification.title') }}</h2>
 
-    <form method="POST" action="{{ route('identification.register.submit') }}">
+    <form method="POST" action="{{ route('identification.register.submit') }}" enctype="multipart/form-data">
+        @csrf
+
         <div class="identyfy-div">
             <h3>{{ trans('identification.sub_title') }}</h3>
                 <p class="identify-desc">{{ trans('identification.identification_desc') }}</p>
@@ -31,7 +33,13 @@
                     </div>
                 </div>
                 <div class="identify-upload-div">
-                    <img src="{{ asset('/images/identify-upload.svg') }}">
+                    <img id="doc_preview"  src="{{ asset('/images/identify-upload.svg') }}">
+                    <input type="file" id="doc" name="doc" class="display-none" onchange="preview()"/>
+                    @error('doc')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
                 <ul class="content-font">
                     <li>{{ trans('identification.warning1') }}</li>
@@ -40,10 +48,15 @@
                 </ul>
                 <h3 class="center">{{ trans('identification.age_desc') }}</h3>
                 <h2 class="confirm-h2">{{ $age }}</h2>
-                <p class="content-font center light-pink">{{ trans('identification.birthday_desc') }}</p>
+                <p class="content-font center light-pink">{{ trans('identification.birthday_repair_desc') }}</p>
                 <div class="field-row center">
                     <p class="field-ttl">{{ trans('identification.birthday_label') }}</p>
-                    <input type="date" class="form">
+                    <input type="date" class="form" id="birthday" name="birthday">
+                    @error('birthday')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
                 <img class="japhic" src="{{ asset('/images/Japhic.svg') }}">
                 <p class="content-font">{{ trans('identification.japhic') }}</p>
@@ -56,9 +69,31 @@
 
     <script>
         $(window).on('load', function() {
-            @if (session()->has('success'))
-            toastr.success('{{ session()->get('success') }}', '', { "closeButton": true });
+            @if ($errors->has('failed'))
+                toastr.error('{{ $errors->first('failed') }}', '', { "closeButton": true });
             @endif
+
+            @if (session()->has('success'))
+                toastr.success('{{ session()->get('success') }}', '', { "closeButton": true });
+            @endif
+
+            $("#doc_preview").click(function() {
+                $("#doc").click();
+            });
         });
+
+        function preview() {
+            var file = $("#doc").get(0).files[0];
+
+            if(file){
+                var reader = new FileReader();
+
+                reader.onload = function(){
+                    $("#doc_preview").attr("src", reader.result);
+                }
+
+                reader.readAsDataURL(file);
+            }
+        }
     </script>
 @endsection

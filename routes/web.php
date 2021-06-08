@@ -33,5 +33,7 @@ Route::post('/profile/register', 'ProfileController@register')->name('profile.re
 
 Route::get('/identification', 'IdentificationController@selectForm')->name('identification.select');
 Route::get('/identification/register', 'IdentificationController@registerForm')->name('identification.register');
-Route::post('/identification/register', 'IdentificationController@registerForm')->name('identification.register.submit');
+Route::post('/identification/register', 'IdentificationController@register')->name('identification.register.submit');
+Route::get('/identification/confirm', 'IdentificationController@confirm')->name('identification.confirm');
 Route::get('/skill/register', 'IdentificationController@skillForm')->name('skill.register');
+Route::post('/skill/register', 'IdentificationController@skillRegister')->name('skill.register.submit');

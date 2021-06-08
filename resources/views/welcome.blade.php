@@ -115,8 +115,8 @@
                             <p class="search-field-ttl">{{ trans('common.job_type') }}</p>
                             <select id="certificate" name="certiciate">
                                 <option value="" disabled selected>{{ trans('top.job_type_placeholder') }}</option>
-                                @foreach($certificate_list as $certificate_info)
-                                    <option value="{{ $certificate_info['id'] }}">{{ $certificate_info['certificate'] }}</option>
+                                @foreach($job_list as $job_info)
+                                    <option value="{{ $job_info['id'] }}">{{ $job_info['job_type'] }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -452,7 +452,7 @@
                                     <li class="foonter-nav-item"><a href="{{ route('top') }}"><span>{{ trans('common.footer_menu.top') }}</span></a></li>
                                     <li class="foonter-nav-item"><a href="#"><span>{{ trans('common.footer_menu.news') }}</span></a></li>
                                     <li class="foonter-nav-item"><a href="{{ route('job.search') }}"><span>{{ trans('common.footer_menu.search_job') }}</span></a></li>
-                                    <li class="foonter-nav-item"><a href="contactus.html"><span>{{ trans('common.footer_menu.contact_us') }}</span></a></li>
+                                    <li class="foonter-nav-item"><a href="{{ route('contactus') }}"><span>{{ trans('common.footer_menu.contact_us') }}</span></a></li>
                                 </ul>
                             </nav>
                         </div>

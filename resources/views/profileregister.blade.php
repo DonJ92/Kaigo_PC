@@ -58,27 +58,27 @@
         </div>
         <div class="field-row">
             @error('photo1')
-            <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
             @error('photo2')
-            <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
             @error('photo3')
-            <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
             @error('photo4')
-            <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
             @error('photo5')
-            <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror

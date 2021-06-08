@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CertificateType;
+use App\JobType;
 use App\Profile;
 use App\Province;
 use Illuminate\Database\QueryException;
@@ -41,6 +42,18 @@ class Controller extends BaseController
         }
 
         return $profile;
+    }
+
+    protected function getJobTypeList()
+    {
+        $job_list = array();
+        try {
+            $job_list = JobType::orderby('id', 'asc')->get()->toArray();
+        } catch (QueryException $e) {
+            return $job_list;
+        }
+
+        return $job_list;
     }
 
     protected function getCertificateTypeList()

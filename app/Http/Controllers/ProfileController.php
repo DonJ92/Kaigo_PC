@@ -46,7 +46,7 @@ class ProfileController extends Controller
         $profile = $this->getProfile(Auth::user()->id);
         if (!is_null($profile))
             return redirect()->route('home');
-        
+
         $data['age_list'] = Config::get('constants.age');
         $data['type_list'] = Config::get('constants.type');
         $data['experience_list'] = Config::get('constants.experience');
