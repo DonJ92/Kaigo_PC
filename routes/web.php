@@ -28,8 +28,6 @@ Route::get('/helper/search', 'HelperController@search')->name('helper.search');
 Route::get('/helper/detail', 'HelperController@detail')->name('helper.detail');
 Route::get('/contactus', 'ContactUSController@index')->name('contactus');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/profile', 'ProfileController@selectForm')->name('profile.select');
 Route::post('/profile', 'ProfileController@select')->name('profile.select.submit');
 Route::get('/profile/register', 'ProfileController@registerForm')->name('profile.register');
@@ -42,3 +40,7 @@ Route::get('/identification/confirm', 'IdentificationController@confirm')->name(
 Route::get('/skill/register', 'IdentificationController@skillForm')->name('skill.register');
 Route::post('/skill/register', 'IdentificationController@skillRegister')->name('skill.register.submit');
 Route::get('/skill/confirm', 'IdentificationController@skillConfirm')->name('skill.confirm');
+
+Route::get('/dashboard/home', 'HomeController@index')->name('dashboard.home');
+Route::get('/dashboard/job/search', 'JobController@dashboardSearch')->name('dashboard.job.search');
+Route::get('/dashboard/job/detail', 'JobController@dashboardDetail')->name('dashboard.job.detail');

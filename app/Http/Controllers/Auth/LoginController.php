@@ -62,6 +62,6 @@ class LoginController extends Controller
         if (is_null($profile))
             return redirect()->route('profile.select');
         else
-            return redirect()->route('home');
+            return redirect()->route('dashboard.home');
     }
 }

@@ -14,7 +14,7 @@
             <p>{{ trans('identification.confirm_desc_pre') }}<br>{{ trans('identification.confirm_desc_sur') }}</p>
         </div>
         <div class="btn-div last">
-            <a class="btn btn-next btn-login" href="{{ route('home') }}">{{ trans('button.to_mypage') }}</a>
+            <a class="btn btn-next btn-login" href="{{ route('dashboard.home') }}">{{ trans('button.to_mypage') }}</a>
         </div>
     </form>
 @endsection

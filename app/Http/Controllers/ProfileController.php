@@ -21,7 +21,7 @@ class ProfileController extends Controller
     {
         $profile = $this->getProfile(Auth::user()->id);
         if (!is_null($profile))
-            return redirect()->route('home');
+            return redirect()->route('dashboard.home');
 
         return view('profileselect');
     }
@@ -45,7 +45,7 @@ class ProfileController extends Controller
     {
         $profile = $this->getProfile(Auth::user()->id);
         if (!is_null($profile))
-            return redirect()->route('home');
+            return redirect()->route('dashboard.home');
 
         $data['age_list'] = Config::get('constants.age');
         $data['type_list'] = Config::get('constants.type');

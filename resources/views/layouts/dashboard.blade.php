@@ -202,12 +202,12 @@
 <div id="primary" class="primary">
     <aside>
         <div class="aside-menu-list">
-            <a class="aside-menu-item current" href="index.html">
+            <a class="aside-menu-item current" href="{{ route('dashboard.home') }}">
                 <span class="icon"><img src="{{ asset('/images/icon/home.svg') }}"></span>
                 <span class="txt">ホーム画面</span>
             </a>
 
-            <a class="aside-menu-item" href="jobs.html">
+            <a class="aside-menu-item" href="{{ route('dashboard.job.search') }}">
                 <span class="icon"><img src="{{ asset('/images/icon/list.svg') }}"></span>
                 <span class="txt">一覧</span>
             </a>
@@ -267,9 +267,7 @@
     </aside>
 
     <main class="dashboard-main-home">
-        <div class="main">
-            @yield('content')
-        </div>
+        @yield('content')
         <div class="main-r">
             <a class="back-btn" href="register.html">
                 <div>
@@ -289,6 +287,16 @@
 <form method="POST" action="{{ route('logout') }}" id="logout_form">
     @csrf
 </form>
+
+<div id="dialog-overlay"></div>
+<div id="identify-dialog-box" class="dialog-box">
+    <div id="close" class="close-btn"><a><i class="fa fa-close"></i></a></div>
+    <h2 class="dialog-title">{{ trans('common.identify_dialog.title') }}</h2>
+    <img class="identify" src="{{ asset('/images/identify-confirm.svg') }}">
+    <p class="desc">{{ trans('common.identify_dialog.desc') }}</p>
+    <a href="login.html" class="btn primary-btn">{{ trans('common.identify_dialog.identification_desc') }}</a>
+</div>
+
 <script>
     function logout() {
         $('#logout_form').submit();
