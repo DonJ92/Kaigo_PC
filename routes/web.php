@@ -44,3 +44,7 @@ Route::get('/skill/confirm', 'IdentificationController@skillConfirm')->name('ski
 Route::get('/dashboard/home', 'HomeController@index')->name('dashboard.home');
 Route::get('/dashboard/job/search', 'JobController@dashboardSearch')->name('dashboard.job.search');
 Route::get('/dashboard/job/detail', 'JobController@dashboardDetail')->name('dashboard.job.detail');
+Route::get('/dashboard/job/register', 'JobManageController@registerForm')->name('dashboard.job.register');
+Route::get('/dashboard/job/info/register', 'JobManageController@registerInfoForm')->name('dashboard.job.info.register');
+Route::get('/dashboard/job/info/confirm', 'JobManageController@infoConfirmForm')->name('dashboard.job.info.confirm');
+Route::get('/dashboard/job/register/confirm', 'JobManageController@registerConfirmForm')->name('dashboard.job.register.confirm');

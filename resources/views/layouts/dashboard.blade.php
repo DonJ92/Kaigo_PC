@@ -212,7 +212,7 @@
                 <span class="txt">一覧</span>
             </a>
 
-            <a class="aside-menu-item" href="registerjob.html">
+            <a class="aside-menu-item" href="{{ route('dashboard.job.register') }}">
                 <span class="icon"><img src="{{ asset('/images/icon/reservation.svg') }}"></span>
                 <span class="txt">定期予約</span>
             </a>
