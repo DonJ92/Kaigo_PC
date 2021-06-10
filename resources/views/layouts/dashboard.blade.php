@@ -217,17 +217,17 @@
                 <span class="txt">定期予約</span>
             </a>
 
-            <a class="aside-menu-item" href="favouritejobs.html">
+            <a class="aside-menu-item" href="{{ route('dashboard.favourite.job') }}">
                 <span class="icon"><img src="{{ asset('/images/icon/favourite.svg') }}"></span>
                 <span class="txt">お気に入り</span>
             </a>
 
-            <a class="aside-menu-item" href="deposit.html">
+            <a class="aside-menu-item" href="{{ route('dashboard.deposit') }}">
                 <span class="icon"><img src="{{ asset('/images/icon/remittance.svg') }}"></span>
                 <span class="txt">振込申請</span>
             </a>
 
-            <a class="aside-menu-item" href="history.html">
+            <a class="aside-menu-item" href="{{ route('dashboard.txhistory') }}">
                 <span class="icon"><img src="{{ asset('/images/icon/history.svg') }}"></span>
                 <span class="txt">支払履歴（領収書発行）</span>
             </a>
@@ -269,7 +269,7 @@
     <main class="dashboard-main-home">
         @yield('content')
         <div class="main-r">
-            <a class="back-btn" href="register.html">
+            <a class="back-btn" href="{{ url()->previous() }}">
                 <div>
                     <p>前画面へ戻る</p>
                     <p class="arrow">←</p>

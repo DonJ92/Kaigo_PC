@@ -42,9 +42,20 @@ Route::post('/skill/register', 'IdentificationController@skillRegister')->name('
 Route::get('/skill/confirm', 'IdentificationController@skillConfirm')->name('skill.confirm');
 
 Route::get('/dashboard/home', 'HomeController@index')->name('dashboard.home');
+
 Route::get('/dashboard/job/search', 'JobController@dashboardSearch')->name('dashboard.job.search');
 Route::get('/dashboard/job/detail', 'JobController@dashboardDetail')->name('dashboard.job.detail');
+
 Route::get('/dashboard/job/register', 'JobManageController@registerForm')->name('dashboard.job.register');
 Route::get('/dashboard/job/info/register', 'JobManageController@registerInfoForm')->name('dashboard.job.info.register');
 Route::get('/dashboard/job/info/confirm', 'JobManageController@infoConfirmForm')->name('dashboard.job.info.confirm');
 Route::get('/dashboard/job/register/confirm', 'JobManageController@registerConfirmForm')->name('dashboard.job.register.confirm');
+
+Route::get('/dashboard/favourite/job', 'FavouriteController@favouriteJob')->name('dashboard.favourite.job');
+Route::get('/dashboard/favourite/helper', 'FavouriteController@favouriteHelper')->name('dashboard.favourite.helper');
+
+Route::get('/dashboard/deposit', 'DepositController@depositForm')->name('dashboard.deposit');
+Route::get('/dashboard/deposit/confirm', 'DepositController@depositConfirmForm')->name('dashboard.deposit.confirm');
+
+Route::get('/dashboard/txhistory', 'TxHistoryController@txhistory')->name('dashboard.txhistory');
+Route::get('/dashboard/receipt/confirm', 'TxHistoryController@receiptConfirm')->name('dashboard.receipt.confirm');
