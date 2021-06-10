@@ -284,7 +284,7 @@
                 </div>
 
                 <div class="search-row search-row-l">
-                    <a href="workers.html" class="search-link">
+                    <a href="{{ route('helper.search') }}" class="search-link">
                         <i class="fa fa-search"></i>
                         <span>{{ trans('button.search_helper') }}</span>
                         <i class="ti-arrow-circle-right"></i>
