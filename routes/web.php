@@ -22,6 +22,8 @@ Route::post('/register/confirm', 'Auth\RegisterController@registerConfirm')->nam
 
 Route::get('/', 'TopController@index')->name('top');
 Route::get('/job/search', 'JobController@search')->name('job.search');
+Route::get('/job/detail', 'JobController@detail')->name('job.detail');
+Route::get('/client/detail', 'ClientController@detail')->name('client.detail');
 Route::get('/contactus', 'ContactUSController@index')->name('contactus');
 
 Route::get('/home', 'HomeController@index')->name('home');

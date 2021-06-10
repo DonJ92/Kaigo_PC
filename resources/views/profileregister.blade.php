@@ -157,7 +157,7 @@
         </div>
         <div class="field-row">
             <p class="field-ttl">{{ trans('profile.certificate') }}</p>
-            <select class="form @error('certificate') is-invalid @enderror" id="certificate" name="certificate[]" multiple>
+            <select class="form ui dropdown @error('certificate') is-invalid @enderror" id="certificate" name="certificate[]" multiple>
                 <option></option>
                 @foreach ($certificate_list as $certificate_info)
                     <option value="{{ $certificate_info['id'] }}" @if(old('certificate') !== null && in_array($certificate_info['id'], old('certificate'))) selected @endif>{{ $certificate_info['certificate'] }}</option>
@@ -224,5 +224,7 @@
                 $("#submit_btn").prop('disabled', true);
             }
         });
+
+        $('.ui.dropdown').dropdown();
     </script>
 @endsection

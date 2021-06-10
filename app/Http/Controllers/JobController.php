@@ -9,4 +9,10 @@ class JobController extends Controller
     {
         return view('jobsearch');
     }
+
+    public function detail()
+    {
+        return view('jobdetail');
+    }
+
 }

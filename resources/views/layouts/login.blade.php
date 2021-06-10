@@ -18,6 +18,8 @@
     <!-- javascript -->
     <script src="{{ asset('/js/app.js') }}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/semantic.min.css') }}">
+    <script src="{{ asset('js/semantic.min.js') }}"></script>
 </head>
 
 <body class="@yield('body_class')">

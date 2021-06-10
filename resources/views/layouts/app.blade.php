@@ -61,7 +61,7 @@
                 </div>
             </div>
 
-            <a class="cta-register" href="register.html">{{ trans('button.register_link') }}</a>
+            <a class="cta-register" href="{{ route('register') }}">{{ trans('button.register_link') }}</a>
         </aside>
 
         <main>
@@ -76,6 +76,16 @@
                 </a>
             </div>
         </main>
+
+        <div id="dialog-overlay"></div>
+        <div id="dialog-box" class="dialog-box">
+            <div id="close" class="close-btn"><a><i class="fa fa-close"></i></a></div>
+            <h2 class="dialog-title">{{ trans('common.login_dialog.title') }}</h2>
+            <img src="{{ asset('/images/dialog-icon.svg') }}">
+            <h2 class="dialog-subtitle">{{ trans('common.login_dialog.desc') }}</h2>
+            <a href="{{ route('login') }}" class="btn primary-btn">{{ trans('button.login') }}</a>
+            <p class="sub-desc">{{ trans('common.login_dialog.register_desc') }}<a href="{{ route('register') }}">{{ trans('button.register') }}</a></p>
+        </div>
 
         <script src="{{ asset('/js/script.js') }}"></script>
     </div>

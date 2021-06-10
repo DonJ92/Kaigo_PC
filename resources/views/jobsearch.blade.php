@@ -78,12 +78,12 @@
     </div>
     <div class="main-m main-block main-block-gray">
         <div class="main-m-title">
-            <h3>案件一覧</h3>
+            <h3>{{ trans('job.search.list_panel') }}</h3>
         </div>
         <div class="job-list">
             @for ($i = 0; $i < 6; $i++)
             <div class="job-block">
-                <a href="jobdetail.html">
+                <a href="{{ route('job.detail') }}">
                     <div class="job-item">
                         <div class="job-item-customer">
                             <div class="job-item-customer-photo">
