@@ -236,7 +236,7 @@ footer {
     .footer-cta {
         padding: 99px 0;
         @include flex-center;
-        background: url(../img/footer-bg.jpg);
+        background: url("../images/footer-bg.jpg");
         background-size: 100%;
         background-position: center;
 

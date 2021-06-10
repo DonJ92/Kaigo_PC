@@ -548,7 +548,7 @@ body.no-auth {
             display: -webkit-box;
             width: 16%;
             min-height: 970px;
-            background: url(../img/left-bar.svg) repeat-y;
+            background: url("../images/left-bar.svg") repeat-y;
             background-position: top center;
             background-color: $bg_color_y;
             text-align: center;
@@ -1457,7 +1457,7 @@ body.no-auth {
                 position: relative;
                 width: 100%;
                 min-height: 970px;
-                background: url(../img/left-bar.svg) repeat-y;
+                background: url("../images/left-bar.svg") repeat-y;
                 background-position: top center;
                 background-color: $bg_color_y;
                 text-align: center;
