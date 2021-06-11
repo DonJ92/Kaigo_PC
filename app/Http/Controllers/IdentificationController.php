@@ -153,4 +153,24 @@ class IdentificationController extends Controller
     {
         return view('skillconfirm');
     }
+
+    public function identificationForm()
+    {
+        return view('dashboard.identification');
+    }
+
+    public function identificationConfirm()
+    {
+        return view('dashboard.identificationconfirm');
+    }
+
+    public function skillRequestForm()
+    {
+        return view('dashboard.skill');
+    }
+
+    public function skillRequestConfirm()
+    {
+        return view('dashboard.skillconfirm');
+    }
 }

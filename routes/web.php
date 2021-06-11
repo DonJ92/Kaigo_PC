@@ -59,3 +59,8 @@ Route::get('/dashboard/deposit/confirm', 'DepositController@depositConfirmForm')
 
 Route::get('/dashboard/txhistory', 'TxHistoryController@txhistory')->name('dashboard.txhistory');
 Route::get('/dashboard/receipt/confirm', 'TxHistoryController@receiptConfirm')->name('dashboard.receipt.confirm');
+
+Route::get('/dashboard/identification', 'IdentificationController@identificationForm')->name('dashboard.identification');
+Route::get('/dashboard/identification/confirm', 'IdentificationController@identificationConfirm')->name('dashboard.identification.confirm');
+Route::get('/dashboard/skill', 'IdentificationController@skillRequestForm')->name('dashboard.skill');
+Route::get('/dashboard/skill/confirm', 'IdentificationController@skillRequestConfirm')->name('dashboard.skill.confirm');

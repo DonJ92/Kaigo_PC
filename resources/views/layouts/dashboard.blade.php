@@ -232,12 +232,12 @@
                 <span class="txt">支払履歴（領収書発行）</span>
             </a>
 
-            <a class="aside-menu-item" href="identification.html">
+            <a class="aside-menu-item" href="{{ route('dashboard.identification') }}">
                 <span class="icon"><img src="{{ asset('/images/icon/identify.svg') }}"></span>
                 <span class="txt">本人認証</span>
             </a>
 
-            <a class="aside-menu-item" href="skill.html">
+            <a class="aside-menu-item" href="{{ route('dashboard.skill') }}">
                 <span class="icon"><img src="{{ asset('/images/icon/skill.svg') }}"></span>
                 <span class="txt">スキル申請</span>
             </a>
