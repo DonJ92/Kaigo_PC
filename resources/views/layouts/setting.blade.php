@@ -267,7 +267,89 @@
     </aside>
 
     <main class="dashboard-main-home">
-        @yield('content')
+        <div class="main block-3">
+            <div class="main-l main-block main-block-white border-right">
+                <div class="main-1-title setting-board border-bottom grey-color">
+                    <h3>設定</h3>
+                </div>
+                <div class="setting-list">
+                    <a class="border-bottom active" href="{{ route('dashboard.setting.changepwd') }}">
+                        <div class="setting-col">
+                            <div class="setting-info">
+                                <h4 class="">各種設定</h4>
+                            </div>
+                            <i class="fa fa-chevron-right"></i>
+                        </div>
+                    </a>
+                    <a class="border-bottom">
+                        <div class="setting-col">
+                            <div class="setting-info">
+                                <h4 class="">ポイントについて</h4>
+                            </div>
+                            <i class="fa fa-chevron-right"></i>
+                        </div>
+                    </a>
+                    <a class="border-bottom" href="{{ route('dashboard.setting.bankaccount') }}">
+                        <div class="setting-col">
+                            <div class="setting-info">
+                                <h4 class="">支払い設定</h4>
+                            </div>
+                            <i class="fa fa-chevron-right"></i>
+                        </div>
+                    </a>
+                    <a class="border-bottom" href="{{ route('dashboard.setting.notification') }}">
+                        <div class="setting-col">
+                            <div class="setting-info">
+                                <h4 class="">通知設定</h4>
+                            </div>
+                            <i class="fa fa-chevron-right"></i>
+                        </div>
+                    </a>
+                    <a class="border-bottom">
+                        <div class="setting-col">
+                            <div class="setting-info">
+                                <h4 class="">プライバシー</h4>
+                            </div>
+                            <i class="fa fa-chevron-right"></i>
+                        </div>
+                    </a>
+                    <a class="border-bottom">
+                        <div class="setting-col">
+                            <div class="setting-info">
+                                <h4 class="">よくある質問</h4>
+                            </div>
+                            <i class="fa fa-chevron-right"></i>
+                        </div>
+                    </a>
+                    <a class="border-bottom" href="{{ route('dashboard.setting.contactus') }}">
+                        <div class="setting-col">
+                            <div class="setting-info">
+                                <h4 class="">お問い合わせ</h4>
+                            </div>
+                            <i class="fa fa-chevron-right"></i>
+                        </div>
+                    </a>
+                    <a class="border-bottom" href="{{ route('dashboard.setting.service') }}">
+                        <div class="setting-col">
+                            <div class="setting-info">
+                                <h4 class="">サービスについて</h4>
+                            </div>
+                            <i class="fa fa-chevron-right"></i>
+                        </div>
+                    </a>
+                    <a class="border-bottom" onclick="logoutPopup()">
+                        <div class="setting-col">
+                            <div class="setting-info">
+                                <h4 class="">ログアウト</h4>
+                            </div>
+                            <i class="fa fa-chevron-right"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            @yield('content')
+        </div>
+
         <div class="main-r">
             <a class="back-btn" href="{{ url()->previous() }}">
                 <div>
@@ -287,15 +369,6 @@
 <form method="POST" action="{{ route('logout') }}" id="logout_form">
     @csrf
 </form>
-
-<div id="dialog-overlay"></div>
-<div id="identify-dialog-box" class="dialog-box">
-    <div id="close" class="close-btn"><a><i class="fa fa-close"></i></a></div>
-    <h2 class="dialog-title">{{ trans('common.identify_dialog.title') }}</h2>
-    <img class="identify" src="{{ asset('/images/identify-confirm.svg') }}">
-    <p class="desc">{{ trans('common.identify_dialog.desc') }}</p>
-    <a href="login.html" class="btn primary-btn">{{ trans('common.identify_dialog.identification_desc') }}</a>
-</div>
 
 <script>
     function logout() {

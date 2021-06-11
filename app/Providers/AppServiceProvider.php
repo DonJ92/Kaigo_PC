@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer([
-            'layouts.dashboard'
+            'layouts.dashboard', 'layouts.setting'
         ], function($view) {
             $profile = Profile::where('user_id', Auth::user()->id)->first();
 
