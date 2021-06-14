@@ -35,6 +35,11 @@ body.login {
                         left: 0;
                         top: 4px;
                         width: calc(112 / 1920 * 100vw);
+
+                        img {
+                            display: block;
+                            width: 100%;
+                        }
                     }
 
                     &.for-space {

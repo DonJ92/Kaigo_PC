@@ -75,6 +75,11 @@ class IdentificationController extends Controller
                 'doc' => $doc,
                 'birthday' => $data['birthday'],
             ]);
+
+            $user = Auth::user();
+            $user->status = USER_PENDING;
+            $user->save();
+
         } catch (QueryException $e) {
             return redirect()->back()->withInput()->withErrors(['failed' => trans('identification.register_failed')]);
         }

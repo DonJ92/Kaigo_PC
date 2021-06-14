@@ -12,6 +12,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 
 class Controller extends BaseController
 {
@@ -79,5 +80,52 @@ class Controller extends BaseController
         $url = $filename;
 
         return $url;
+    }
+
+    protected function getProfilePhoto($user_info)
+    {
+        if(!empty($user_info['photo1']))
+            $photo = url('uploads/profile') . '/' . $user_info['id'] . '/' . $user_info['photo1'];
+        elseif (!empty($user_info['photo2']))
+            $photo = url('uploads/profile') . '/' . $user_info['id'] . '/' . $user_info['photo2'];
+        elseif (!empty($user_info['photo3']))
+            $photo = url('uploads/profile') . '/' . $user_info['id'] . '/' . $user_info['photo3'];
+        elseif (!empty($user_info['photo4']))
+            $photo = url('uploads/profile') . '/' . $user_info['id'] . '/' . $user_info['photo4'];
+        elseif (!empty($user_info['photo5']))
+            $photo = url('uploads/profile') . '/' . $user_info['id'] . '/' . $user_info['photo5'];
+        else
+            $photo = asset('/images/user.png');
+
+        return $photo;
+    }
+
+    protected function getGenderFromID($id)
+    {
+        $gender_list = Config::get('constants.gender');
+        $key = array_search($id, array_column($gender_list, 'id'));
+
+        return $gender_list[$key]['name'];
+    }
+
+    protected function getAgeFromID($id)
+    {
+        $age_list = Config::get('constants.age');
+        $key = array_search($id, array_column($age_list, 'id'));
+
+        return $age_list[$key]['name'];
+    }
+
+    protected function getCertificateFromIDs($id_array)
+    {
+        $cert_list = $this->getCertificateTypeList();
+
+        $certificates = array();
+        foreach ($id_array as $id) {
+            $key = array_search($id, array_column($cert_list, 'id'));
+            $certificates[] = $cert_list[$key]['certificate'];
+        }
+
+        return $certificates;
     }
 }

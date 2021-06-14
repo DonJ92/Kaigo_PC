@@ -8,33 +8,35 @@
     <script src="{{ asset('js/ej2/ej2.min.js') }}" type="text/javascript"></script>
 @endsection
 
+@section('title', trans('dashboard.title'))
+
 @section('content')
     <div class="main">
-        <h3 class="dashboard-ttl">DashBoard</h3>
+        <h3 class="dashboard-ttl">{{ trans('dashboard.title') }}</h3>
         <div class="dashbaord-home-row">
             <div class="dashbaord-home-col balance">
                 <div class="div col-2-1 right-border center">
-                    <h3 class="sub-title">引き出し可能額</h3>
+                    <h3 class="sub-title">{{ trans('dashboard.balance') }}</h3>
                     <p class="balance-txt">¥99,999,999</p>
                 </div>
                 <div class="div col-2-1 center">
-                    <h3 class="sub-title">会員ステータス</h3>
-                    <p class="status dashboard no-identify">本人確認未認証</p>
+                    <h3 class="sub-title">{{ trans('dashboard.status') }}</h3>
+                    <p class="status dashboard no-identify">{{ $status }}</p>
                 </div>
             </div>
 
             <div class="dashbaord-home-col banner">
-                キャンペーンバナー
+                {{ trans('common.campaign_banner') }}
             </div>
 
             <div class="dashbaord-home-col banner">
-                キャンペーンバナー
+                {{ trans('common.campaign_banner') }}
             </div>
         </div>
 
         <div class="dashbaord-home-row">
             <div class="dashbaord-home-col bottom">
-                <h2 class="list-title border-bottom">支払い履歴</h2>
+                <h2 class="list-title border-bottom">{{ trans('dashboard.history') }}</h2>
                 <div>
                     @for($i = 0; $i < 4; $i++)
                     <div class="row-item border-bottom">
@@ -59,7 +61,7 @@
             </div>
 
             <div class="dashbaord-home-col bottom">
-                <h2 class="list-title border-bottom">定期予約</h2>
+                <h2 class="list-title border-bottom">{{ trans('dashboard.job_register') }}</h2>
                 <div id="container">
                     <div id="element"></div>
                 </div>
@@ -69,7 +71,7 @@
             </div>
 
             <div class="dashbaord-home-col bottom">
-                <h2 class="list-title border-bottom">お気に入り</h2>
+                <h2 class="list-title border-bottom">{{ trans('dashboard.favourite') }}</h2>
                 <div>
                     @for($i = 0; $i < 5; $i++)
                     <div class="row-item flex border-bottom">
@@ -100,4 +102,9 @@
     </div>
 
     <script src="{{ asset('/js/calendar.js') }}"></script>
+    <script>
+        $(window).on('load', function() {
+            $('#side_menu_home').addClass('current');
+        });
+    </script>
 @endsection

@@ -970,10 +970,18 @@ body.dashboard {
 
                     .worker-item-attr-item {
                         @include flex-center;
-                        width: 25%;
+                        width: 20%;
                         padding: calc(10 / 1920 * 100vw) 0;
                         text-align: center;
                         border-right: 1px solid #f0f1f7;
+
+                        &.cert {
+                            width: 40%;
+                        }
+
+                        &.cost {
+                            width: 20%;
+                        }
 
                         @media only screen and (max-width: 1200px) {
                             width: 50%;
@@ -989,8 +997,8 @@ body.dashboard {
                             .worker-item-attr-item-txt-large {
                                 font-family: 'Montserrat-Light';
                                 font-size: calc(14 / 1920 * 100vw);
-                                line-height: calc(26 / 1920 * 100vw);
                                 color: #9597a6;
+                                white-space: break-spaces;
                             }
 
                             .worker-item-attr-item-txt-small {
@@ -1040,8 +1048,12 @@ body.dashboard {
 
                             i {
                                 font-size: calc(16 / 1920 * 100vw);
-                                color: #dbdbdb;
                             }
+
+                        }
+
+                        a:hover {
+                          color: $light_pink !important;
                         }
                     }
                 }
@@ -1106,6 +1118,7 @@ body.dashboard {
         .identify-photo {
             margin: 0 auto calc(65 / 1920 * 100vw);
             width: calc(300 / 1920 * 100vw);
+            display: block;
         }
 
         .identify-warning {
@@ -1199,6 +1212,7 @@ body.dashboard {
         .japhic {
             margin: 0 auto calc(28 / 1920 * 100vw);
             width: calc(84 / 1920 * 100vw);
+            display: block;
         }
 
         .field-row {
@@ -1398,6 +1412,7 @@ body.dashboard {
                 img {
                     width: calc(45 / 1920 * 100vw);
                     height: calc(45 / 1920 * 100vw);
+                    object-fit: cover;
                 }
 
                 .user-menu {
@@ -2444,5 +2459,9 @@ body.dashboard {
                 }
             }
         }
+    }
+
+    .light-pink {
+        color: $light_pink;
     }
 }

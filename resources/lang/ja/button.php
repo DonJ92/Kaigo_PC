@@ -27,9 +27,13 @@ return [
     'register_profile' => '登録する',
 
     'to_mypage' => 'マイページへ',
+    'to_top' => 'TOPに戻る',
 
     'page_top' => 'PAGE TOP',
 
     'back' => '戻る',
     'next' => '次へ',
+
+    'logout' => 'ログアウト',
+    'cancel' => 'キャンセル',
 ];

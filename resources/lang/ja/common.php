@@ -42,9 +42,43 @@ return [
         'register_desc' => 'アカウントをお持ちでない場合'
     ],
 
+    'campaign_banner' => 'キャンペーンバナー',
+
     'identify_dialog' => [
         'title' => '本人確認をお願いします',
         'desc' => 'お相⼿とメッセージを交換するには 本⼈確認を完了する必要があります。',
         'identification_desc' => '本人確認をする。',
-    ]
+    ],
+
+    'dropdown_menu' => [
+        'account_setting' => 'アカウント設定',
+        'logout' => 'ログアウト',
+    ],
+
+    'dashboard_side_menu' => [
+        'home' => 'ホーム画面',
+        'job_list' => '一覧',
+        'job_register' => '定期予約',
+        'favourite' => 'お気に入り',
+        'deposit' => '振込申請',
+        'history' => '支払履歴（領収書発行）',
+        'identification' => '本人認証',
+        'skill' => 'スキル申請',
+        'setting' => '設定',
+        'help' => 'ヘルプ',
+    ],
+
+    'setting' => '設定',
+
+    'dashboard_setting_menu' => [
+        'setting' => '各種設定',
+        'point' => 'ポイントについて',
+        'payment' => '支払い設定',
+        'notification' => '通知設定',
+        'privacy' => 'プライバシー',
+        'faq' => 'よくある質問',
+        'contactus' => 'お問い合わせ',
+        'service' => 'サービスについて',
+        'logout' => 'ログアウト',
+    ],
 ];

@@ -33,7 +33,18 @@ class AppServiceProvider extends ServiceProvider
             if (is_null($profile))
                 $photo = '';
             else {
-                $photo = url('uploads/profile') . '/' . Auth::user()->id . '/' . $profile->photo1;
+                if(!empty($profile->photo1))
+                    $photo = url('uploads/profile') . '/' . Auth::user()->id . '/' . $profile->photo1;
+                elseif (!empty($profile->photo2))
+                    $photo = url('uploads/profile') . '/' . Auth::user()->id . '/' . $profile->photo2;
+                elseif (!empty($profile->photo3))
+                    $photo = url('uploads/profile') . '/' . Auth::user()->id . '/' . $profile->photo3;
+                elseif (!empty($profile->photo4))
+                    $photo = url('uploads/profile') . '/' . Auth::user()->id . '/' . $profile->photo4;
+                elseif (!empty($profile->photo5))
+                    $photo = url('uploads/profile') . '/' . Auth::user()->id . '/' . $profile->photo5;
+                else
+                    $photo = asset('/images/user.png');
             }
 
             $data['photo'] = $photo;

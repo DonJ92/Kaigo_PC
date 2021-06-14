@@ -51,8 +51,8 @@
                     <span class="for-space"></span>{{ trans('login.download_pre') }}<br>{{ trans('login.download_sur') }}
                 </p>
                 <div class="mv-lead-links cta-block-links">
-                    <a href="#"><img src="{{ asset('/images/link-app-store.png') }}" alt="" /></a>
-                    <a href="#"><img src="{{ asset('/images/link-google-play.png') }}" alt="" /></a>
+                    <a href="#"><img class="logo_img" src="{{ asset('/images/link-app-store.png') }}" alt="" /></a>
+                    <a href="#"><img class="logo_img" src="{{ asset('/images/link-google-play.png') }}" alt="" /></a>
                 </div>
             </div>
         </div>

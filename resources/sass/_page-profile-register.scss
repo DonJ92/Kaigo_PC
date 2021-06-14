@@ -308,6 +308,7 @@ body.profile-register {
                     .identify-photo {
                         margin: 0 auto calc(65 / 1920 * 100vw);
                         width: calc(300 / 1920 * 100vw);
+                        display: block;
                     }
 
                     .identify-warning {
@@ -401,6 +402,7 @@ body.profile-register {
                     .japhic {
                         margin: 0 auto calc(28 / 1920 * 100vw);
                         width: calc(84 / 1920 * 100vw);
+                        display: block;
                     }
                 }
             }

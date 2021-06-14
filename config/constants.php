@@ -3,10 +3,25 @@
 define('CLIENT', 1);
 define('HELPER', 2);
 
+define('USER_NONE', 1);
+define('USER_PENDING', 2);
+define('USER_CONFIRMED', 3);
+
+define('HELPER_PAGE_CNT', 8);
+
+define('FAVOURITE_HELPER', 1);
+define('FAVOURITE_JOB', 2);
+
 return [
     'gender' => [
         ['id' => 1, 'name' => '男性'],
         ['id' => 2, 'name' => '女性']
+    ],
+
+    'user_status' => [
+        ['id' => 1, 'status' => '本人確認未提出'],
+        ['id' => 2, 'status' => '審査中'],
+        ['id' => 3, 'status' => '本人確認済み']
     ],
 
     'type' => [

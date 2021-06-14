@@ -46,13 +46,20 @@ Route::get('/dashboard/home', 'HomeController@index')->name('dashboard.home');
 Route::get('/dashboard/job/search', 'JobController@dashboardSearch')->name('dashboard.job.search');
 Route::get('/dashboard/job/detail', 'JobController@dashboardDetail')->name('dashboard.job.detail');
 
+Route::get('/dashboard/helper/search', 'HelperController@dashboardSearch')->name('dashboard.helper.search');
+Route::post('/dashboard/helper/getlist', 'HelperController@getList')->name('dashboard.helper.getlist');
+Route::get('/dashboard/helper/detail', 'HelperController@dashboardDetail')->name('dashboard.helper.detail');
+
 Route::get('/dashboard/job/register', 'JobManageController@registerForm')->name('dashboard.job.register');
 Route::get('/dashboard/job/info/register', 'JobManageController@registerInfoForm')->name('dashboard.job.info.register');
 Route::get('/dashboard/job/info/confirm', 'JobManageController@infoConfirmForm')->name('dashboard.job.info.confirm');
 Route::get('/dashboard/job/register/confirm', 'JobManageController@registerConfirmForm')->name('dashboard.job.register.confirm');
 
 Route::get('/dashboard/favourite/job', 'FavouriteController@favouriteJob')->name('dashboard.favourite.job');
+Route::post('/dashboard/favourite/job', 'FavouriteController@jobFavourite')->name('dashboard.job.favourite');
 Route::get('/dashboard/favourite/helper', 'FavouriteController@favouriteHelper')->name('dashboard.favourite.helper');
+Route::post('/dashboard/favourite/helper', 'FavouriteController@helperFavourite')->name('dashboard.helper.favourite');
+Route::post('/dashboard/favourite/helper/cancel', 'FavouriteController@helperUnFavourite')->name('dashboard.helper.favourite.cancel');
 
 Route::get('/dashboard/deposit', 'DepositController@depositForm')->name('dashboard.deposit');
 Route::get('/dashboard/deposit/confirm', 'DepositController@depositConfirmForm')->name('dashboard.deposit.confirm');
