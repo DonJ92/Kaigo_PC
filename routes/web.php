@@ -61,6 +61,7 @@ Route::post('/dashboard/favourite/job', 'FavouriteController@jobFavourite')->nam
 Route::get('/dashboard/favourite/helper', 'FavouriteController@favouriteHelper')->name('dashboard.favourite.helper');
 Route::post('/dashboard/favourite/helper', 'FavouriteController@helperFavourite')->name('dashboard.helper.favourite');
 Route::post('/dashboard/favourite/helper/cancel', 'FavouriteController@helperUnFavourite')->name('dashboard.helper.favourite.cancel');
+Route::post('/dashboard/favourite/helper/getlist', 'FavouriteController@getHelperList')->name('dashboard.favourite.helper.getlist');
 
 Route::get('/dashboard/deposit', 'DepositController@depositForm')->name('dashboard.deposit');
 Route::get('/dashboard/deposit/confirm', 'DepositController@depositConfirmForm')->name('dashboard.deposit.confirm');

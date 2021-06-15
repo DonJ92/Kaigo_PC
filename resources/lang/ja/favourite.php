@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'title' => 'お気に入り',
+
     'register_success' => 'お気に入りに追加されました。',
     'register_failed' => 'お気に入りの登録が失敗しました。。',
 

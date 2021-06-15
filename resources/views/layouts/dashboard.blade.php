@@ -218,7 +218,7 @@
                 <span class="txt">{{ trans('common.dashboard_side_menu.job_register') }}</span>
             </a>
 
-            <a class="aside-menu-item" id="side_menu_favourite" href="{{ route('dashboard.favourite.job') }}">
+            <a class="aside-menu-item" id="side_menu_favourite" href="@if(auth()->user()->type == CLIENT) {{ route('dashboard.favourite.helper') }} @else {{ route('dashboard.favourite.job') }} @endif">
                 <span class="icon"><img src="{{ asset('/images/icon/favourite.svg') }}"></span>
                 <span class="txt">{{ trans('common.dashboard_side_menu.favourite') }}</span>
             </a>

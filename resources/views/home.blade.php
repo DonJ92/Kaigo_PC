@@ -102,9 +102,9 @@
                             $('#favourite_list').append(
                                 '<div class="row-item flex border-bottom">\n' +
                                 '   <div class="div item-block">\n' +
-                                '       <img src="'+ response[i].photo +'">\n' +
+                                '       <a href="{{ url('dashboard/helper/detail') }}/' + response[i].id + '"><img src="'+ response[i].photo +'"></a>\n' +
                                 '       <div class="item-info">\n' +
-                                '           <h3 class="title">' + response[i].last_name + response[i].first_name + '（' + response[i].age + '）</h3>\n' +
+                                '           <h3 class="title"><a href="{{ url('dashboard/helper/detail') }}/' + response[i].id + '">' + response[i].last_name + response[i].first_name + '（' + response[i].age + '）</a></h3>\n' +
                                 '           <p class="sub-info">' + response[i].province_name + '・'+ response[i].certificate + '</p>\n' +
                                 '           <div class="item-review">\n' +
                                 '               <p class="item-txt">レビュー　4</p>\n' +
