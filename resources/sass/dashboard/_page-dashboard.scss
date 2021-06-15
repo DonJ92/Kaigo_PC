@@ -284,6 +284,7 @@ body.dashboard {
                 height: calc(60 / 1920 * 100vw);
                 margin: 0 calc(10 / 1920 * 100vw) 0 0;
                 border-radius: 50%;
+                object-fit: cover;
             }
 
             .item-info {
@@ -300,6 +301,7 @@ body.dashboard {
                     font-family: AXIS Std-L;
                     font-size: calc(10 / 1920 * 100vw);
                     letter-spacing: calc(0 / 1920 * 100vw);
+                    line-height: calc(12 / 1920 * 100vw);
                     color: $light_content_grey;
                     margin: 0 0 calc(5 / 1920 * 100vw) 0;
                 }
@@ -524,13 +526,21 @@ body.dashboard {
                 justify-content: space-between;
                 font-family: AXIS Std-M;
                 font-size: calc(11 / 1920 * 100vw);
-                line-height: calc(32 / 1920 * 100vw);
                 color: $content_grey;
+
+                span{
+                    word-wrap: normal;
+                }
 
                 .con-column {
                     color: $secondary_color;
                     padding: unset;
                     border: unset;
+                    width: 50%;
+
+                    span {
+                        margin: 0 0 0 auto;
+                    }
                 }
             }
         }
@@ -779,6 +789,9 @@ body.dashboard {
             img {
                 width: calc(100 / 1920 * 100vw);
                 height: calc(100 / 1920 * 100vw);
+                padding: calc(10 / 1920 * 100vw);
+                border-radius: calc(30 / 1920 * 100vw);
+                object-fit: cover;
             }
         }
     }
@@ -971,7 +984,7 @@ body.dashboard {
                     .worker-item-attr-item {
                         @include flex-center;
                         width: 20%;
-                        padding: calc(10 / 1920 * 100vw) 0;
+                        padding: calc(10 / 1920 * 100vw);
                         text-align: center;
                         border-right: 1px solid #f0f1f7;
 
@@ -1909,6 +1922,7 @@ body.dashboard {
                                     height: calc(230 / 1920 * 100vw);
                                     border-radius: calc(64 / 1920 * 100vw);
                                     margin: 0 0 calc(20 / 1920 * 100vw) 0;
+                                    object-fit: cover;
                                 }
                             }
     

@@ -8664,6 +8664,8 @@ body.dashboard .row-item .item-block img {
   height: calc(60 / 1920 * 100vw);
   margin: 0 calc(10 / 1920 * 100vw) 0 0;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 body.dashboard .row-item .item-block .item-info .title {
@@ -8679,6 +8681,7 @@ body.dashboard .row-item .item-block .item-info .sub-info {
   font-family: AXIS Std-L;
   font-size: calc(10 / 1920 * 100vw);
   letter-spacing: calc(0 / 1920 * 100vw);
+  line-height: calc(12 / 1920 * 100vw);
   color: #9597A6;
   margin: 0 0 calc(5 / 1920 * 100vw) 0;
 }
@@ -8909,14 +8912,22 @@ body.dashboard .con-block div.con-detail {
   justify-content: space-between;
   font-family: AXIS Std-M;
   font-size: calc(11 / 1920 * 100vw);
-  line-height: calc(32 / 1920 * 100vw);
   color: #656565;
+}
+
+body.dashboard .con-block div.con-detail span {
+  word-wrap: normal;
 }
 
 body.dashboard .con-block div.con-detail .con-column {
   color: #58B2BE;
   padding: unset;
   border: unset;
+  width: 50%;
+}
+
+body.dashboard .con-block div.con-detail .con-column span {
+  margin: 0 0 0 auto;
 }
 
 body.dashboard .btn-block {
@@ -9175,6 +9186,10 @@ body.dashboard .job-column-block .gallery {
 body.dashboard .job-column-block .gallery img {
   width: calc(100 / 1920 * 100vw);
   height: calc(100 / 1920 * 100vw);
+  padding: calc(10 / 1920 * 100vw);
+  border-radius: calc(30 / 1920 * 100vw);
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 body.dashboard .slider {
@@ -9371,7 +9386,7 @@ body.dashboard .worker-list .worker-block .worker-item .worker-item-attr-list .w
   align-items: center;
   justify-content: center;
   width: 20%;
-  padding: calc(10 / 1920 * 100vw) 0;
+  padding: calc(10 / 1920 * 100vw);
   text-align: center;
   border-right: 1px solid #f0f1f7;
 }
@@ -10343,6 +10358,8 @@ body.dashboard .primary main .main .main-block.main-m .personal-detail-block .pr
   height: calc(230 / 1920 * 100vw);
   border-radius: calc(64 / 1920 * 100vw);
   margin: 0 0 calc(20 / 1920 * 100vw) 0;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 body.dashboard .primary main .main .main-block.main-m .personal-detail-block .detail-block {

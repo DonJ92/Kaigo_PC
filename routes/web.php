@@ -42,13 +42,14 @@ Route::post('/skill/register', 'IdentificationController@skillRegister')->name('
 Route::get('/skill/confirm', 'IdentificationController@skillConfirm')->name('skill.confirm');
 
 Route::get('/dashboard/home', 'HomeController@index')->name('dashboard.home');
+Route::post('/dashboard/home/favourite/helper', 'HomeController@getFavouriteHelper')->name('dashboard.home.favourite.helper');
 
 Route::get('/dashboard/job/search', 'JobController@dashboardSearch')->name('dashboard.job.search');
 Route::get('/dashboard/job/detail', 'JobController@dashboardDetail')->name('dashboard.job.detail');
 
 Route::get('/dashboard/helper/search', 'HelperController@dashboardSearch')->name('dashboard.helper.search');
 Route::post('/dashboard/helper/getlist', 'HelperController@getList')->name('dashboard.helper.getlist');
-Route::get('/dashboard/helper/detail', 'HelperController@dashboardDetail')->name('dashboard.helper.detail');
+Route::get('/dashboard/helper/detail/{id}', 'HelperController@dashboardDetail')->name('dashboard.helper.detail');
 
 Route::get('/dashboard/job/register', 'JobManageController@registerForm')->name('dashboard.job.register');
 Route::get('/dashboard/job/info/register', 'JobManageController@registerInfoForm')->name('dashboard.job.info.register');

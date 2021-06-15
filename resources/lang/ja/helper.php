@@ -11,7 +11,28 @@ return [
         'list_panel' => 'ヘルパー一覧',
     ],
 
+    'detail' => [
+        'title' => 'ヘルパー詳細',
+
+        'list_panel' => 'ヘルパー一覧',
+        'detail_panel' => 'ヘルパー詳細',
+
+        'category' => 'CATEGORY',
+        'gender' => 'GENDER',
+        'like' => 'LIKES',
+
+        'introduction' => '自己紹介',
+        'gallery' => 'ギャラリー',
+        'profile' => '基本プロフィール',
+    ],
+
     'age' => '年齢',
-    'certificate' => '資格・スキル',
+    'address' => '住所地',
+    'job_type' => '職種',
+    'experience_years' => '経験年数',
+    'certificate' => '保有資格',
+    'skill' => '資格・スキル',
     'hourly_cost' => '希望時給',
+
+    'no_info' => '選択したへるぱーの詳細情報がありません。'
 ];

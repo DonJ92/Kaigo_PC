@@ -24,6 +24,9 @@ return [
     'favourite' => 'お気に入り',
     'message' => 'メッセージ',
 
+    'add_favourite' => 'お気に入り登録',
+    'cancel_favourite' => 'お気に入り解除',
+
     'register_profile' => '登録する',
 
     'to_mypage' => 'マイページへ',

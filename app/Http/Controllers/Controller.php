@@ -100,6 +100,16 @@ class Controller extends BaseController
         return $photo;
     }
 
+    protected function getProfilePhotoThumb($user_id, $photo)
+    {
+        if(!empty($photo))
+            $preview_photo = url('uploads/profile') . '/' . $user_id . '/' . $photo;
+        else
+            $preview_photo = asset('/images/gallery.svg');
+
+        return $preview_photo;
+    }
+
     protected function getGenderFromID($id)
     {
         $gender_list = Config::get('constants.gender');
@@ -127,5 +137,23 @@ class Controller extends BaseController
         }
 
         return $certificates;
+    }
+
+    protected function getJobFromID($id)
+    {
+        $job_type_list = $this->getJobTypeList();
+
+        $key = array_search($id, array_column($job_type_list, 'id'));
+
+        return $job_type_list[$key]['job_type'];
+    }
+
+    public function getExperienceYearsFromID($id)
+    {
+        $experience_years_list = Config::get('constants.experience');
+
+        $key = array_search($id, array_column($experience_years_list, 'id'));
+
+        return $experience_years_list[$key]['name'];
     }
 }

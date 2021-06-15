@@ -7,7 +7,10 @@ define('USER_NONE', 1);
 define('USER_PENDING', 2);
 define('USER_CONFIRMED', 3);
 
-define('HELPER_PAGE_CNT', 8);
+define('HELPER_HOME_PAGE_CNT', 9);
+define('HELPER_LIST_PAGE_CNT', 8);
+define('HELPER_DETAIL_PAGE_CNT', 6);
+define('HELPER_FAVOURITE_PAGE_CNT', 12);
 
 define('FAVOURITE_HELPER', 1);
 define('FAVOURITE_JOB', 2);

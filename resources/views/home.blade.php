@@ -72,30 +72,7 @@
 
             <div class="dashbaord-home-col bottom">
                 <h2 class="list-title border-bottom">{{ trans('dashboard.favourite') }}</h2>
-                <div>
-                    @for($i = 0; $i < 5; $i++)
-                    <div class="row-item flex border-bottom">
-                        <div class="div item-block">
-                            <img src="{{ asset('/images/common/photo-01.jpg') }}">
-                            <div class="item-info">
-                                <h3 class="title">ニックネーム（年齢）</h3>
-                                <p class="sub-info">所属・資格</p>
-                                <div class="item-review">
-                                    <p class="item-txt">レビュー　4</p>
-                                    <i class="fa fa-star st-act"></i>
-                                    <i class="fa fa-star st-act"></i>
-                                    <i class="fa fa-star st-act"></i>
-                                    <i class="fa fa-star st-act"></i>
-                                    <i class="fa fa-star"></i>
-                                    <p class="item-txt">(26件)</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="div bid-btn-block">
-                            <a href="message.html" class="btn primary-btn bid-btn">依頼する</a>
-                        </div>
-                    </div>
-                    @endfor
+                <div id="favourite_list">
                 </div>
             </div>
         </div>
@@ -105,6 +82,49 @@
     <script>
         $(window).on('load', function() {
             $('#side_menu_home').addClass('current');
+
+            getFavouriteHelperList();
         });
+        
+        function getFavouriteHelperList() {
+            var token = $("input[name=_token]").val();
+
+            $.ajax({
+                url: '{{ route('dashboard.home.favourite.helper') }}',
+                type: 'POST',
+                data: {_token: token},
+                dataType: 'JSON',
+                success: function (response) {
+                    datas = new Array();
+                    if (response == undefined || response.length == 0) {
+                    } else {
+                        for (var i = 0; i < response.length; i++) {
+                            $('#favourite_list').append(
+                                '<div class="row-item flex border-bottom">\n' +
+                                '   <div class="div item-block">\n' +
+                                '       <img src="'+ response[i].photo +'">\n' +
+                                '       <div class="item-info">\n' +
+                                '           <h3 class="title">' + response[i].last_name + response[i].first_name + '（' + response[i].age + '）</h3>\n' +
+                                '           <p class="sub-info">' + response[i].province_name + '・'+ response[i].certificate + '</p>\n' +
+                                '           <div class="item-review">\n' +
+                                '               <p class="item-txt">レビュー　4</p>\n' +
+                                '               <i class="fa fa-star st-act"></i>\n' +
+                                '               <i class="fa fa-star st-act"></i>\n' +
+                                '               <i class="fa fa-star st-act"></i>\n' +
+                                '               <i class="fa fa-star st-act"></i>\n' +
+                                '               <i class="fa fa-star"></i>\n' +
+                                '               <p class="item-txt">(26件)</p>\n' +
+                                '           </div>\n' +
+                                '       </div>\n' +
+                                '   </div>\n' +
+                                '   <div class="div bid-btn-block">\n' +
+                                '       <a href="message.html" class="btn primary-btn bid-btn">依頼する</a>\n' +
+                                '   </div>\n' +
+                                '</div>');
+                        }
+                    }
+                }
+            });
+        }
     </script>
 @endsection

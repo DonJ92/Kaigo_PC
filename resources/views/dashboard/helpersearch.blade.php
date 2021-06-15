@@ -53,7 +53,7 @@
         </div>
         <div class="main-m main-block main-block-gray">
             <div class="main-m-title">
-                <h3>ヘルパー一覧</h3>
+                <h3>{{ trans('helper.search.list_panel') }}</h3>
             </div>
             <div class="worker-list" id="helper_list">
                 <input type="hidden" id="count" value="0">
@@ -63,6 +63,14 @@
 
     <script>
         $(window).on('load', function() {
+            @if ($errors->has('failed'))
+            toastr.error('{{ $errors->first('failed') }}', '', { "closeButton": true });
+            @endif
+
+            @if (session()->has('success'))
+            toastr.success('{{ session()->get('success') }}', '', { "closeButton": true });
+            @endif
+
             $('#side_menu_job_list').addClass('current');
 
             getHelperList();
@@ -142,7 +150,7 @@
                                     '</a>\n';
 
                             $('#helper_list').append('<div class="worker-block">\n' +
-                                '                    <a href="{{ route('dashboard.helper.detail') }}">\n' +
+                                '                    <a href="{{ url('dashboard/helper/detail') }}/' + response[i].id + '">\n' +
                                 '                        <div class="worker-item">\n' +
                                 '                            <div class="worker-item-head">\n' +
                                 '                                <div class="worker-item-photo">\n' +
@@ -185,7 +193,7 @@
                                 '                                <div class="worker-item-attr-item cert">\n' +
                                 '                                    <div class="worker-item-attr-item-inner">\n' +
                                 '                                        <p class="worker-item-attr-item-txt-large">' + response[i].certificate + '</p>\n' +
-                                '                                        <p class="worker-item-attr-item-txt-small">{{ trans('helper.certificate') }}</p>\n' +
+                                '                                        <p class="worker-item-attr-item-txt-small">{{ trans('helper.skill') }}</p>\n' +
                                 '                                    </div>\n' +
                                 '                                </div>\n' +
                                 '\n' +

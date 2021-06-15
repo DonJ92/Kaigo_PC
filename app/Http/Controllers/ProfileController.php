@@ -83,6 +83,7 @@ class ProfileController extends Controller
 
             $data['experience_years'] = null;
             $data['certificate'] = null;
+            $data['job_type'] = null;
             $data['hourly_cost_from'] = null;
             $data['hourly_cost_to'] = null;
         } else
@@ -121,7 +122,8 @@ class ProfileController extends Controller
             return redirect()->back()->withInput()->withErrors($errors);
         }
 
-        $data['certificate'] = implode(',', $data['certificate']);
+        if (!is_null($data['certificate']))
+            $data['certificate'] = implode(',', $data['certificate']);
 
         if($request->hasFile('photo1'))
         {
