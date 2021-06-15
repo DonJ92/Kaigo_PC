@@ -29,6 +29,10 @@ return [
 
     'register_profile' => '登録する',
 
+    'add_credit_card' => 'クレジットカードを登録',
+
+    'confirm' => '確定',
+
     'to_mypage' => 'マイページへ',
     'to_top' => 'TOPに戻る',
 

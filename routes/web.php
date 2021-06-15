@@ -75,7 +75,9 @@ Route::get('/dashboard/skill', 'IdentificationController@skillRequestForm')->nam
 Route::get('/dashboard/skill/confirm', 'IdentificationController@skillRequestConfirm')->name('dashboard.skill.confirm');
 
 Route::get('/dashboard/setting/changepwd', 'SettingController@changePwdForm')->name('dashboard.setting.changepwd');
-Route::get('/dashboard/setting/bankaccount', 'SettingController@bankaccountForm')->name('dashboard.setting.bankaccount');
+Route::post('/dashboard/setting/changepwd', 'SettingController@changePwd')->name('dashboard.setting.changepwd.submit');
+Route::get('/dashboard/setting/bankaccount', 'SettingController@bankAccountForm')->name('dashboard.setting.bankaccount');
+Route::post('/dashboard/setting/bankaccount', 'SettingController@bankAccount')->name('dashboard.setting.bankaccount.submit');
 Route::get('/dashboard/setting/creditcard', 'SettingController@creditcardForm')->name('dashboard.setting.creditcard');
 Route::get('/dashboard/setting/notification', 'SettingController@notificationForm')->name('dashboard.setting.notification');
 Route::get('/dashboard/setting/contactus', 'SettingController@contactUsForm')->name('dashboard.setting.contactus');

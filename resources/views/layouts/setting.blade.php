@@ -16,6 +16,7 @@
 
     <!-- javascript -->
     <script src="{{ asset('/js/app.js') }}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     @yield('header')
 </head>
@@ -207,7 +208,7 @@
                 <span class="txt">{{ trans('common.dashboard_side_menu.home') }}</span>
             </a>
 
-            <a class="aside-menu-item" id="side_menu_job_list" href="{{ route('dashboard.job.search') }}">
+            <a class="aside-menu-item" id="side_menu_job_list" href="@if(auth()->user()->type == CLIENT) {{ route('dashboard.helper.search') }} @else {{ route('dashboard.job.search') }} @endif">
                 <span class="icon"><img src="{{ asset('/images/icon/list.svg') }}"></span>
                 <span class="txt">{{ trans('common.dashboard_side_menu.job_list') }}</span>
             </a>
@@ -217,7 +218,7 @@
                 <span class="txt">{{ trans('common.dashboard_side_menu.job_register') }}</span>
             </a>
 
-            <a class="aside-menu-item" id="side_menu_favourite" href="{{ route('dashboard.favourite.job') }}">
+            <a class="aside-menu-item" id="side_menu_favourite" href="@if(auth()->user()->type == CLIENT) {{ route('dashboard.favourite.helper') }} @else {{ route('dashboard.favourite.job') }} @endif">
                 <span class="icon"><img src="{{ asset('/images/icon/favourite.svg') }}"></span>
                 <span class="txt">{{ trans('common.dashboard_side_menu.favourite') }}</span>
             </a>
@@ -273,7 +274,7 @@
                     <h3>{{ trans('common.setting') }}</h3>
                 </div>
                 <div class="setting-list">
-                    <a class="border-bottom active" href="{{ route('dashboard.setting.changepwd') }}">
+                    <a class="border-bottom" id="setting_changepwd" href="{{ route('dashboard.setting.changepwd') }}">
                         <div class="setting-col">
                             <div class="setting-info">
                                 <h4 class="">{{ trans('common.dashboard_setting_menu.setting') }}</h4>
@@ -289,7 +290,7 @@
                             <i class="fa fa-chevron-right"></i>
                         </div>
                     </a>
-                    <a class="border-bottom" href="{{ route('dashboard.setting.bankaccount') }}">
+                    <a class="border-bottom" id="setting_bank_account" href="{{ route('dashboard.setting.bankaccount') }}">
                         <div class="setting-col">
                             <div class="setting-info">
                                 <h4 class="">{{ trans('common.dashboard_setting_menu.payment') }}</h4>
