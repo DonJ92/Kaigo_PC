@@ -203,7 +203,7 @@
 <div id="primary" class="primary">
     <aside>
         <div class="aside-menu-list">
-            <a class="aside-menu-item current" id="side_menu_home" href="{{ route('dashboard.home') }}">
+            <a class="aside-menu-item" id="side_menu_home" href="{{ route('dashboard.home') }}">
                 <span class="icon"><img src="{{ asset('/images/icon/home.svg') }}"></span>
                 <span class="txt">{{ trans('common.dashboard_side_menu.home') }}</span>
             </a>

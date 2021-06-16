@@ -22,7 +22,16 @@ return [
     ],
 
     'credit_card' => [
+        'title' => 'クレジットカードの登録',
 
+        'card_num' => 'クレジットカード番号',
+        'expired_date' => '有効期限',
+        'expired_year' => '有効期限（年）',
+        'expired_month' => '有効期限（月）',
+        'security_code' => 'セキュリティコード',
+
+        'failed' => 'クレジットカード登録が失敗しました。',
+        'success' => 'クレジットカードが登録されました。',
     ],
 
 ];

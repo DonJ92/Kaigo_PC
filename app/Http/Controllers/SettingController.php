@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\BankAccount;
+use App\CreditCard;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -137,9 +138,77 @@ class SettingController extends Controller
         return redirect()->route('dashboard.setting.bankaccount')->with('success', trans('payment.bank_account.success'));
     }
 
-    public function creditcardForm()
+    public function creditCardForm()
     {
-        return view('dashboard.creditcard');
+        $credit_card = CreditCard::where('user_id', Auth::user()->id)->first();
+        if (is_null($credit_card))
+            $data = array(
+                'card_num' => '',
+                'security_code' => '',
+                'expired_year' => '',
+                'expired_month' => '',
+            );
+        else
+            $data = $credit_card->toArray();
+
+        $month_list = array();
+        for ($i = 1; $i <= 12; $i++)
+            $month_list[] = ['id' => $i, 'name' => $i . trans('common.month')];
+
+        $this_year = date("Y");
+        for ($i = ($this_year-10); $i < ($this_year+20); $i++)
+            $year_list[] = ['id' => $i, 'name' => $i . trans('common.year')];
+
+        $data['month_list'] = $month_list;
+        $data['year_list'] = $year_list;
+
+        return view('dashboard.creditcard', $data);
+    }
+
+    public function creditCard(Request $request)
+    {
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
+            'card_num' => 'required|string|max:64',
+            'expired_month' => 'required|string|max:64',
+            'expired_year' => 'required|string|max:64',
+            'security_code' => 'required|string|max:64',
+        ], [
+        ], [
+            'card_num' => trans('payment.credit_card.card_num'),
+            'expired_month' => trans('payment.credit_card.expired_month'),
+            'expired_year' => trans('payment.credit_card.expired_year'),
+            'security_code' => trans('payment.credit_card.security_code'),
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return redirect()->back()->withInput()->withErrors($errors);
+        }
+
+        try {
+            $credit_card_info = CreditCard::where('user_id', Auth::user()->id)->first();
+            if (is_null($credit_card_info))
+                $res = CreditCard::insert([
+                    'user_id' => Auth::user()->id,
+                    'card_num' => $data['card_num'],
+                    'expired_month' => $data['expired_month'],
+                    'expired_year' => $data['expired_year'],
+                    'security_code' => $data['security_code'],
+                ]);
+            else {
+                $credit_card_info->card_num = $data['card_num'];
+                $credit_card_info->expired_month = $data['expired_month'];
+                $credit_card_info->expired_year = $data['expired_year'];
+                $credit_card_info->security_code = $data['security_code'];
+                $credit_card_info->save();
+            }
+        } catch (QueryException $e) {
+            return redirect()->back()->withInput()->withErrors(['failed' => trans('payment.credit_card.failed')]);
+        }
+
+        return redirect()->route('dashboard.setting.creditcard')->with('success', trans('payment.credit_card.success'));
     }
 
     public function notificationForm()

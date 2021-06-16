@@ -78,7 +78,8 @@ Route::get('/dashboard/setting/changepwd', 'SettingController@changePwdForm')->n
 Route::post('/dashboard/setting/changepwd', 'SettingController@changePwd')->name('dashboard.setting.changepwd.submit');
 Route::get('/dashboard/setting/bankaccount', 'SettingController@bankAccountForm')->name('dashboard.setting.bankaccount');
 Route::post('/dashboard/setting/bankaccount', 'SettingController@bankAccount')->name('dashboard.setting.bankaccount.submit');
-Route::get('/dashboard/setting/creditcard', 'SettingController@creditcardForm')->name('dashboard.setting.creditcard');
+Route::get('/dashboard/setting/creditcard', 'SettingController@creditCardForm')->name('dashboard.setting.creditcard');
+Route::post('/dashboard/setting/creditcard', 'SettingController@creditCard')->name('dashboard.setting.creditcard.submit');
 Route::get('/dashboard/setting/notification', 'SettingController@notificationForm')->name('dashboard.setting.notification');
 Route::get('/dashboard/setting/contactus', 'SettingController@contactUsForm')->name('dashboard.setting.contactus');
 Route::get('/dashboard/setting/service', 'SettingController@serviceForm')->name('dashboard.setting.service');

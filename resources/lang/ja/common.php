@@ -36,6 +36,9 @@ return [
     'term' => '利用規約',
     'privacy' => 'PRIVACY POLICY',
 
+    'year' => '年',
+    'month' => '月',
+
     'login_dialog' => [
         'title' => 'ログイン後操作可能です',
         'desc' => 'あなたにピッタリなヘルパーと出会う',
