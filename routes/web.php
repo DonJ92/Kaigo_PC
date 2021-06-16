@@ -83,3 +83,4 @@ Route::post('/dashboard/setting/creditcard', 'SettingController@creditCard')->na
 Route::get('/dashboard/setting/notification', 'SettingController@notificationForm')->name('dashboard.setting.notification');
 Route::get('/dashboard/setting/contactus', 'SettingController@contactUsForm')->name('dashboard.setting.contactus');
 Route::get('/dashboard/setting/service', 'SettingController@serviceForm')->name('dashboard.setting.service');
+Route::post('/dashboard/setting/exit', 'SettingController@exit')->name('dashboard.setting.exit');

@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 
 use App\BankAccount;
 use App\CreditCard;
+use App\ExitInfo;
+use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -223,6 +226,47 @@ class SettingController extends Controller
 
     public function serviceForm()
     {
-        return view('dashboard.service');
+        $exit_cause_list = Config::get('constants.exit_cause');
+
+        $data['exit_cause_list'] = $exit_cause_list;
+        return view('dashboard.service', $data);
+    }
+
+    public function exit(Request $request)
+    {
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
+            'cause' => 'required',
+            'opinion' => 'nullable|string|max:2048',
+        ], [
+        ], [
+            'cause' => trans('service.exit_cause_title'),
+            'opinion' => trans('service.opinion'),
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return redirect()->back()->withInput()->withErrors($errors);
+        }
+
+        $data['cause'] = implode(',', $data['cause']);
+
+        try {
+            $res = ExitInfo::insert([
+                'cause' => $data['cause'],
+                'opinion' => $data['opinion']
+            ]);
+
+            $id = Auth::user()->id;
+
+            User::where('id', $id)->delete();
+
+            Auth::logout();
+        } catch (QueryException $e) {
+            return redirect()->back()->withInput()->withErrors(['failed' => trans('service.failed')]);
+        }
+
+        return redirect()->route('dashboard.setting.service')->with('success', trans('service.success'));
     }
 }

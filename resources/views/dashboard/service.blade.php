@@ -1,56 +1,84 @@
 @extends('layouts.setting')
 
+@section('title', trans('service.title'))
+
 @section('content')
     <div class="main-m main-block main-block-white">
         <div class="main-m-title setting-board border-bottom-light">
         </div>
         <div class="setting-block">
-            <h4 class="setting-title">退会</h4>
+            <h4 class="setting-title">{{ trans('service.page_title') }}</h4>
             <div class="setting-detail-block">
-                <form>
+                <form method="POST" action="{{ route('dashboard.setting.exit') }}">
+                    @csrf
+
                     <div class="div col-2-1 margin-center">
                         <div class="service-div">
-                            <p>Helpersをご利⽤いただき、誠にありがとうございます。 退会につきまして、以下の注意⽂を必ずお読みください。</p>
+                            <p>{{ trans('service.desc') }}</p>
                         </div>
                         <div class="service-div">
-                            <h3 class="title">注意実項&nbsp;&nbsp;<span class="status primary-bg service-status">必修</span></h3>
+                            <h3 class="title">{{ trans('service.warning_title') }}&nbsp;&nbsp;<span class="status primary-bg service-status">{{ trans('common.required') }}</span></h3>
                             <hr class="title-bottom-line">
-                            <p>注意事項をすべてご確認の上チェックをしてください。</p>
-                            <div class="checkbox-div"><input class="checkbox" type="checkbox"><label for="">サービス名の全ての有料サービスを解約しました。</label></div>
-                            <div class="checkbox-div"><input class="checkbox" type="checkbox"><label for="">有料会員期間が終わっていたとしても、月割り・日割り出のご返金は行っておりません。</label></div>
-                            <div class="checkbox-div"><input class="checkbox" type="checkbox"><label for="">過去のやり取りやメッセージなどのすべてのデータが削除されます。</label></div>
-                            <div class="checkbox-div"><input class="checkbox" type="checkbox"><label for="">一度退会してしまうと7日間再登録することがっできません。</label></div>
-                            <div class="checkbox-div"><input class="checkbox" type="checkbox"><label for="">再登録しても、過去のデータを引き続ぐ事はできません。</label></div>
-                            <p class="light-pink">「振込可能金額」のデータも全て削除され、復元されることはございません。</p>
+                            <p>{{ trans('service.warning_desc') }}。</p>
+                            <div class="checkbox-div"><input class="checkbox" type="checkbox" id="warning1" required><label for="warning1">{{ trans('service.warning1') }}</label></div>
+                            <div class="checkbox-div"><input class="checkbox" type="checkbox" id="warning2" required><label for="warning2">{{ trans('service.warning2') }}</label></div>
+                            <div class="checkbox-div"><input class="checkbox" type="checkbox" id="warning3" required><label for="warning3">{{ trans('service.warning3') }}</label></div>
+                            <div class="checkbox-div"><input class="checkbox" type="checkbox" id="warning4" required><label for="warning4">{{ trans('service.warning4') }}</label></div>
+                            <div class="checkbox-div"><input class="checkbox" type="checkbox" id="warning5" required><label for="warning5">{{ trans('service.warning5') }}</label></div>
+                            <p class="light-pink">{{ trans('service.deposit_desc') }}</p>
                             <div class="deposit-amount-div div margin-center">
-                                <span>振込可能金額</span>&nbsp;&nbsp;&nbsp;<h2>2,000</h2>
+                                <span>{{ trans('service.deposit_title') }}</span>&nbsp;&nbsp;&nbsp;<h2>{{ trans('service.deposit_amount') }}</h2>
                             </div>
                         </div>
                         <div class="service-div">
-                            <h3 class="title">退会理由&nbsp;&nbsp;<span class="status primary-bg service-status">必修</span></h3>
+                            <h3 class="title">{{ trans('service.exit_cause_title') }}&nbsp;&nbsp;<span class="status primary-bg service-status">{{ trans('common.required') }}</span></h3>
                             <hr class="title-bottom-line">
-                            <p>退会理由を選択してください。（複数選択可）</p>
-                            <div class="checkbox-div"><input class="checkbox" type="checkbox"><label for="">希望する条件に合う案件とマッチングしない</label></div>
-                            <div class="checkbox-div"><input class="checkbox" type="checkbox"><label for="">使い方がよくわからない</label></div>
-                            <div class="checkbox-div"><input class="checkbox" type="checkbox"><label for="">他のサービスを利用するため</label></div>
-                            <div class="checkbox-div"><input class="checkbox" type="checkbox"><label for="">サービス内に不快な思いをしたため</label></div>
+                            <p>{{ trans('service.exit_cause_desc') }}</p>
+                            @foreach($exit_cause_list as $exit_cause_info)
+                            <div class="checkbox-div"><input class="checkbox" type="checkbox" id="cuase{{ $exit_cause_info['id'] }}" name="cause[]" value="{{ $exit_cause_info['id'] }}" @if(is_array(old('cause')) && in_array($exit_cause_info['id'], old('cause'))) checked @endif><label for="cuase{{ $exit_cause_info['id'] }}">{{ $exit_cause_info['desc'] }}</label></div>
+                            @endforeach
+                            @error('cause')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="service-div">
-                            <h3 class="title">ご意見&nbsp;&nbsp;<span class="status secondary-bg service-status">任意</span></h3>
+                            <h3 class="title">{{ trans('service.opinion_title') }}&nbsp;&nbsp;<span class="status secondary-bg service-status">{{ trans('common.random') }}</span></h3>
                             <hr class="title-bottom-line">
-                            <p>サービス名に改善してほしいポイントや欲しかった機能、その他ご意見があれば教えてください</p>
+                            <p>{{ trans('service.opinion_desc') }}</p>
                             <div class="field-row one-one">
-                                <textarea class="form form-textarea"></textarea>
+                                <textarea class="form form-textarea @error('opinion') is-invalid @enderror" name="opinion">{{ old('opinion') }}</textarea>
+                                @error('opinion')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="service-div div center">
-                            <h1>退会しますか？</h1>
-                            <button class="btn default-btn service-btn">退会する</button>
-                            <button class="btn default-btn service-btn">キャンセル</button>
+                            <h1>{{ trans('service.exit_confirm') }}</h1>
+                            <button type="submit" class="btn default-btn service-btn cursor-pointer">{{ trans('button.exit') }}</button>
+                            <button class="btn default-btn service-btn cursor-pointer">{{ trans('button.cancel') }}</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
+    <script>
+        $(window).on('load', function() {
+            @if ($errors->has('failed'))
+            toastr.error('{{ $errors->first('failed') }}', '', { "closeButton": true });
+            @endif
+
+            @if (session()->has('success'))
+            toastr.success('{{ session()->get('success') }}', '', { "closeButton": true });
+            @endif
+
+            $('#side_menu_setting').addClass('current');
+            $('#setting_service').addClass('active');
+        });
+    </script>
 @endsection

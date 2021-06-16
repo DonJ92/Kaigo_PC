@@ -36,8 +36,8 @@
                     <span class="user-name">{{ auth()->user()->last_name . auth()->user()->first_name }}&nbsp;&nbsp;<i class="ti-angle-down"></i></span>
                 </a>
                 <div class="dropdown-content" id="user-popup">
-                    <a class="border-bottom" href="#">{{ trans('dropdown_menu.account_setting') }}</a>
-                    <a class="secondary-color" onclick="logoutPopup()">{{ trans('dropdown_menu.logout') }}</a>
+                    <a class="border-bottom" href="#">{{ trans('common.dropdown_menu.account_setting') }}</a>
+                    <a class="secondary-color" onclick="logoutPopup()">{{ trans('common.dropdown_menu.logout') }}</a>
                 </div>
             </div>
         </div>
@@ -330,7 +330,7 @@
                             <i class="fa fa-chevron-right"></i>
                         </div>
                     </a>
-                    <a class="border-bottom" href="{{ route('dashboard.setting.service') }}">
+                    <a class="border-bottom" id="setting_service" href="{{ route('dashboard.setting.service') }}">
                         <div class="setting-col">
                             <div class="setting-info">
                                 <h4 class="">{{ trans('common.dashboard_setting_menu.service') }}</h4>
