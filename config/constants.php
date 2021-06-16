@@ -15,6 +15,9 @@ define('HELPER_FAVOURITE_PAGE_CNT', 12);
 define('FAVOURITE_HELPER', 1);
 define('FAVOURITE_JOB', 2);
 
+define('NOTICE_ON', 1);
+define('NOTICE_OFF', 2);
+
 return [
     'gender' => [
         ['id' => 1, 'name' => '男性'],

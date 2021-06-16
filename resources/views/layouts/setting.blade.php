@@ -298,7 +298,7 @@
                             <i class="fa fa-chevron-right"></i>
                         </div>
                     </a>
-                    <a class="border-bottom" href="{{ route('dashboard.setting.notification') }}">
+                    <a class="border-bottom" id="setting_notification" href="{{ route('dashboard.setting.notification') }}">
                         <div class="setting-col">
                             <div class="setting-info">
                                 <h4 class="">{{ trans('common.dashboard_setting_menu.notification') }}</h4>
@@ -364,7 +364,7 @@
 
 <div id="dialog-overlay"></div>
 <div id="dialog-box" class="dialog-box logout">
-    <button class="btn default-btn logout-btn" onclick="logout()">{{ trans('button.logout') }}</button>
+    <button class="btn default-btn logout-btn cursor-pointer" onclick="logout()">{{ trans('button.logout') }}</button>
     <a id="close" class="btn default-btn logout-btn">{{ trans('button.cancel') }}</a>
 </div>
 <form method="POST" action="{{ route('logout') }}" id="logout_form">

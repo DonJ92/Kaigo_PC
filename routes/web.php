@@ -81,6 +81,7 @@ Route::post('/dashboard/setting/bankaccount', 'SettingController@bankAccount')->
 Route::get('/dashboard/setting/creditcard', 'SettingController@creditCardForm')->name('dashboard.setting.creditcard');
 Route::post('/dashboard/setting/creditcard', 'SettingController@creditCard')->name('dashboard.setting.creditcard.submit');
 Route::get('/dashboard/setting/notification', 'SettingController@notificationForm')->name('dashboard.setting.notification');
+Route::post('/dashboard/setting/notification', 'SettingController@notification')->name('dashboard.setting.notification.submit');
 Route::get('/dashboard/setting/contactus', 'SettingController@contactUsForm')->name('dashboard.setting.contactus');
 Route::get('/dashboard/setting/service', 'SettingController@serviceForm')->name('dashboard.setting.service');
 Route::post('/dashboard/setting/exit', 'SettingController@exit')->name('dashboard.setting.exit');

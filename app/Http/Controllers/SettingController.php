@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\BankAccount;
 use App\CreditCard;
 use App\ExitInfo;
+use App\NoticeSetting;
 use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -216,7 +217,86 @@ class SettingController extends Controller
 
     public function notificationForm()
     {
-        return view('dashboard.notification');
+        try {
+            $notice_setting = NoticeSetting::where('user_id', Auth::user()->id)->first();
+            if (is_null($notice_setting))
+                $notice_setting = [
+                    'favourite' => NOTICE_OFF,
+                    'matching' => NOTICE_OFF,
+                    'message' => NOTICE_OFF,
+                    'notice' => NOTICE_OFF,
+                    'other' => NOTICE_OFF,
+                ];
+            else
+                $notice_setting = $notice_setting->toArray();
+
+        } catch (QueryException $e) {
+            $notice_setting = [
+                'favourite' => NOTICE_OFF,
+                'matching' => NOTICE_OFF,
+                'message' => NOTICE_OFF,
+                'notice' => NOTICE_OFF,
+                'other' => NOTICE_OFF,
+            ];
+        }
+
+        $data = $notice_setting;
+        return view('dashboard.notification', $data);
+    }
+
+    public function notification(Request $request)
+    {
+        $data = $request->all();
+
+        if (isset($data['favourite']) && $data['favourite'] == true)
+            $favourite = NOTICE_ON;
+        else
+            $favourite = NOTICE_OFF;
+
+        if (isset($data['matching']) && $data['matching'] == true)
+            $matching = NOTICE_ON;
+        else
+            $matching = NOTICE_OFF;
+
+        if (isset($data['message']) && $data['message'] == true)
+            $message = NOTICE_ON;
+        else
+            $message = NOTICE_OFF;
+
+        if (isset($data['notice']) && $data['notice'] == true)
+            $notice = NOTICE_ON;
+        else
+            $notice = NOTICE_OFF;
+
+        if (isset($data['other']) && $data['other'] == true)
+            $other = NOTICE_ON;
+        else
+            $other = NOTICE_OFF;
+
+        try {
+            $notice_setting = NoticeSetting::where('user_id', Auth::user()->id)->first();
+            if (is_null($notice_setting))
+                NoticeSetting::insert([
+                    'user_id' => Auth::user()->id,
+                    'favourite' => $favourite,
+                    'matching' => $matching,
+                    'message' => $message,
+                    'notice' => $notice,
+                    'other' => $other,
+                ]);
+            else {
+                $notice_setting->favourite = $favourite;
+                $notice_setting->matching = $matching;
+                $notice_setting->message = $message;
+                $notice_setting->notice = $notice;
+                $notice_setting->other = $other;
+
+                $notice_setting->save();
+            }
+        } catch (QueryException $e) {
+            return redirect()->back()->withInput()->withErrors(['failed' => trans('notification.failed')]);
+        }
+        return redirect()->route('dashboard.setting.notification')->with('success', trans('notification.success'));
     }
 
     public function contactUsForm()
