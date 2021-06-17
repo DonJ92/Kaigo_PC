@@ -65,6 +65,7 @@
         </aside>
 
         <main>
+            @csrf
             @yield('content')
 
             <div class="main-r main-block main-block-white">

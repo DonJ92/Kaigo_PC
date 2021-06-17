@@ -70,6 +70,7 @@ Route::get('/dashboard/txhistory', 'TxHistoryController@txhistory')->name('dashb
 Route::get('/dashboard/receipt/confirm', 'TxHistoryController@receiptConfirm')->name('dashboard.receipt.confirm');
 
 Route::get('/dashboard/identification', 'IdentificationController@identificationForm')->name('dashboard.identification');
+Route::post('/dashboard/identification', 'IdentificationController@identification')->name('dashboard.identification.submit');
 Route::get('/dashboard/identification/confirm', 'IdentificationController@identificationConfirm')->name('dashboard.identification.confirm');
 Route::get('/dashboard/skill', 'IdentificationController@skillRequestForm')->name('dashboard.skill');
 Route::get('/dashboard/skill/confirm', 'IdentificationController@skillRequestConfirm')->name('dashboard.skill.confirm');

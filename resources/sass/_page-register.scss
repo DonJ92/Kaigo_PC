@@ -134,7 +134,7 @@ body.register {
                         padding: calc(16 / 1920 * 100vw) calc(22 / 1920 * 100vw);
                         font-family: 'AXIS Std-R';
                         font-size: calc(24 / 1920 * 100vw);
-                        color: $placeholder_grey;
+                        color: $content_grey;
                         border-radius: 5px;
                         border: solid 1px $form_border_grey;
     
@@ -346,7 +346,7 @@ body.register {
                             padding: calc(16 / 992 * 100vw) calc(22 / 992 * 100vw);
                             font-family: 'AXIS Std-R';
                             font-size: calc(24 / 992 * 100vw);
-                            color: $placeholder_grey;
+                            color: $content_grey;
                             border-radius: 5px;
                             border: solid 1px $form_border_grey;
         
@@ -559,7 +559,7 @@ body.register {
                             padding: calc(16 / 600 * 100vw) calc(22 / 600 * 100vw);
                             font-family: 'AXIS Std-R';
                             font-size: calc(24 / 600 * 100vw);
-                            color: $placeholder_grey;
+                            color: $content_grey;
                             border-radius: 5px;
                             border: solid 1px $form_border_grey;
         

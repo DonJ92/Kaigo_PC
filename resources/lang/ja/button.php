@@ -32,6 +32,7 @@ return [
     'add_credit_card' => 'クレジットカードを登録',
 
     'confirm' => '確定',
+    'send' => '送信する',
 
     'to_mypage' => 'マイページへ',
     'to_top' => 'TOPに戻る',

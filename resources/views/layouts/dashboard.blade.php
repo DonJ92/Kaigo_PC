@@ -36,7 +36,7 @@
                     <span class="user-name">{{ auth()->user()->last_name . auth()->user()->first_name }}&nbsp;&nbsp;<i class="ti-angle-down"></i></span>
                 </a>
                 <div class="dropdown-content" id="user-popup">
-                    <a class="border-bottom" href="#">{{ trans('common.dropdown_menu.account_setting') }}</a>
+                    <a class="border-bottom" href="{{ route('dashboard.setting.changepwd') }}">{{ trans('common.dropdown_menu.account_setting') }}</a>
                     <a class="secondary-color" onclick="logoutPopup()">{{ trans('common.dropdown_menu.logout') }}</a>
                 </div>
             </div>
@@ -238,10 +238,12 @@
                 <span class="txt">{{ trans('common.dashboard_side_menu.identification') }}</span>
             </a>
 
+            @if(auth()->user()->type == HELPER)
             <a class="aside-menu-item" id="side_menu_skill" href="{{ route('dashboard.skill') }}">
                 <span class="icon"><img src="{{ asset('/images/icon/skill.svg') }}"></span>
                 <span class="txt">{{ trans('common.dashboard_side_menu.skill') }}</span>
             </a>
+            @endif
 
             <a class="aside-menu-item" id="side_menu_setting" href="{{ route('dashboard.setting.changepwd') }}">
                 <span class="icon"><img src="{{ asset('/images/icon/setting.svg') }}"></span>
@@ -255,12 +257,12 @@
         </div>
 
         <div class="aside-bottom">
-            <a href="#">
+            <a href="{{ route('dashboard.job.search') }}">
                 <span class="icon"><i class="fa fa-search"></i></span>
                 <span class="txt">{{ trans('button.search_job') }}</span>
             </a>
 
-            <a href="#">
+            <a href="{{ route('top') }}">
                 <span class="icon"><i class="ti-arrow-circle-left"></i></span>
                 <span class="txt">{{ trans('button.to_top') }}</span>
             </a>

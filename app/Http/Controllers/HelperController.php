@@ -30,14 +30,19 @@ class HelperController extends Controller
     {
         $count = $request->input('count');
 
+        if (Auth::check())
+            $user_id = Auth::user()->id;
+        else
+            $user_id = 0;
+
         $helper_list = array();
         try {
             $query = User::leftjoin('tbl_profile', 'tbl_profile.user_id', '=', 'tbl_user.id')
                 ->leftjoin('tbl_province', 'tbl_province.id', '=', 'tbl_user.province_id')
-                ->leftjoin('tbl_favourite', function($join)
+                ->leftjoin('tbl_favourite', function($join) use($user_id)
                 {
                     $join->on('tbl_user.id', '=', 'tbl_favourite.target_id');
-                    $join->where('tbl_favourite.user_id', '=', Auth::user()->id);
+                    $join->where('tbl_favourite.user_id', '=', $user_id);
                 })
                 ->leftjoin(DB::raw('(SELECT target_id, count( user_id ) AS favourite_count FROM tbl_favourite GROUP BY target_id) tbl_following'),function($join)
                 {

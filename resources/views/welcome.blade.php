@@ -16,9 +16,12 @@
 
         <!-- javascript -->
         <script src="{{ asset('/js/app.js') }}"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     </head>
 
     <body class="home">
+        @csrf
+
         <section id="main-visual" class="main-visual">
             <div class="mv-r">
                 <div class="mv-r-figure">
@@ -37,7 +40,7 @@
                     </div>
                 </div>
                 <div class="mv-r-search-row search-row">
-                    <a href="{{ route('job.search') }}" class="mv-r-search-link search-link">
+                    <a href="@auth {{ route('dashboard.job.search') }} @else {{ route('job.search') }} @endauth" class="mv-r-search-link search-link">
                         <i class="fa fa-search"></i>
                         <span>{{ trans('button.search_job') }}</span>
                         <i class="ti-arrow-circle-right"></i>
@@ -176,11 +179,11 @@
                         <div class="job-item-share">
                             <i class="fa fa-share-alt"></i>
                             <div class="job-item-share-r">
-                                <a onclick="loginPopup()">
+                                <a @auth href="#" @else onclick="loginPopup()" @endauth>
                                     <span>{{ trans('button.bid') }}</span>
                                     <i class="ti-comment "></i>
                                 </a>
-                                <a onclick="loginPopup()">
+                                <a onclick="@auth @else loginPopup() @endauth">
                                     <span>{{ trans('button.favourite') }}</span>
                                     <i class="ti-heart"></i>
                                 </a>
@@ -191,7 +194,7 @@
                 </div>
 
                 <div class="search-row">
-                    <a href="{{ route('job.search') }}" class="search-link">
+                    <a href="@auth {{ route('dashboard.job.search') }} @else {{ route('job.search') }}  @endauth" class="search-link">
                         <i class="fa fa-search"></i>
                         <span>{{ trans('button.search_job') }}</span>
                         <i class="ti-arrow-circle-right"></i>
@@ -199,7 +202,7 @@
                 </div>
             </div>
 
-            <a class="btn-contact job-contact" onclick="loginPopup()">
+            <a class="btn-contact job-contact" @auth href="{{ route('dashboard.job.register') }}" @else onclick="loginPopup()" @endauth>
                 <div class="job-contact-inner">
                     <span>{{ trans('top.new_job') }}</span>
                     <i class="ti-arrow-circle-right"></i>
@@ -212,15 +215,15 @@
                 <h3 class="worker-ttl sec-ttl sec-ttl-r"><span><i></i>{{ trans('top.helper_list_title') }}</span></h3>
 
                 <div class="worker-list">
-                    @for ($i = 0; $i < 9; $i++)
+                    @foreach( $helper_list as $helper_info)
                     <div class="worker-item">
                         <div class="worker-item-head">
                             <div class="worker-item-photo">
-                                <img src="{{ asset('/images/common/photo-02.jpg') }}" alt="" />
+                                <a href="@auth {{ url('dashboard/helper/detail/').'/'.$helper_info['id'] }} @else {{ url('helper/detail/').'/'.$helper_info['id'] }} @endauth"><img src="{{ $helper_info['photo'] }}" alt="" /></a>
                             </div>
                             <div class="worker-item-infos">
                                 <div class="worker-item-ttl">
-                                    <span>ニックネーム</span>
+                                    <span><a href="{{ url('dashboard/helper/detail/').'/'.$helper_info['id'] }}">{{ $helper_info['last_name'] . $helper_info['first_name'] }}</a></span>
                                     <div class="worker-item-review">
                                         <p class="worker-item-txt">{{ trans('common.review') }}　4</p>
                                         <i class="fa fa-star st-act"></i>
@@ -231,7 +234,7 @@
                                         <p class="worker-item-txt">(26件)</p>
                                     </div>
                                 </div>
-                                <p class="worker-item-address">居住地</p>
+                                <p class="worker-item-address">{{ $helper_info['province_name'] }}</p>
                             </div>
                         </div>
 
@@ -241,27 +244,27 @@
                                     <div class="worker-item-attr-item-icon">
                                         <img src="{{ asset('/images/common/ico-female.png') }}" alt="" />
                                     </div>
-                                    <p class="worker-item-attr-item-txt-small">女性</p>
+                                    <p class="worker-item-attr-item-txt-small">{{ $helper_info['gender'] }}</p>
                                 </div>
                             </div>
 
                             <div class="worker-item-attr-item">
                                 <div class="worker-item-attr-item-inner">
-                                    <p class="worker-item-attr-item-txt-large">25~30</p>
+                                    <p class="worker-item-attr-item-txt-large">{{ $helper_info['age'] }}</p>
                                     <p class="worker-item-attr-item-txt-small">{{ trans('common.age') }}</p>
                                 </div>
                             </div>
 
-                            <div class="worker-item-attr-item">
+                            <div class="worker-item-attr-item cert">
                                 <div class="worker-item-attr-item-inner">
-                                    <p class="worker-item-attr-item-txt-large">生活相談員資格</p>
+                                    <p class="worker-item-attr-item-txt-large">{{ $helper_info['certificate'] }}</p>
                                     <p class="worker-item-attr-item-txt-small">{{ trans('common.skill') }}</p>
                                 </div>
                             </div>
 
                             <div class="worker-item-attr-item">
                                 <div class="worker-item-attr-item-inner">
-                                    <p class="worker-item-attr-item-txt-large">¥3,000〜</p>
+                                    <p class="worker-item-attr-item-txt-large">{{ $helper_info['hourly_cost'] }}</p>
                                     <p class="worker-item-attr-item-txt-small">{{ trans('common.desired_cost') }}</p>
                                 </div>
                             </div>
@@ -269,22 +272,29 @@
 
                         <div class="worker-item-cta">
                             <div class="worker-item-cta-inner">
-                                <a onclick="loginPopup()">
+                                <a @auth @else onclick="loginPopup()" @endauth>
                                     <span>{{ trans('button.message') }}</span>
                                     <i class="ti-comment"></i>
                                 </a>
-                                <a onclick="loginPopup()">
-                                    <span>{{ trans('button.favourite') }}</span>
-                                    <i class="ti-heart"></i>
-                                </a>
+                                @if( $helper_info['favourite_id'] == null)
+                                    <a onclick="@auth onFavourite({{$helper_info['id']}}) @else loginPopup() @endauth">
+                                        <span>{{ trans('button.favourite') }}</span>
+                                        <i class="fa fa-heart-o" id="like_ico_{{$helper_info['id']}}"></i>
+                                    </a>
+                                @else
+                                    <a onclick="@auth onUnFavourite({{$helper_info['id']}}) @else loginPopup() @endauth" id="like_{{$helper_info['id']}}">
+                                        <span>{{ trans('button.favourite') }}</span>
+                                        @auth <i class="fa fa-heart light-pink" id="like_ico_{{$helper_info['id']}}"></i> @else <i class="fa fa-heart-o" id="like_ico_{{$helper_info['id']}}"></i> @endauth
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     </div>
-                    @endfor
+                    @endforeach
                 </div>
 
                 <div class="search-row search-row-l">
-                    <a href="{{ route('helper.search') }}" class="search-link">
+                    <a href="@auth {{ route('dashboard.helper.search') }} @else {{ route('helper.search') }} @endauth" class="search-link">
                         <i class="fa fa-search"></i>
                         <span>{{ trans('button.search_helper') }}</span>
                         <i class="ti-arrow-circle-right"></i>
@@ -451,8 +461,8 @@
                                 <ul class="footer-nav-list">
                                     <li class="foonter-nav-item"><a href="{{ route('top') }}"><span>{{ trans('common.footer_menu.top') }}</span></a></li>
                                     <li class="foonter-nav-item"><a href="#"><span>{{ trans('common.footer_menu.news') }}</span></a></li>
-                                    <li class="foonter-nav-item"><a href="{{ route('job.search') }}"><span>{{ trans('common.footer_menu.search_job') }}</span></a></li>
-                                    <li class="foonter-nav-item"><a href="{{ route('contactus') }}"><span>{{ trans('common.footer_menu.contact_us') }}</span></a></li>
+                                    <li class="foonter-nav-item"><a href="@auth {{ route('dashboard.job.search') }} @else {{ route('job.search') }} @endauth"><span>{{ trans('common.footer_menu.search_job') }}</span></a></li>
+                                    <li class="foonter-nav-item"><a href="@auth {{ route('dashboard.setting.contactus') }} @else {{ route('contactus') }} @endauth"><span>{{ trans('common.footer_menu.contact_us') }}</span></a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -481,5 +491,48 @@
         </div>
 
         <script src="{{ asset('/js/script.js') }}"></script>
+        <script>
+            function onFavourite(helper_id) {
+                var token = $("input[name=_token]").val();
+
+                $.ajax({
+                    url: '{{ route('dashboard.helper.favourite') }}',
+                    type: 'POST',
+                    data: {_token: token, helper_id: helper_id},
+                    dataType: 'JSON',
+                    success: function (response) {
+                        if (response == true) {
+                            toastr.success('{{ trans('favourite.register_success') }}', '', {"closeButton": true});
+                            $("#like_ico_"+helper_id).removeClass();
+                            $("#like_ico_"+helper_id).addClass('fa fa-heart light-pink');
+                            $("#like_"+helper_id).attr('onclick', 'onUnFavourite(' + helper_id + ')');
+                        } else
+                            toastr.error('{{ trans('favourite.register_failed') }}', '', { "closeButton": true });
+                    }
+                });
+
+            }
+
+            function onUnFavourite(helper_id) {
+                var token = $("input[name=_token]").val();
+
+                $.ajax({
+                    url: '{{ route('dashboard.helper.favourite.cancel') }}',
+                    type: 'POST',
+                    data: {_token: token, helper_id: helper_id},
+                    dataType: 'JSON',
+                    success: function (response) {
+                        if (response == true) {
+                            toastr.success('{{ trans('favourite.cancel_success') }}', '', {"closeButton": true});
+                            $("#like_ico_"+helper_id).removeClass();
+                            $("#like_ico_"+helper_id).addClass('fa fa-heart-o');
+                            $("#like_"+helper_id).attr('onclick', 'onFavourite(' + helper_id + ')');
+                        } else
+                            toastr.error('{{ trans('favourite.cancel_failed') }}', '', { "closeButton": true });
+                    }
+                });
+
+            }
+        </script>
     </body>
 </html>

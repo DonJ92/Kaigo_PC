@@ -78,6 +78,11 @@ body.no-auth {
                             height: calc(50 / 1920 * 100vw);
                             border-radius: 50%;
                             overflow: hidden;
+
+                            img {
+                                object-fit: cover;
+                                width: auto;
+                            }
                         }
     
                         .worker-item-infos {
@@ -145,10 +150,14 @@ body.no-auth {
     
                         .worker-item-attr-item {
                             @include flex-center;
-                            width: 25%;
-                            padding: calc(10 / 1920 * 100vw) 0;
+                            width: 20%;
+                            padding: calc(10 / 1920 * 100vw);
                             text-align: center;
                             border-right: 1px solid #f0f1f7;
+
+                            &.cert {
+                                width: 40%;
+                            }
     
                             @media only screen and (max-width: 1200px) {
                                 width: 50%;
@@ -164,7 +173,6 @@ body.no-auth {
                                 .worker-item-attr-item-txt-large {
                                     font-family: 'Montserrat-Light';
                                     font-size: calc(14 / 1920 * 100vw);
-                                    line-height: calc(26 / 1920 * 100vw);
                                     color: #9597a6;
                                 }
     
@@ -602,6 +610,10 @@ body.no-auth {
                             margin-right: 4px;
                         }
                     }
+                }
+
+                img {
+                    width: 100%;
                 }
             }
 
@@ -1055,8 +1067,8 @@ body.no-auth {
         
                             .worker-item-attr-item {
                                 @include flex-center;
-                                width: 25%;
-                                padding: calc(10 / 992 * 100vw) 0;
+                                width: 20%;
+                                padding: calc(10 / 992 * 100vw);
                                 text-align: center;
                                 border-right: 1px solid #f0f1f7;
         
@@ -1074,7 +1086,6 @@ body.no-auth {
                                     .worker-item-attr-item-txt-large {
                                         font-family: 'Montserrat-Light';
                                         font-size: calc(14 / 992 * 100vw);
-                                        line-height: calc(26 / 992 * 100vw);
                                         color: #9597a6;
                                     }
         

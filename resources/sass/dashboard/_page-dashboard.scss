@@ -1184,6 +1184,11 @@ body.dashboard {
             margin: 0 auto calc(57 / 1920 * 100vw);;
             width: calc(500 / 1920 * 100vw);
             cursor: pointer;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
         }
 
         ul {
