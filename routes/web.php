@@ -25,7 +25,7 @@ Route::get('/job/search', 'JobController@search')->name('job.search');
 Route::get('/job/detail', 'JobController@detail')->name('job.detail');
 Route::get('/client/detail', 'ClientController@detail')->name('client.detail');
 Route::get('/helper/search', 'HelperController@search')->name('helper.search');
-Route::get('/helper/detail', 'HelperController@detail')->name('helper.detail');
+Route::get('/helper/detail/{id}', 'HelperController@detail')->name('helper.detail');
 Route::get('/contactus', 'ContactUSController@index')->name('contactus');
 
 Route::get('/profile', 'ProfileController@selectForm')->name('profile.select');

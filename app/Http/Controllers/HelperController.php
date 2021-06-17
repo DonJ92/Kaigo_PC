@@ -16,9 +16,46 @@ class HelperController extends Controller
         return view('helpersearch');
     }
 
-    public function detail()
+    public function detail($id)
     {
-        return view('helperdetail');
+        try {
+            $helper_info = User::leftjoin('tbl_profile', 'tbl_profile.user_id', '=', 'tbl_user.id')
+                ->leftjoin('tbl_province', 'tbl_province.id', '=', 'tbl_user.province_id')
+                ->leftjoin(DB::raw('(SELECT target_id, count( user_id ) AS favourite_count FROM tbl_favourite GROUP BY target_id) tbl_following'),function($join)
+                {
+                    $join->on('tbl_user.id', '=', 'tbl_following.target_id');
+                })
+                ->where('tbl_user.id', $id)
+                ->select('tbl_user.id', 'tbl_user.last_name', 'tbl_user.first_name', 'tbl_user.gender', 'tbl_province.name as province_name', 'tbl_user.address',
+                    'tbl_profile.introduction', 'tbl_profile.photo1', 'tbl_profile.photo2', 'tbl_profile.photo3', 'tbl_profile.photo4', 'tbl_profile.photo5',
+                    'tbl_profile.age', 'tbl_profile.experience_years', 'tbl_profile.job_type', 'tbl_profile.certificate', 'tbl_profile.hourly_cost_from', 'tbl_profile.hourly_cost_to',
+                    'tbl_following.favourite_count')
+                ->first();
+
+            if (is_null($helper_info))
+                return redirect()->back()->withErrors(['failed' => trans('helper.no_info')]);
+
+            $data = $helper_info->toArray();
+
+            $data['photo1'] = $this->getProfilePhotoThumb($data['id'], $data['photo1']);
+            $data['photo2'] = $this->getProfilePhotoThumb($data['id'], $data['photo2']);
+            $data['photo3'] = $this->getProfilePhotoThumb($data['id'], $data['photo3']);
+            $data['photo4'] = $this->getProfilePhotoThumb($data['id'], $data['photo4']);
+            $data['photo5'] = $this->getProfilePhotoThumb($data['id'], $data['photo5']);
+            $data['gender'] = $this->getGenderFromID($data['gender']);
+            $data['age'] = $this->getAgeFromID($data['age']);
+            $data['job_type'] = $this->getJobFromID($data['job_type']);
+            $data['experience_years'] = $this->getExperienceYearsFromID($data['experience_years']);
+            $cert_id_list = explode(',', $data['certificate']);
+            $certificates = $this->getCertificateFromIDs($cert_id_list);
+            $data['certificate'] = implode(', ', $certificates);
+            $data['hourly_cost'] = '￥' . number_format($data['hourly_cost_from'], 0, '.', ',') . ' ~ ' . '￥' . number_format($data['hourly_cost_to'], 0, '.', ',');
+
+        } catch (QueryException $e) {
+            return redirect()->back()->withErrors(['failed' => trans('helper.no_info')]);
+        }
+
+        return view('helperdetail', $data);
     }
 
     public function dashboardSearch()

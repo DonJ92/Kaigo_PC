@@ -6941,10 +6941,14 @@ body.no-auth .primary .con-block div.con-detail {
 }
 
 body.no-auth .primary .con-block div.con-detail .con-column {
-  display: block;
   color: #58B2BE;
   padding: unset;
   border: unset;
+  width: 50%;
+}
+
+body.no-auth .primary .con-block div.con-detail .con-column span {
+  margin: 0 0 0 auto;
 }
 
 body.no-auth .primary .btn-block {
@@ -7385,6 +7389,8 @@ body.no-auth .primary main .main-block.main-m .personal-detail-block .profile-bl
   height: calc(230 / 1920 * 100vw);
   border-radius: calc(64 / 1920 * 100vw);
   margin: 0 0 calc(20 / 1920 * 100vw) 0;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 body.no-auth .primary main .main-block.main-m .personal-detail-block .detail-block {

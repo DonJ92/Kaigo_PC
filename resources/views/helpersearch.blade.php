@@ -98,11 +98,11 @@
                                 '                        <div class="worker-item">\n' +
                                 '                            <div class="worker-item-head">\n' +
                                 '                                <div class="worker-item-photo">\n' +
-                                '                                    <a href="{{ url('dashboard/helper/detail') }}/' + response[i].id + '"><img src="' + response[i].photo + '" alt="" /></a>\n' +
+                                '                                    <a href="{{ url('helper/detail') }}/' + response[i].id + '"><img src="' + response[i].photo + '" alt="" /></a>\n' +
                                 '                                </div>\n' +
                                 '                                <div class="worker-item-infos">\n' +
                                 '                                    <div class="worker-item-ttl">\n' +
-                                '                                        <span><a href="{{ url('dashboard/helper/detail') }}/' + response[i].id + '">' + response[i].last_name + response[i].first_name + '</a></span>\n' +
+                                '                                        <span><a href="{{ url('helper/detail') }}/' + response[i].id + '">' + response[i].last_name + response[i].first_name + '</a></span>\n' +
                                 '                                        <div class="worker-item-review">\n' +
                                 '                                            <p class="worker-item-txt">レビュー　4</p>\n' +
                                 '                                            <i class="fa fa-star st-act"></i>\n' +
