@@ -112,6 +112,9 @@ class Controller extends BaseController
 
     protected function getGenderFromID($id)
     {
+        if (is_null($id) || empty($id))
+            return trans('common.unknown');
+
         $gender_list = Config::get('constants.gender');
         $key = array_search($id, array_column($gender_list, 'id'));
 
@@ -120,6 +123,9 @@ class Controller extends BaseController
 
     protected function getAgeFromID($id)
     {
+        if (is_null($id) || empty($id))
+            return trans('common.unknown');
+
         $age_list = Config::get('constants.age');
         $key = array_search($id, array_column($age_list, 'id'));
 
@@ -141,6 +147,9 @@ class Controller extends BaseController
 
     protected function getJobFromID($id)
     {
+        if (is_null($id) || empty($id))
+            return trans('common.unknown');
+
         $job_type_list = $this->getJobTypeList();
 
         $key = array_search($id, array_column($job_type_list, 'id'));
@@ -150,6 +159,9 @@ class Controller extends BaseController
 
     public function getExperienceYearsFromID($id)
     {
+        if (is_null($id) || empty($id))
+            return trans('common.unknown');
+
         $experience_years_list = Config::get('constants.experience');
 
         $key = array_search($id, array_column($experience_years_list, 'id'));

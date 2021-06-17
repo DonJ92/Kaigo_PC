@@ -12,10 +12,12 @@
     <title>@yield('title') - {{ config('app.name', 'Helper')}}</title>
 
     <!-- css -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/semantic.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 
     <!-- javascript -->
     <script src="{{ asset('/js/app.js') }}"></script>
+    <script src="{{ asset('js/semantic.min.js') }}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     @yield('header')

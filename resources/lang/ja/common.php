@@ -20,6 +20,7 @@ return [
     'address' => '場所',
     'time_zone' => '時間帯',
     'job_type' => '職種',
+    'experience_years' => '経験年数',
     'area' => '地域',
     'datetime' => '日時',
     'open_job' => '募集中の仕事のみ',
@@ -28,6 +29,8 @@ return [
     'skill' => '資格・スキル',
     'desired_cost' => '希望時給',
     'review' => 'レビュー',
+
+    'all' => '全部',
 
     'to_top' => 'TOPに戻る',
     'here' => 'こちら',
@@ -41,6 +44,8 @@ return [
 
     'required' => '必修',
     'random' => '任意',
+
+    'unknown' => '未定',
 
     'login_dialog' => [
         'title' => 'ログイン後操作可能です',

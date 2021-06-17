@@ -7,13 +7,19 @@ use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 
 class HelperController extends Controller
 {
     public function search()
     {
-        return view('helpersearch');
+        $data['province_list'] = $this->getProvinceList();
+        $data['job_list'] = $this->getJobTypeList();
+        $data['experience_list'] = Config::get('constants.experience');
+        $data['age_list'] = Config::get('constants.age');
+
+        return view('helpersearch', $data);
     }
 
     public function detail($id)
@@ -60,12 +66,24 @@ class HelperController extends Controller
 
     public function dashboardSearch()
     {
-        return view('dashboard.helpersearch');
+        $this->middleware('auth');
+
+        $data['province_list'] = $this->getProvinceList();
+        $data['job_list'] = $this->getJobTypeList();
+        $data['experience_list'] = Config::get('constants.experience');
+        $data['age_list'] = Config::get('constants.age');
+
+        return view('dashboard.helpersearch', $data);
     }
 
     public function getList(Request $request)
     {
         $count = $request->input('count');
+        $index = $request->input('index');
+        $province = $request->input('province');
+        $job_type = $request->input('job_type');
+        $experience_years = $request->input('experience_years');
+        $age = $request->input('age');
 
         if (Auth::check())
             $user_id = Auth::user()->id;
@@ -85,6 +103,7 @@ class HelperController extends Controller
                 {
                     $join->on('tbl_user.id', '=', 'tbl_following.target_id');
                 })
+                ->leftjoin('tbl_job_type', 'tbl_job_type.id', '=', 'tbl_profile.job_type')
                 ->where('tbl_user.type', HELPER)
                 ->select('tbl_user.id', 'tbl_user.last_name', 'tbl_user.first_name', 'tbl_user.gender',
                     'tbl_province.name as province_name', 'tbl_user.address', 'tbl_profile.photo1', 'tbl_profile.photo2',
@@ -93,6 +112,22 @@ class HelperController extends Controller
                     'tbl_following.favourite_count')
                 ->orderby('tbl_following.favourite_count', 'desc')
                 ->skip($count)->take(HELPER_LIST_PAGE_CNT);
+
+            if (!is_null($index) && !empty($index)){
+                $query = $query->where(function($q) use ($index){
+                    $q->where(DB::raw("CONCAT(tbl_user.last_name,'',tbl_user.first_name)"), 'LIKE', '%'.$index.'%')
+                        ->orWhere('tbl_province.name', 'LIKE', '%'.$index.'%')
+                        ->orWhere('tbl_job_type.job_type', 'LIKE', '%'.$index.'%');
+                });
+            }
+            if (!is_null($province) && !empty($province))
+                $query = $query->whereIn('tbl_user.province_id', $province);
+            if (!is_null($job_type) && !empty($job_type))
+                $query = $query->where('tbl_profile.job_type', $job_type);
+            if (!is_null($experience_years) && !empty($experience_years))
+                $query = $query->where('tbl_profile.experience_years', $experience_years);
+            if (!is_null($age) && !empty($age))
+                $query = $query->where('tbl_profile.age', $age);
 
             $helper_list = $query->get()->toArray();
 
@@ -107,6 +142,8 @@ class HelperController extends Controller
                 $helper_list[$i]['hourly_cost'] = '￥' . number_format($helper_list[$i]['hourly_cost_from'], 0, '.', ',') . ' ~ ' . '￥' . number_format($helper_list[$i]['hourly_cost_to'], 0, '.', ',');
             }
         } catch (QueryException $e) {
+            print_r($e->getMessage());
+            die();
             echo json_encode( $helper_list );
             exit;
         }
@@ -116,6 +153,8 @@ class HelperController extends Controller
 
     public function dashboardDetail($id)
     {
+        $this->middleware('auth');
+
         try {
             $helper_info = User::leftjoin('tbl_profile', 'tbl_profile.user_id', '=', 'tbl_user.id')
                 ->leftjoin('tbl_province', 'tbl_province.id', '=', 'tbl_user.province_id')

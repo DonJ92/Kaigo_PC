@@ -1185,6 +1185,7 @@ h5,
 h6,
 p {
   line-height: 1;
+  margin: 0;
 }
 
 ul {
@@ -3357,7 +3358,7 @@ body.home #worker .worker-inner .worker-list .worker-item .worker-item-cta .work
 }
 
 body.home #worker .worker-inner .worker-list .worker-item .worker-item-cta .worker-item-cta-inner a:hover {
-  color: #FF9698 !important;
+  color: #E56274 !important;
 }
 
 body.home #news {
@@ -6689,7 +6690,10 @@ body.no-auth .primary .worker-list .worker-block .worker-item .worker-item-cta .
 
 body.no-auth .primary .worker-list .worker-block .worker-item .worker-item-cta .worker-item-cta-inner a i {
   font-size: calc(16 / 1920 * 100vw);
-  color: #dbdbdb;
+}
+
+body.no-auth .primary .worker-list .worker-block .worker-item .worker-item-cta .worker-item-cta-inner a:hover {
+  color: #E56274 !important;
 }
 
 body.no-auth .primary .job-item-customer {
@@ -6940,15 +6944,44 @@ body.no-auth .primary .con-block div.con-detail {
   color: #656565;
 }
 
+body.no-auth .primary .con-block div.con-detail span {
+  word-break: keep-all;
+  margin-right: 10px;
+}
+
 body.no-auth .primary .con-block div.con-detail .con-column {
   color: #58B2BE;
   padding: unset;
   border: unset;
-  width: 50%;
+  display: contents;
 }
 
-body.no-auth .primary .con-block div.con-detail .con-column span {
-  margin: 0 0 0 auto;
+body.no-auth .primary .con-block div.con-detail .con-column div {
+  display: inline-block;
+}
+
+body.no-auth .primary .con-block div.con-detail .con-column .search-form {
+  font-family: AXIS Std-M;
+  font-size: calc(11 / 1920 * 100vw);
+  line-height: calc(32 / 1920 * 100vw);
+  padding: 0 calc(10 / 1920 * 100vw);
+  color: #58B2BE;
+  max-width: 100%;
+  text-align: right;
+  border: none;
+}
+
+body.no-auth .primary .con-block div.con-detail .con-column .search-form .ui.label {
+  color: #58B2BE;
+  border: none;
+  background-color: white;
+  -webkit-box-shadow: none;
+}
+
+body.no-auth .primary .con-block div.con-detail .con-column select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 body.no-auth .primary .btn-block {
@@ -7212,6 +7245,7 @@ body.no-auth .primary main .main-block.main-l .search-block .form {
   border-radius: 50px;
   border: solid 1px #DDDDDD;
   margin-bottom: calc(30 / 1920 * 100vw);
+  color: #656565;
   outline: none;
 }
 
@@ -7920,10 +7954,10 @@ body.no-auth .primary main .main-block.main-block-gray {
     color: #656565;
   }
 
-  body.no-auth .primary .con-block div.con-detail .con-column {
-    color: #58B2BE;
-    padding: unset;
-    border: unset;
+  body.no-auth .primary .con-block div.con-detail .con-column .search-form {
+    font-size: calc(11 / 992 * 100vw);
+    line-height: calc(32 / 992 * 100vw);
+    padding: 0 calc(10 / 992 * 100vw);
   }
 }
 
@@ -8944,18 +8978,43 @@ body.dashboard .con-block div.con-detail {
 }
 
 body.dashboard .con-block div.con-detail span {
-  word-wrap: normal;
+  word-break: keep-all;
+  margin-right: 10px;
 }
 
 body.dashboard .con-block div.con-detail .con-column {
   color: #58B2BE;
   padding: unset;
   border: unset;
-  width: 50%;
+  display: contents;
 }
 
-body.dashboard .con-block div.con-detail .con-column span {
-  margin: 0 0 0 auto;
+body.dashboard .con-block div.con-detail .con-column div {
+  display: inline-block;
+}
+
+body.dashboard .con-block div.con-detail .con-column .search-form {
+  font-family: AXIS Std-M;
+  font-size: calc(11 / 1920 * 100vw);
+  line-height: calc(32 / 1920 * 100vw);
+  padding: 0 calc(10 / 1920 * 100vw);
+  color: #58B2BE;
+  max-width: 100%;
+  text-align: right;
+  border: none;
+}
+
+body.dashboard .con-block div.con-detail .con-column .search-form .ui.label {
+  color: #58B2BE;
+  border: none;
+  background-color: white;
+  -webkit-box-shadow: none;
+}
+
+body.dashboard .con-block div.con-detail .con-column select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 body.dashboard .btn-block {
@@ -9498,7 +9557,7 @@ body.dashboard .worker-list .worker-block .worker-item .worker-item-cta .worker-
 }
 
 body.dashboard .worker-list .worker-block .worker-item .worker-item-cta .worker-item-cta-inner a:hover {
-  color: #FF9698 !important;
+  color: #E56274 !important;
 }
 
 body.dashboard .confirm-div {

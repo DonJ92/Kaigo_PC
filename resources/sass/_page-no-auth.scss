@@ -223,8 +223,11 @@ body.no-auth {
     
                                 i {
                                     font-size: calc(16 / 1920 * 100vw);
-                                    color: #dbdbdb;
                                 }
+                            }
+
+                            a:hover {
+                                color: $primary_color !important;
                             }
                         }
                     }
@@ -475,14 +478,41 @@ body.no-auth {
                     line-height: calc(32 / 1920 * 100vw);
                     color: $content_grey;
 
+                    span {
+                        word-break: keep-all;
+                        margin-right: 10px;
+                    }
+
                     .con-column {
                         color: $secondary_color;
                         padding: unset;
                         border: unset;
-                        width: 50%;
+                        display: contents;
 
-                        span {
-                          margin: 0 0 0 auto;
+                        div {
+                            display: inline-block;
+                        }
+
+                        .search-form {
+                            font-family: AXIS Std-M;
+                            font-size: calc(11 / 1920 * 100vw);
+                            line-height: calc(32 / 1920 * 100vw);
+                            padding: 0 calc(10 / 1920 * 100vw);
+                            color: $secondary_color;
+                            max-width: 100%;
+                            text-align: right;
+                            border: none;
+
+                            .ui.label {
+                                color: $secondary_color;
+                                border: none;
+                                background-color: white;
+                                -webkit-box-shadow: none;
+                            }
+                        }
+
+                        select {
+                            appearance: none;
                         }
                     }
                 }
@@ -729,6 +759,7 @@ body.no-auth {
                             border-radius: 50px;
                             border: solid 1px $form_border_grey;
                             margin-bottom: calc(30 / 1920 * 100vw);
+                            color: $content_grey;
                             outline: none;
 
                             &::placeholder {
@@ -1392,11 +1423,14 @@ body.no-auth {
                         font-size: calc(11 / 992 * 100vw);
                         line-height: calc(32 / 992 * 100vw);
                         color: $content_grey;
-    
+
                         .con-column {
-                            color: $secondary_color;
-                            padding: unset;
-                            border: unset;
+
+                            .search-form {
+                                font-size: calc(11 / 992 * 100vw);
+                                line-height: calc(32 / 992 * 100vw);
+                                padding: 0 calc(10 / 992 * 100vw);
+                            }
                         }
                     }
                 }

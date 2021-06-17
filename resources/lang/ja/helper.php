@@ -26,6 +26,8 @@ return [
         'profile' => '基本プロフィール',
     ],
 
+    'index_placeholder' => '東京都　保育',
+
     'age' => '年齢',
     'address' => '住所地',
     'job_type' => '職種',
