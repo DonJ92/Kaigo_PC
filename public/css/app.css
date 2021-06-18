@@ -2181,6 +2181,150 @@ button[disabled] {
   color: #58B2BE;
 }
 
+.time-dialog-box {
+  width: calc(1000 / 1920 * 100vw);
+  height: calc(335 / 1920 * 100vw);
+  top: calc(100 / 1920 * 100vw);
+  left: calc(50% - 255 / 1920 * 100vw);
+  border-radius: calc(27 / 1920 * 100vw);
+  background: white;
+  position: absolute;
+  z-index: 5000;
+  padding: calc(20 / 1920 * 100vw);
+  text-align: center;
+  box-shadow: 0px 3px 10px #00000029;
+  display: none;
+}
+
+.time-dialog-box.logout {
+  width: calc(510 / 1920 * 100vw);
+  height: calc(200 / 1920 * 100vw);
+  background: transparent;
+}
+
+.time-dialog-box .close-btn {
+  text-align: right;
+  margin: 0 0 calc(20 / 1920 * 100vw);
+  color: #656565;
+  cursor: pointer;
+}
+
+.time-dialog-box form {
+  text-align: center;
+}
+
+.time-dialog-box form .dialog-title {
+  font-family: AXIS Std-B;
+  font-size: calc(18 / 1920 * 100vw);
+  line-height: calc(25 / 1920 * 100vw);
+  letter-spacing: calc(0.9 / 1920 * 100vw);
+  color: #656565;
+  margin: 0 0 calc(10 / 1920 * 100vw);
+}
+
+.time-dialog-box form .field-row {
+  margin: 0 auto calc(30 / 1920 * 100vw);
+  width: calc(300 / 1920 * 100vw);
+}
+
+.time-dialog-box form .field-row .field-ttl {
+  margin: 0 0 calc(20 / 1920 * 100vw);
+  font-family: "AXIS Std-M";
+  font-size: calc(14 / 1920 * 100vw);
+  line-height: calc(22 / 1920 * 100vw);
+  color: #656565;
+}
+
+.time-dialog-box form .field-row .form {
+  width: 100%;
+  margin: 0;
+  padding: calc(10 / 1920 * 100vw) calc(25 / 1920 * 100vw);
+  font-family: "AXIS Std-R";
+  font-size: calc(14 / 1920 * 100vw);
+  line-height: calc(22 / 1920 * 100vw);
+  color: #AAAAAA;
+  border-radius: 5px;
+  border: solid 1px #DDDDDD;
+  outline: none;
+}
+
+.time-dialog-box form .field-row .form::-moz-placeholder {
+  color: #AAAAAA;
+}
+
+.time-dialog-box form .field-row .form:-ms-input-placeholder {
+  color: #AAAAAA;
+}
+
+.time-dialog-box form .field-row .form::placeholder {
+  color: #AAAAAA;
+}
+
+.time-dialog-box form .field-row .form.underline {
+  border: unset;
+  border-bottom: solid 1px #DDDDDD;
+}
+
+.time-dialog-box form .field-row .form.form-textarea {
+  height: calc(150 / 1920 * 100vw);
+}
+
+.time-dialog-box form .field-row.field-block {
+  display: inline-block;
+}
+
+.time-dialog-box form .field-row.field-merge {
+  width: calc(600 / 1920 * 100vw);
+}
+
+.time-dialog-box form .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(300 / 1920 * 100vw);
+  height: calc(45 / 1920 * 100vw);
+  font-family: AXIS Std-M;
+  font-size: calc(16 / 1920 * 100vw);
+  letter-spacing: calc(0.8 / 1920 * 100vw);
+  line-height: calc(25 / 1920 * 100vw);
+  color: white;
+  border-radius: 50px;
+  margin: 0 auto calc(15 / 1920 * 100vw);
+}
+
+.time-dialog-box form .btn.reset-btn {
+  background: #DBDBDB;
+}
+
+.time-dialog-box form .btn.default-btn {
+  background: #DBDBDB;
+  color: #656565;
+}
+
+.time-dialog-box form .btn.default-btn:hover {
+  background: #3B3B3B;
+  color: white;
+}
+
+.time-dialog-box form .btn.primary-btn {
+  background: #E56274;
+}
+
+.time-dialog-box form .btn.secondary-btn {
+  background: #58B2BE;
+}
+
+.time-dialog-box form .btn.right-align {
+  margin: 0 0 0 auto;
+}
+
+.time-dialog-box form .btn.logout-btn {
+  width: calc(300 / 1920 * 100vw);
+  height: calc(60 / 1920 * 100vw);
+  margin: 0 0 calc(30 / 1920 * 100vw);
+  font-size: calc(16 / 1920 * 100vw);
+}
+
 /* トップページのスタイル */
 
 body.home {
@@ -10044,6 +10188,7 @@ body.dashboard .primary main {
   display: flex;
   width: 84%;
   margin-left: 16%;
+  height: 100vh;
 }
 
 body.dashboard .primary main.block {

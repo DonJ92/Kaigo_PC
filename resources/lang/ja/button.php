@@ -33,6 +33,7 @@ return [
 
     'confirm' => '確定',
     'send' => '送信する',
+    'apply' => '適用する',
 
     'to_mypage' => 'マイページへ',
     'to_top' => 'TOPに戻る',

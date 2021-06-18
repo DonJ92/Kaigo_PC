@@ -30,12 +30,28 @@
                     <div id="register-element"></div>
                 </div>
                 <div class="btn-block right">
-                    <a class="btn primary-btn right-margin" href="" onclick="onTimeDialog()">{{ trans('button.next') }}</a>
+                    <a class="btn primary-btn right-margin" href="#" onclick="onTimeDialog()">{{ trans('button.next') }}</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="{{ asset('/js/calendar.js') }}"></script>
+    <div id="dialog-box" class="time-dialog-box">
+        <div id="close" class="close-btn"><a><i class="fa fa-close"></i></a></div>
+        <form>
+            <h2 class="dialog-title">{{ trans('common.login_dialog.title') }}</h2>
+            <div class="field-row one-one">
+                <input class="form underline" type="time" name="from_time">
+            </div>
+            <div class="field-row one-one">
+                <input class="form underline" type="time" name="to_time">
+            </div>
+            <a href="{{ route('login') }}" class="btn secondary-btn">{{ trans('button.apply') }}</a>
+        </form>
+    </div>
+
+    <script>
+        $('#side_menu_job_register').addClass('current');
+    </script>
     <script src="{{ asset('/js/registerjob.js') }}"></script>
 @endsection
