@@ -28,12 +28,9 @@ $(function() {
         return true;
     });
 });
-
+/*
 const $slider = $("#slider");
 $slider
-    /* .on("init", () => {
-        mouseWheel($slider);
-    }) */
 .slick({
     dots: true,
     vertical: true,
@@ -46,9 +43,6 @@ $slider
 
 const $h_slider = $("#h_slider");
 $h_slider
-    /* .on("init", () => {
-        mouseWheel($slider);
-    }) */
 .slick({
     dots: true,
     infinite: true, 
@@ -57,7 +51,7 @@ $h_slider
     autoplay: true,
     autoplaySpeed: 3000,
 });
-
+*/
 function mouseWheel($slider) {
     $(window).on("wheel", { $slider: $slider }, mouseWheelHandler);
 }

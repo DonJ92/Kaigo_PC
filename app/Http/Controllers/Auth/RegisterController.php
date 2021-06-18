@@ -137,6 +137,7 @@ class RegisterController extends Controller
     public function registerSMS(Request $request)
     {
         $data = $request->all();
+        $data['phone'] = str_replace('-', '', $data['phone']);
 
         $validator = Validator::make($data, [
             'phone' => 'required|string|max:24',

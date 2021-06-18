@@ -14,7 +14,7 @@
 
         <div class="field-row field-merge">
             <p class="field-ttl">{{ trans('register.phone') }}</p>
-            <input class="form @error('phone') is-invalid @enderror" type="text" id="phone" name="phone" value="{{ old('phone') }}" placeholder="{{ trans('register.phone_placeholder') }}"/>
+            <input class="form @error('phone') is-invalid @enderror" type="text" id="phone" name="phone" value="{{ old('phone') }}" placeholder="{{ trans('register.phone_placeholder') }}" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"/>
             @error('phone')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -39,4 +39,10 @@
             <button type="submit" class="btn btn-next">{{ trans('button.next') }}</button>
         </div>
     </form>
+
+    <script>
+        $(document).ready(function(){
+            $('#phone').mask('000-0000-0000');
+        });
+    </script>
 @endsection

@@ -64,4 +64,30 @@ class LoginController extends Controller
         else
             return redirect()->route('dashboard.home');
     }
+
+    public function login(Request $request)
+    {
+        $phone = $request->input('phone');
+        $phone = str_replace('-', '', $phone);
+        $request->merge([
+            'phone' => $phone
+        ]);
+
+        $this->validateLogin($request);
+
+        if (method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
+        if ($this->attemptLogin($request)) {
+            return $this->sendLoginResponse($request);
+        }
+
+        $this->incrementLoginAttempts($request);
+
+        return $this->sendFailedLoginResponse($request);
+    }
 }
