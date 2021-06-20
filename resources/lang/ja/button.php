@@ -35,6 +35,7 @@ return [
     'send' => '送信する',
     'apply' => '適用する',
 
+    'to_job_register' => '定期予約一覧へ戻る',
     'to_mypage' => 'マイページへ',
     'to_top' => 'TOPに戻る',
 

@@ -38,20 +38,47 @@
 
     <div id="dialog-box" class="time-dialog-box">
         <div id="close" class="close-btn"><a><i class="fa fa-close"></i></a></div>
-        <form>
+        <form method="POST" action="{{ route('dashboard.job.register.submit') }}">
+            @csrf
+
             <h2 class="dialog-title">{{ trans('common.login_dialog.title') }}</h2>
+            <input type="hidden" name="period" id="period">
             <div class="field-row one-one">
-                <input class="form underline" type="time" name="from_time">
+                <input class="form underline @error('from_time') is-invalid @enderror" type="time" name="from_time">
+                @error('from_time')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="field-row one-one">
-                <input class="form underline" type="time" name="to_time">
+                <input class="form underline @error('to_time') is-invalid @enderror" type="time" name="to_time">
+                @error('to_time')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
-            <a href="{{ route('login') }}" class="btn secondary-btn">{{ trans('button.apply') }}</a>
+            <button type="submit" class="btn secondary-btn cursor-pointer">{{ trans('button.apply') }}</button>
         </form>
     </div>
 
     <script>
-        $('#side_menu_job_register').addClass('current');
+        $(window).on('load', function() {
+            @if ($errors->has('period'))
+                toastr.error('{{ $errors->first('period') }}', '', { "closeButton": true });
+            @endif
+
+            @if (!$errors->has('period') && ($errors->has('from_time') || $errors->has('to_time')))
+                onTimeDialog();
+            @endif
+
+            @if ($errors->has('failed'))
+                toastr.error('{{ $errors->first('failed') }}', '', { "closeButton": true });
+            @endif
+
+            $('#side_menu_job_register').addClass('current');
+        });
     </script>
     <script src="{{ asset('/js/registerjob.js') }}"></script>
 @endsection

@@ -1,106 +1,218 @@
 @extends('layouts.dashboard')
 
+@section('title', trans('job.register.title'))
+
 @section('content')
     <div class="main full-width no-padding">
         <div class="main no-padding-bottom">
-            <h3 class="dashboard-ttl">新規応募申し込み</h3>
+            <h3 class="dashboard-ttl">{{ trans('job.register.title') }}</h3>
         </div>
         <div class="main full-width block-3">
             <div class="main-l main-block main-block-gray">
                 <div class="flow">
                     <ul class="flow-ul">
-                        <li class="flow-ttl"><a class="active"><i class="after"></i>日時を選択してください</a></li>
-                        <li class="flow-ttl"><a class="active"><i class="now"></i>応募詳細を入力してください</a></li>
-                        <li class="flow-ttl"><a ><i></i>最終確認</a></li>
+                        <li class="flow-ttl"><a class="active"><i class="after"></i>{{ trans('job.register.step1') }}</a></li>
+                        <li class="flow-ttl"><a class="active"><i class="now"></i>{{ trans('job.register.step2') }}</a></li>
+                        <li class="flow-ttl"><a ><i></i>{{ trans('job.register.step3') }}</a></li>
                     </ul>
                 </div>
             </div>
             <div class="main-m main-block main-block-white">
-                <form class="register-job-form">
-                    <h2 class="sub-title">希望</h2>
+                <form class="register-job-form" method="POST" action="{{ route('dashboard.job.info.register.submit') }}">
+                    @csrf
+
+                    <input type="hidden" name="period" value="{{ old('period') ? old('period') : (isset($period) ? $period : '') }}">
+                    <input type="hidden" name="from_time" value="{{ old('from_time') ? old('from_time') : (isset($from_time) ? $from_time : '') }}">
+                    <input type="hidden" name="to_time" value="{{ old('to_time') ? old('to_time') : (isset($to_time) ? $to_time : '') }}">
+
+                    <h2 class="sub-title">{{ trans('job.register.info_title') }}</h2>
                     <div class="field-row">
-                        <p class="field-ttl">ご利⽤⽬的</p>
-                        <select class="form">
-                            <option value="" selected="">介護</option>
-                        </select>
+                        <p class="field-ttl">{{ trans('job.register.job_title') }}</p>
+                        <input class="form @error('title') is-invalid @enderror" type="text" id="title" name="title" value="{{ old('title') }}">
+                        @error('title')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="field-row">
-                        <p class="field-ttl">地域</p>
-                        <select class="form">
-                            <option value="" selected="">東京都 ⾜⽴区</option>
+                        <p class="field-ttl">{{ trans('job.register.type') }}</p>
+                        <select class="form @error('type') is-invalid @enderror" name="type">
+                            <option></option>
+                            @foreach($job_type_list as $job_type)
+                                <option value="{{ $job_type['id'] }}" @if($job_type['id'] == old('type')) selected @endif>{{ $job_type['job_type'] }}</option>
+                            @endforeach
                         </select>
+                        @error('type')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="field-row">
-                        <p class="field-ttl">報酬</p>
-                        <select class="form">
-                            <option value="" selected="">¥5,000</option>
+                        <p class="field-ttl">{{ trans('job.register.province') }}</p>
+                        <select class="form @error('province') is-invalid @enderror" name="province">
+                            <option></option>
+                            @foreach($province_list as $province_info)
+                                <option value="{{ $province_info['id'] }}" @if($province_info['id'] == old('province')) selected @endif>{{ $province_info['name'] }}</option>
+                            @endforeach
                         </select>
+                        @error('province')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="field-row">
-                        <p class="field-ttl">保有資格</p>
-                        <select class="form">
-                            <option value="" selected="">〇〇２級資格,〇〇２級資格</option>
-                        </select>
+                        <p class="field-ttl">{{ trans('job.register.cost') }}</p>
+                        <input class="form @error('cost') is-invalid @enderror" type="number" name="cost" value="{{ old('cost') }}">
+                        @error('cost')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="field-row">
-                        <p class="field-ttl">労災</p>
-                        <select class="form">
-                            <option value="" selected="">加⼊してる</option>
+                        <p class="field-ttl">{{ trans('job.register.certificate') }}</p>
+                        <select class="form ui dropdown @error('certificate') is-invalid @enderror" id="certificate" name="certificate[]" multiple>
+                            <option></option>
+                            @foreach($certificate_list as $certificate_info)
+                                <option value="{{ $certificate_info['id'] }}" @if(is_array(old('certificate')) && in_array($certificate_info['id'], old('certificate'))) selected @endif>{{ $certificate_info['certificate'] }}</option>
+                            @endforeach
                         </select>
+                        @error('certificate')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="field-row">
-                        <p class="field-ttl">交通費</p>
-                        <select class="form">
-                            <option value="" selected="">支給あり</option>
+                        <p class="field-ttl">{{ trans('job.register.accident') }}</p>
+                        <select class="form @error('accident') is-invalid @enderror" id="accident" name="accident">
+                            @foreach($accident_list as $accident_info)
+                                <option value="{{ $accident_info['id'] }}" @if($accident_info['id'] == old('accident')) selected @endif>{{ $accident_info['type'] }}</option>
+                            @endforeach
                         </select>
+                        @error('accident')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="field-row">
+                        <p class="field-ttl">{{ trans('job.register.traffic_cost') }}</p>
+                        <select class="form @error('traffic_cost') is-invalid @enderror" id="traffic_cost" name="traffic_cost">
+                            @foreach($traffic_cost_list as $traffic_cost_info)
+                                <option value="{{ $traffic_cost_info['id'] }}" @if($traffic_cost_info['id'] == old('traffic_cost')) selected @endif>{{ $traffic_cost_info['type'] }}</option>
+                            @endforeach
+                        </select>
+                        @error('traffic_cost')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
 
-                    <h2 class="sub-title">支払い</h2>
+                    <h2 class="sub-title">{{ trans('job.register.payment_title') }}</h2>
                     <div class="field-row">
-                        <p class="field-ttl">支払い方法</p>
-                        <select class="form">
-                            <option value="" selected="">クレジットカード（下4桁：1048）</option>
+                        <p class="field-ttl">{{ trans('job.register.payment_method') }}</p>
+                        <select class="form @error('payment_method') is-invalid @enderror" id="payment_method" name="payment_method">
+                            @foreach($payment_method_list as $payment_method_info)
+                                <option value="{{ $payment_method_info['id'] }}" @if($payment_method_info['id'] == old('payment_method')) selected @endif>{{ $payment_method_info['type'] }}</option>
+                            @endforeach
                         </select>
+                        @error('payment_method')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="field-row">
-                        <p class="field-ttl">クーポン</p>
-                        <select class="form">
-                            <option value="" selected="">なし</option>
+                        <p class="field-ttl">{{ trans('job.register.coupon') }}</p>
+                        <select class="form @error('coupon') is-invalid @enderror" id="coupon" name="coupon">
+                            @foreach($coupon_list as $coupon_info)
+                                <option value="{{ $coupon_info['id'] }}" @if($coupon_info['id'] == old('coupon')) selected @endif>{{ $coupon_info['type'] }}</option>
+                            @endforeach
                         </select>
+                        @error('coupon')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
 
-                    <h2 class="sub-title">住所</h2>
+                    <h2 class="sub-title">{{ trans('job.register.address_title') }}</h2>
                     <div class="field-row">
-                        <p class="field-ttl">対象住所</p>
-                        <select class="form">
-                            <option value="" selected="">東京都⾜⽴区〇〇〇〇〇〇〇〇</option>
-                        </select>
+                        <p class="field-ttl">{{ trans('job.register.address') }}</p>
+                        <input class="form @error('address') is-invalid @enderror" type="text" name="address" value="{{ old('address') }}">
+                        @error('address')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
 
-                    <h2 class="sub-title">ご連絡先</h2>
+                    <h2 class="sub-title">{{ trans('job.register.contact_title') }}</h2>
                     <div class="field-row">
-                        <p class="field-ttl">お名前</p>
-                        <input class="form" type="text" placeholder="山田花子">
+                        <p class="field-ttl">{{ trans('job.register.name') }}</p>
+                        <input class="form @error('name') is-invalid @enderror" type="text" name="name" value="{{ old('name') }}">
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="field-row">
-                        <p class="field-ttl">メールアドレス</p>
-                        <input class="form" type="text" placeholder="example@email.com">
+                        <p class="field-ttl">{{ trans('job.register.email') }}</p>
+                        <input class="form @error('email') is-invalid @enderror" type="text" name="email" value="{{ old('email') }}">
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="field-row">
-                        <p class="field-ttl">電話番号</p>
-                        <input class="form" type="text" placeholder="000-0000-0000">
+                        <p class="field-ttl">{{ trans('job.register.phone') }}</p>
+                        <input class="form @error('phone') is-invalid @enderror" type="text" id="phone" name="phone" value="{{ old('phone') }}">
+                        @error('phone')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="field-row">
-                        <p class="field-ttl">その他</p>
-                        <textarea class="form form-textarea">必須事項など</textarea>
+                        <p class="field-ttl">{{ trans('job.register.comment') }}</p>
+                        <textarea class="form form-textarea @error('comment') is-invalid @enderror" name="comment">{{ old('comment') }}</textarea>
+                        @error('comment')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
 
                     <div class="btn-block right">
-                        <a class="btn default-btn right-margin" href="{{ route('dashboard.job.register') }}">戻る</a>
-                        <a class="btn primary-btn right-margin" href="{{ route('dashboard.job.info.confirm') }}">次へ</a>
+                        <a class="btn default-btn right-margin" href="{{ route('dashboard.job.register') }}">{{ trans('button.back') }}</a>
+                        <button type="submit" class="btn primary-btn right-margin cursor-pointer">{{ trans('button.next') }}</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
+    <script>
+        $(window).on('load', function() {
+            @if ($errors->has('failed'))
+                toastr.error('{{ $errors->first('failed') }}', '', { "closeButton": true });
+            @endif
+
+            @if (session()->has('success'))
+                toastr.success('{{ session()->get('success') }}', '', { "closeButton": true });
+            @endif
+
+            $('#side_menu_job_register').addClass('current');
+        });
+
+        $('#certificate').dropdown();
+        $('#phone').mask('000-0000-0000');
+    </script>
 @endsection

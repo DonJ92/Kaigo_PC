@@ -6,10 +6,20 @@ calendar.appendTo('#register-element');
 function onTimeDialog() {
     var dates = calendar.values;
 
-    $('#dialog-box').css({
-        top: (window.innerHeight - ($('#dialog-box').height()*2)),
-        left:((window.innerWidth/2) - ($('#dialog-box').width()/2))
-    }).show();
+    if (dates == null)
+        toastr.error('期間をご選択ください。', '', { "closeButton": true });
+    else
+    {
+        var period = new Array(dates.length);
 
-    console.log(dates);
+        for (var i = 0; i < dates.length; i++)
+            period[i] = dates[i].getFullYear() + '/' + (dates[i].getMonth() + 1) + '/' + dates[i].getDate();
+
+        $('#period').val(period);
+
+        $('#dialog-box').css({
+            top: (window.innerHeight - ($('#dialog-box').height() * 2)),
+            left: ((window.innerWidth / 2) - ($('#dialog-box').width() / 2))
+        }).show();
+    }
 }

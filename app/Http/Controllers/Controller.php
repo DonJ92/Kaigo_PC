@@ -157,6 +157,18 @@ class Controller extends BaseController
         return $job_type_list[$key]['job_type'];
     }
 
+    protected function getProvinceNameFromID($id)
+    {
+        if (is_null($id) || empty($id))
+            return trans('common.unknown');
+
+        $province_list = $this->getProvinceList();
+
+        $key = array_search($id, array_column($province_list, 'id'));
+
+        return $province_list[$key]['name'];
+    }
+
     public function getExperienceYearsFromID($id)
     {
         if (is_null($id) || empty($id))
@@ -167,5 +179,53 @@ class Controller extends BaseController
         $key = array_search($id, array_column($experience_years_list, 'id'));
 
         return $experience_years_list[$key]['name'];
+    }
+
+    public function getAccidentTypeFromID($id)
+    {
+        if (is_null($id) || empty($id))
+            return trans('common.unknown');
+
+        $accident_list = Config::get('constants.accident');
+
+        $key = array_search($id, array_column($accident_list, 'id'));
+
+        return $accident_list[$key]['type'];
+    }
+
+    public function getTrafficCostTypeFromID($id)
+    {
+        if (is_null($id) || empty($id))
+            return trans('common.unknown');
+
+        $traffic_cost_list = Config::get('constants.traffic_cost');
+
+        $key = array_search($id, array_column($traffic_cost_list, 'id'));
+
+        return $traffic_cost_list[$key]['type'];
+    }
+
+    public function getPaymentMethodTypeFromID($id)
+    {
+        if (is_null($id) || empty($id))
+            return trans('common.unknown');
+
+        $payment_method_list = Config::get('constants.payment_method');
+
+        $key = array_search($id, array_column($payment_method_list, 'id'));
+
+        return $payment_method_list[$key]['type'];
+    }
+
+    public function getCouponTypeFromID($id)
+    {
+        if (is_null($id) || empty($id))
+            return trans('common.unknown');
+
+        $coupon_list = Config::get('constants.coupon');
+
+        $key = array_search($id, array_column($coupon_list, 'id'));
+
+        return $coupon_list[$key]['type'];
     }
 }

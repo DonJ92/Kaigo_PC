@@ -52,8 +52,11 @@ Route::post('/dashboard/helper/getlist', 'HelperController@getList')->name('dash
 Route::get('/dashboard/helper/detail/{id}', 'HelperController@dashboardDetail')->name('dashboard.helper.detail');
 
 Route::get('/dashboard/job/register', 'JobManageController@registerForm')->name('dashboard.job.register');
+Route::post('/dashboard/job/info/register', 'JobManageController@register')->name('dashboard.job.register.submit');
 Route::get('/dashboard/job/info/register', 'JobManageController@registerInfoForm')->name('dashboard.job.info.register');
+Route::post('/dashboard/job/info/confirm', 'JobManageController@registerInfo')->name('dashboard.job.info.register.submit');
 Route::get('/dashboard/job/info/confirm', 'JobManageController@infoConfirmForm')->name('dashboard.job.info.confirm');
+Route::post('/dashboard/job/register/confirm', 'JobManageController@infoConfirm')->name('dashboard.job.info.confirm.submit');
 Route::get('/dashboard/job/register/confirm', 'JobManageController@registerConfirmForm')->name('dashboard.job.register.confirm');
 
 Route::get('/dashboard/favourite/job', 'FavouriteController@favouriteJob')->name('dashboard.favourite.job');

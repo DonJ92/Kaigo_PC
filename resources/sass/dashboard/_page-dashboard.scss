@@ -391,8 +391,10 @@ body.dashboard {
             }
 
             .info {
+                width: 80%;
                 font-family: AXIS Std-M;
                 color: $secondary_color;
+                text-align: right;
             }
         }
     }
@@ -539,10 +541,6 @@ body.dashboard {
                     border: unset;
                     display: contents;
 
-                    div {
-                        display: inline-block;
-                    }
-
                     .search-form {
                         font-family: AXIS Std-M;
                         font-size: calc(11 / 1920 * 100vw);
@@ -552,13 +550,6 @@ body.dashboard {
                         max-width: 100%;
                         text-align: right;
                         border: none;
-
-                        .ui.label {
-                            color: $secondary_color;
-                            border: none;
-                            background-color: white;
-                            -webkit-box-shadow: none;
-                        }
                     }
 
                     select {
@@ -2328,6 +2319,7 @@ body.dashboard {
                             .field-row {
                                 width: 80%;
                                 margin: 0 calc(35 / 1920 * 100vw) calc(20 / 1920 * 100vw) 0;
+                                display: inline-block;
 
                                 &.one-third {
                                     width: 33%;
@@ -2506,5 +2498,18 @@ body.dashboard {
 
     .light-pink {
         color: $light_pink;
+    }
+
+    .menu {
+        position: unset !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .ui.label {
+        color: $secondary_color;
+        border: none;
+        background-color: white;
+        -webkit-box-shadow: none;
     }
 }

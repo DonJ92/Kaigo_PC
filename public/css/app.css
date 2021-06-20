@@ -8980,8 +8980,10 @@ body.dashboard .row-item.register-job-list .title {
 }
 
 body.dashboard .row-item.register-job-list .info {
+  width: 80%;
   font-family: AXIS Std-M;
   color: #58B2BE;
+  text-align: right;
 }
 
 body.dashboard .news-col {
@@ -9133,10 +9135,6 @@ body.dashboard .con-block div.con-detail .con-column {
   display: contents;
 }
 
-body.dashboard .con-block div.con-detail .con-column div {
-  display: inline-block;
-}
-
 body.dashboard .con-block div.con-detail .con-column .search-form {
   font-family: AXIS Std-M;
   font-size: calc(11 / 1920 * 100vw);
@@ -9146,13 +9144,6 @@ body.dashboard .con-block div.con-detail .con-column .search-form {
   max-width: 100%;
   text-align: right;
   border: none;
-}
-
-body.dashboard .con-block div.con-detail .con-column .search-form .ui.label {
-  color: #58B2BE;
-  border: none;
-  background-color: white;
-  -webkit-box-shadow: none;
 }
 
 body.dashboard .con-block div.con-detail .con-column select {
@@ -10980,6 +10971,7 @@ body.dashboard .primary main .main .main-block.main-m .register-job-form .sub-ti
 body.dashboard .primary main .main .main-block.main-m .register-job-form .field-row {
   width: 80%;
   margin: 0 calc(35 / 1920 * 100vw) calc(20 / 1920 * 100vw) 0;
+  display: inline-block;
 }
 
 body.dashboard .primary main .main .main-block.main-m .register-job-form .field-row.one-third {
@@ -11162,5 +11154,18 @@ body.dashboard .primary main .main.full-width {
 
 body.dashboard .light-pink {
   color: #FF9698;
+}
+
+body.dashboard .menu {
+  position: unset !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+body.dashboard .ui.label {
+  color: #58B2BE;
+  border: none;
+  background-color: white;
+  -webkit-box-shadow: none;
 }
 
