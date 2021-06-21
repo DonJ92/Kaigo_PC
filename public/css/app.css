@@ -3214,6 +3214,7 @@ body.home #job .job-inner .job-list .job-item .job-item-share .fa-share-alt {
 body.home #job .job-inner .job-list .job-item .job-item-share .job-item-share-r {
   display: flex;
   align-items: center;
+  color: #656565;
 }
 
 body.home #job .job-inner .job-list .job-item .job-item-share .job-item-share-r a {
@@ -3222,15 +3223,10 @@ body.home #job .job-inner .job-list .job-item .job-item-share .job-item-share-r 
   margin: 0 0 0 15px;
   font-family: "AXIS Std-M";
   font-size: 15px;
-  color: #656565;
 }
 
 body.home #job .job-inner .job-list .job-item .job-item-share .job-item-share-r a span {
   margin-right: 9px;
-}
-
-body.home #job .job-inner .job-list .job-item .job-item-share .job-item-share-r a i {
-  color: #757575;
 }
 
 body.home #worker {
@@ -9321,6 +9317,7 @@ body.dashboard .job-item-meta .job-item-meta-data {
   font-family: "Montserrat-Light";
   font-size: calc(14 / 1920 * 100vw);
   line-height: calc(25 / 1920 * 100vw);
+  width: 60%;
   color: #656565;
 }
 
@@ -9352,6 +9349,7 @@ body.dashboard .job-item-share .fa-share-alt {
 body.dashboard .job-item-share .job-item-share-r {
   display: flex;
   align-items: center;
+  color: #656565;
 }
 
 body.dashboard .job-item-share .job-item-share-r a {
@@ -9360,15 +9358,10 @@ body.dashboard .job-item-share .job-item-share-r a {
   margin: 0 0 0 calc(15 / 1920 * 100vw);
   font-family: "AXIS Std-M";
   font-size: calc(15 / 1920 * 100vw);
-  color: #656565;
 }
 
 body.dashboard .job-item-share .job-item-share-r a span {
   margin-right: calc(10 / 1920 * 100vw);
-}
-
-body.dashboard .job-item-share .job-item-share-r a i {
-  color: #757575;
 }
 
 body.dashboard .job-column-block {
@@ -10179,7 +10172,6 @@ body.dashboard .primary main {
   display: flex;
   width: 84%;
   margin-left: 16%;
-  height: 100vh;
 }
 
 body.dashboard .primary main.block {

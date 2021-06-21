@@ -32,9 +32,9 @@ class JobManageController extends Controller
             'to_time' => 'required',
         ], [
         ], [
-            'period' => trans('job.register.period'),
-            'from_time' => trans('job.register.from_time'),
-            'to_time' => trans('job.register.to_time'),
+            'period' => trans('job.period'),
+            'from_time' => trans('job.from_time'),
+            'to_time' => trans('job.to_time'),
         ]);
 
         if ($validator->fails()) {
@@ -91,20 +91,20 @@ class JobManageController extends Controller
             'comment' => 'nullable|string|max:64',
         ], [
         ], [
-            'title' => trans('job.register.job_title'),
-            'type' => trans('job.register.type'),
-            'province' => trans('job.register.province'),
-            'cost' => trans('job.register.cost'),
-            'certificate' => trans('job.register.certificate'),
-            'accident' => trans('job.register.accident'),
-            'traffic_cost' => trans('job.register.traffic_cost'),
-            'payment_method' => trans('job.register.payment_method'),
-            'coupon' => trans('job.register.coupon'),
-            'address' => trans('job.register.address'),
-            'name' => trans('job.register.name'),
-            'email' => trans('job.register.email'),
-            'phone' => trans('job.register.phone'),
-            'comment' => trans('job.register.comment'),
+            'title' => trans('job.job_title'),
+            'type' => trans('job.type'),
+            'province' => trans('job.province'),
+            'cost' => trans('job.cost'),
+            'certificate' => trans('job.certificate'),
+            'accident' => trans('job.accident'),
+            'traffic_cost' => trans('job.traffic_cost'),
+            'payment_method' => trans('job.payment_method'),
+            'coupon' => trans('job.coupon'),
+            'address' => trans('job.address'),
+            'name' => trans('job.name'),
+            'email' => trans('job.email'),
+            'phone' => trans('job.phone'),
+            'comment' => trans('job.comment'),
         ]);
 
         if ($validator->fails()) {
@@ -153,8 +153,6 @@ class JobManageController extends Controller
     {
         $data = $request->all();
 
-        return redirect()->route('dashboard.job.register')->withErrors(['failed' => trans('job.register.failed')]);
-
         try {
             Job::insert([
                 'user_id' => Auth::user()->id,
@@ -180,11 +178,6 @@ class JobManageController extends Controller
             return redirect()->route('dashboard.job.register')->withErrors(['failed' => trans('job.register.failed')]);
         }
 
-        return view('dashboard.jobregisterconfirm');
-    }
-
-    public function registerConfirmForm()
-    {
         return view('dashboard.jobregisterconfirm');
     }
 }

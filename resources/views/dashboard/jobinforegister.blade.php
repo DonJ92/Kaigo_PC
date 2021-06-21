@@ -25,9 +25,9 @@
                     <input type="hidden" name="from_time" value="{{ old('from_time') ? old('from_time') : (isset($from_time) ? $from_time : '') }}">
                     <input type="hidden" name="to_time" value="{{ old('to_time') ? old('to_time') : (isset($to_time) ? $to_time : '') }}">
 
-                    <h2 class="sub-title">{{ trans('job.register.info_title') }}</h2>
+                    <h2 class="sub-title">{{ trans('job.info_title') }}</h2>
                     <div class="field-row">
-                        <p class="field-ttl">{{ trans('job.register.job_title') }}</p>
+                        <p class="field-ttl">{{ trans('job.job_title') }}</p>
                         <input class="form @error('title') is-invalid @enderror" type="text" id="title" name="title" value="{{ old('title') }}">
                         @error('title')
                             <span class="invalid-feedback" role="alert">
@@ -36,7 +36,7 @@
                         @enderror
                     </div>
                     <div class="field-row">
-                        <p class="field-ttl">{{ trans('job.register.type') }}</p>
+                        <p class="field-ttl">{{ trans('job.type') }}</p>
                         <select class="form @error('type') is-invalid @enderror" name="type">
                             <option></option>
                             @foreach($job_type_list as $job_type)
@@ -50,7 +50,7 @@
                         @enderror
                     </div>
                     <div class="field-row">
-                        <p class="field-ttl">{{ trans('job.register.province') }}</p>
+                        <p class="field-ttl">{{ trans('job.province') }}</p>
                         <select class="form @error('province') is-invalid @enderror" name="province">
                             <option></option>
                             @foreach($province_list as $province_info)
@@ -64,7 +64,7 @@
                         @enderror
                     </div>
                     <div class="field-row">
-                        <p class="field-ttl">{{ trans('job.register.cost') }}</p>
+                        <p class="field-ttl">{{ trans('job.cost') }}</p>
                         <input class="form @error('cost') is-invalid @enderror" type="number" name="cost" value="{{ old('cost') }}">
                         @error('cost')
                             <span class="invalid-feedback" role="alert">
@@ -73,7 +73,7 @@
                         @enderror
                     </div>
                     <div class="field-row">
-                        <p class="field-ttl">{{ trans('job.register.certificate') }}</p>
+                        <p class="field-ttl">{{ trans('job.certificate') }}</p>
                         <select class="form ui dropdown @error('certificate') is-invalid @enderror" id="certificate" name="certificate[]" multiple>
                             <option></option>
                             @foreach($certificate_list as $certificate_info)
@@ -87,7 +87,7 @@
                         @enderror
                     </div>
                     <div class="field-row">
-                        <p class="field-ttl">{{ trans('job.register.accident') }}</p>
+                        <p class="field-ttl">{{ trans('job.accident') }}</p>
                         <select class="form @error('accident') is-invalid @enderror" id="accident" name="accident">
                             @foreach($accident_list as $accident_info)
                                 <option value="{{ $accident_info['id'] }}" @if($accident_info['id'] == old('accident')) selected @endif>{{ $accident_info['type'] }}</option>
@@ -100,7 +100,7 @@
                         @enderror
                     </div>
                     <div class="field-row">
-                        <p class="field-ttl">{{ trans('job.register.traffic_cost') }}</p>
+                        <p class="field-ttl">{{ trans('job.traffic_cost') }}</p>
                         <select class="form @error('traffic_cost') is-invalid @enderror" id="traffic_cost" name="traffic_cost">
                             @foreach($traffic_cost_list as $traffic_cost_info)
                                 <option value="{{ $traffic_cost_info['id'] }}" @if($traffic_cost_info['id'] == old('traffic_cost')) selected @endif>{{ $traffic_cost_info['type'] }}</option>
@@ -113,9 +113,9 @@
                         @enderror
                     </div>
 
-                    <h2 class="sub-title">{{ trans('job.register.payment_title') }}</h2>
+                    <h2 class="sub-title">{{ trans('job.payment_title') }}</h2>
                     <div class="field-row">
-                        <p class="field-ttl">{{ trans('job.register.payment_method') }}</p>
+                        <p class="field-ttl">{{ trans('job.payment_method') }}</p>
                         <select class="form @error('payment_method') is-invalid @enderror" id="payment_method" name="payment_method">
                             @foreach($payment_method_list as $payment_method_info)
                                 <option value="{{ $payment_method_info['id'] }}" @if($payment_method_info['id'] == old('payment_method')) selected @endif>{{ $payment_method_info['type'] }}</option>
@@ -128,7 +128,7 @@
                         @enderror
                     </div>
                     <div class="field-row">
-                        <p class="field-ttl">{{ trans('job.register.coupon') }}</p>
+                        <p class="field-ttl">{{ trans('job.coupon') }}</p>
                         <select class="form @error('coupon') is-invalid @enderror" id="coupon" name="coupon">
                             @foreach($coupon_list as $coupon_info)
                                 <option value="{{ $coupon_info['id'] }}" @if($coupon_info['id'] == old('coupon')) selected @endif>{{ $coupon_info['type'] }}</option>
@@ -141,9 +141,9 @@
                         @enderror
                     </div>
 
-                    <h2 class="sub-title">{{ trans('job.register.address_title') }}</h2>
+                    <h2 class="sub-title">{{ trans('job.address_title') }}</h2>
                     <div class="field-row">
-                        <p class="field-ttl">{{ trans('job.register.address') }}</p>
+                        <p class="field-ttl">{{ trans('job.address') }}</p>
                         <input class="form @error('address') is-invalid @enderror" type="text" name="address" value="{{ old('address') }}">
                         @error('address')
                             <span class="invalid-feedback" role="alert">
@@ -152,9 +152,9 @@
                         @enderror
                     </div>
 
-                    <h2 class="sub-title">{{ trans('job.register.contact_title') }}</h2>
+                    <h2 class="sub-title">{{ trans('job.contact_title') }}</h2>
                     <div class="field-row">
-                        <p class="field-ttl">{{ trans('job.register.name') }}</p>
+                        <p class="field-ttl">{{ trans('job.name') }}</p>
                         <input class="form @error('name') is-invalid @enderror" type="text" name="name" value="{{ old('name') }}">
                         @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -163,7 +163,7 @@
                         @enderror
                     </div>
                     <div class="field-row">
-                        <p class="field-ttl">{{ trans('job.register.email') }}</p>
+                        <p class="field-ttl">{{ trans('job.email') }}</p>
                         <input class="form @error('email') is-invalid @enderror" type="text" name="email" value="{{ old('email') }}">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -172,7 +172,7 @@
                         @enderror
                     </div>
                     <div class="field-row">
-                        <p class="field-ttl">{{ trans('job.register.phone') }}</p>
+                        <p class="field-ttl">{{ trans('job.phone') }}</p>
                         <input class="form @error('phone') is-invalid @enderror" type="text" id="phone" name="phone" value="{{ old('phone') }}">
                         @error('phone')
                             <span class="invalid-feedback" role="alert">
@@ -181,7 +181,7 @@
                         @enderror
                     </div>
                     <div class="field-row">
-                        <p class="field-ttl">{{ trans('job.register.comment') }}</p>
+                        <p class="field-ttl">{{ trans('job.comment') }}</p>
                         <textarea class="form form-textarea @error('comment') is-invalid @enderror" name="comment">{{ old('comment') }}</textarea>
                         @error('comment')
                             <span class="invalid-feedback" role="alert">

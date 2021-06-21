@@ -7,6 +7,8 @@ define('USER_NONE', 1);
 define('USER_PENDING', 2);
 define('USER_CONFIRMED', 3);
 
+define('JOB_LIST_PAGE_CNT', 6);
+
 define('HELPER_HOME_PAGE_CNT', 9);
 define('HELPER_LIST_PAGE_CNT', 8);
 define('HELPER_DETAIL_PAGE_CNT', 6);

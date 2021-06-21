@@ -42,6 +42,7 @@ class HomeController extends Controller
                 ->leftjoin('tbl_province', 'tbl_province.id', '=', 'tbl_user.province_id')
                 ->leftjoin('tbl_favourite', 'tbl_favourite.target_id', '=', 'tbl_user.id')
                 ->where('tbl_user.type', HELPER)
+                ->where('tbl_favourite.type', FAVOURITE_HELPER)
                 ->where('tbl_favourite.user_id', Auth::user()->id)
                 ->select('tbl_user.id', 'tbl_user.last_name', 'tbl_user.first_name', 'tbl_province.name as province_name', 'tbl_user.address',
                     'tbl_profile.photo1', 'tbl_profile.photo2', 'tbl_profile.photo3', 'tbl_profile.photo4', 'tbl_profile.photo5',

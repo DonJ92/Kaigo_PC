@@ -22,6 +22,43 @@ class FavouriteController extends Controller
         return view('dashboard.favouritejob');
     }
 
+    public function jobFavourite(Request $request)
+    {
+        $job_id = $request->input('job_id');
+
+        $user_id = Auth::user()->id;
+
+        try {
+            $res = Favourite::insert([
+                'user_id' => $user_id,
+                'target_id' => $job_id,
+                'type' => FAVOURITE_JOB,
+            ]);
+        } catch (QueryException $e) {
+            echo json_encode(false);
+            exit;
+        }
+        echo json_encode(true);
+    }
+
+    public function jobUnFavourite(Request $request)
+    {
+        $job_id = $request->input('job_id');
+
+        $user_id = Auth::user()->id;
+
+        try {
+            $res = Favourite::where('user_id', $user_id)
+                ->where('target_id', $job_id)
+                ->where('type', FAVOURITE_JOB)
+                ->delete();
+        } catch (QueryException $e) {
+            echo json_encode(false);
+            exit;
+        }
+        echo json_encode(true);
+    }
+
     public function favouriteHelper()
     {
         return view('dashboard.favouritehelper');

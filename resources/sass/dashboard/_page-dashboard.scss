@@ -719,6 +719,7 @@ body.dashboard {
             font-family: 'Montserrat-Light';
             font-size: calc(14 / 1920 * 100vw);
             line-height: calc(25 / 1920 * 100vw);
+            width: 60%;
             color: #656565;
 
             &.detail {
@@ -749,20 +750,19 @@ body.dashboard {
 
         .job-item-share-r {
             @include flex-center-v;
+            color: #656565;
 
             a {
                 @include flex-center-v;
                 margin: 0 0 0 calc(15 / 1920 * 100vw);
                 font-family: 'AXIS Std-M';
                 font-size: calc(15 / 1920 * 100vw);
-                color: #656565;
 
                 span {
                     margin-right: calc(10 / 1920 * 100vw);
                 }
 
                 i {
-                    color: #757575;
                 }
             }
         }
@@ -1558,7 +1558,6 @@ body.dashboard {
             display: flex;
             width: 84%;
             margin-left: 16%;
-            height: 100vh;
 
             &.block {
                 display: block;
@@ -1913,7 +1912,7 @@ body.dashboard {
                                 .job-slider {
                                     margin: 0 0 calc(20 / 1920 * 100vw) 0;
                                 }
-    
+
                                 .like-block {
                                     margin: 0 0 calc(15 / 1920 * 100vw);
                                     text-align: right;
@@ -1921,11 +1920,11 @@ body.dashboard {
                                     font-size: calc(15 / 1920 * 100vw);
                                     line-height: calc(25 / 1920 * 100vw);
                                     color: $content_grey;
-    
+
                                     i {
                                         color: $light_pink;
                                     }
-                                }                            
+                                }
                             }
                         }
     

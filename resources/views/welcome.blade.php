@@ -119,7 +119,7 @@
                             <p class="search-field-ttl">{{ trans('common.job_type') }}</p>
                             <select id="certificate" name="certiciate">
                                 <option value="" disabled selected>{{ trans('top.job_type_placeholder') }}</option>
-                                @foreach($job_list as $job_info)
+                                @foreach($job_type_list as $job_info)
                                     <option value="{{ $job_info['id'] }}">{{ $job_info['job_type'] }}</option>
                                 @endforeach
                             </select>
@@ -155,26 +155,26 @@
                 <h3 class="job-ttl sec-ttl"><span><i></i>{{ trans('top.job_list_title') }}</span></h3>
 
                 <div class="job-list">
-                    @for ($i = 0; $i < 6; $i++)
+                    @foreach( $job_list as $job_info)
                     <div class="job-item">
                         <div class="job-item-customer">
                             <div class="job-item-customer-photo">
-                                <img src="{{ asset('/images/common/photo-01.jpg') }}" alt="" />
+                                <img src="{{ $job_info['photo'] }}" alt="" />
                             </div>
                             <div class="job-item-customer-infos">
-                                <p class="job-item-customer-ttl">発注者名</p>
-                                <p class="job-item-customer-place">場所</p>
+                                <p class="job-item-customer-ttl">{{ $job_info['last_name'].$job_info['first_name'] }}</p>
+                                <p class="job-item-customer-place">{{ $job_info['province'].$job_info['address'] }}</p>
                             </div>
                         </div>
 
-                        <h4 class="job-item-ttl">案件タイトル</h4>
+                        <h4 class="job-item-ttl">{{ $job_info['title'] }}</h4>
                         <div class="job-item-meta">
                             <p class="job-item-meta-head">{{ trans('common.datetime') }}</p>
-                            <p class="job-item-meta-data">12/15(金) 14:00~18:00</p>
+                            <p class="job-item-meta-data">{{ $job_info['period'].' '.$job_info['from_time'].'~'.$job_info['to_time'] }}</p>
                         </div>
                         <div class="job-item-meta">
                             <p class="job-item-meta-head">{{ trans('common.cost') }}</p>
-                            <p class="job-item-meta-data">¥3,000~ / 1h</p>
+                            <p class="job-item-meta-data">{{ $job_info['cost'] }}</p>
                         </div>
                         <div class="job-item-figure" style="background: url({{ asset('/images/common/job-figure.jpg') }});"></div>
                         <div class="job-item-share">
@@ -191,7 +191,7 @@
                             </div>
                         </div>
                     </div>
-                    @endfor
+                    @endforeach
                 </div>
 
                 <div class="search-row">

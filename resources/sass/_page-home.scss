@@ -761,20 +761,19 @@ body.home {
 
                         .job-item-share-r {
                             @include flex-center-v;
+                            color: #656565;
 
                             a {
                                 @include flex-center-v;
                                 margin: 0 0 0 15px;
                                 font-family: 'AXIS Std-M';
                                 font-size: 15px;
-                                color: #656565;
 
                                 span {
                                     margin-right: 9px;
                                 }
 
                                 i {
-                                    color: #757575;
                                 }
                             }
                         }

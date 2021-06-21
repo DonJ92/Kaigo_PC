@@ -142,8 +142,6 @@ class HelperController extends Controller
                 $helper_list[$i]['hourly_cost'] = '￥' . number_format($helper_list[$i]['hourly_cost_from'], 0, '.', ',') . ' ~ ' . '￥' . number_format($helper_list[$i]['hourly_cost_to'], 0, '.', ',');
             }
         } catch (QueryException $e) {
-            print_r($e->getMessage());
-            die();
             echo json_encode( $helper_list );
             exit;
         }
