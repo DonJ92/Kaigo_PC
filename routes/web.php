@@ -48,6 +48,8 @@ Route::get('/dashboard/job/search', 'JobController@dashboardSearch')->name('dash
 Route::post('/dashboard/job/getlist', 'JobController@getList')->name('dashboard.job.getlist');
 Route::get('/dashboard/job/detail/{id}', 'JobController@dashboardDetail')->name('dashboard.job.detail');
 
+Route::get('/dashboard/client/detail/{id}', 'ClientController@dashboardDetail')->name('dashboard.client.detail');
+
 Route::get('/dashboard/helper/search', 'HelperController@dashboardSearch')->name('dashboard.helper.search');
 Route::post('/dashboard/helper/getlist', 'HelperController@getList')->name('dashboard.helper.getlist');
 Route::get('/dashboard/helper/detail/{id}', 'HelperController@dashboardDetail')->name('dashboard.helper.detail');

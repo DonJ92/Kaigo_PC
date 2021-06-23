@@ -213,7 +213,7 @@
                                 '            <a href="{{ url('dashboard/client/detail') }}/' + response[i].user_id + '"><img src="' + response[i].photo + '" alt="" /></a>\n' +
                                 '        </div>\n' +
                                 '        <div class="job-item-customer-infos">\n' +
-                                '            <p class="job-item-customer-ttl"><a href="{{ url('dashboard/client/detail') }}/' + response[i].id + '">' + response[i].last_name + response[i].first_name + '</a></p>\n' +
+                                '            <p class="job-item-customer-ttl"><a href="{{ url('dashboard/client/detail') }}/' + response[i].user_id + '">' + response[i].last_name + response[i].first_name + '</a></p>\n' +
                                 '            <p class="job-item-customer-place">' + response[i].province + response[i].address + '</p>\n' +
                                 '        </div>\n' +
                                 '    </div>\n' +

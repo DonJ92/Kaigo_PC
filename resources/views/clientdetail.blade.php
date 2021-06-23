@@ -2,14 +2,6 @@
 
 @section('title', trans('client.title'))
 
-@section('header')
-    <link href="//cdn.syncfusion.com/ej2/ej2-base/styles/material.css" rel="stylesheet">
-    <link href="//cdn.syncfusion.com/ej2/ej2-buttons/styles/material.css" rel="stylesheet">
-    <link href="//cdn.syncfusion.com/ej2/ej2-calendars/styles/material.css" rel="stylesheet">
-
-    <script src="{{ asset('js/ej2/ej2.min.js') }}" type="text/javascript"></script>
-@endsection
-
 @section('content')
     <div class="main-l main-block main-block-gray">
         <div class="main-1-title">
@@ -168,5 +160,4 @@
             });
         }
     </script>
-    <script src="{{ asset('/js/calendar.js') }}"></script>
 @endsection

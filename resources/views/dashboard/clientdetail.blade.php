@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', trans('job.detail.title'))
+@section('title', trans('client.title'))
 
 @section('header')
     <link href="//cdn.syncfusion.com/ej2/ej2-base/styles/material.css" rel="stylesheet">
@@ -15,7 +15,7 @@
     <div class="main block-3">
         <div class="main-l main-block main-block-gray">
             <div class="main-1-title">
-                <h3>{{ trans('job.detail.list_panel') }}</h3>
+                <h3>{{ trans('client.list_panel') }}</h3>
             </div>
             <input type="hidden" id="count" value="0">
             <div class="job-list" id="job_list">
@@ -23,105 +23,68 @@
         </div>
         <div class="main-m main-block main-block-white">
             <div class="main-m-title">
-                <h3>{{ trans('job.detail.detail_panel') }}</h3>
+                <h3>{{ trans('client.detail_panel') }}</h3>
             </div>
-            <div class="job-detail-block">
-                <div class="detail-block margin">
-                    <h2 class="job-title">{{ $title }}</h2>
-                    <div class="job-column-block">
-                        <a href="{{ url('dashboard/client/detail').'/'.$user_id }}">
-                            <div class="job-item-customer">
-                                <div class="job-item-customer-photo">
-                                    <img src="{{ $photo }}" alt="" />
-                                </div>
-                                <div class="job-item-customer-infos">
-                                    <p class="job-item-customer-ttl"><a href="{{ url('dashboard/client/detail').'/'.$user_id }}">{{ $last_name . $first_name }}</a></p>
-                                    <p class="job-item-customer-place">{{ $province_name . $address }}</p>
-                                </div>
+            <div class="personal-detail-block">
+                <div class="profile-block">
+                    <img class="profile-photo" src="{{ $photo1 }}">
+                    <div class="info-list-block">
+                        <div class="con-block">
+                            <div class="con-title">
+                                <h3 class="pink">{{ trans('client.profile') }}</h3>
                             </div>
-                        </a>
-                    </div>
-                    <div class="job-column-block">
-                        <div class="job-item-meta">
-                            <p class="job-item-meta-head detail">{{ trans('job.datetime') }}</p>
-                            <p class="job-item-meta-data detail">{{ $period . ' ' . date('G:i', strtotime($from_time)) . '~' . date('G:i', strtotime($to_time)) }}</p>
+                            <div class="con-detail">
+                                <span>{{ trans('client.age') }}</span>
+                                <div class="con-column"><span>{{ $age }}</span></div>
+                            </div>
+                            <div class="con-detail">
+                                <span>{{ trans('client.address') }}</span>
+                                <div class="con-column"><span>{{ $province_name }}</span></div>
+                            </div>
                         </div>
-                        <div class="job-item-meta">
-                            <p class="job-item-meta-head detail">{{ trans('job.cost') }}</p>
-                            <p class="job-item-meta-data detail">{{ $cost }}</p>
-                        </div>
-                        <div class="job-item-meta">
-                            <p class="job-item-meta-head detail">{{ trans('job.place') }}</p>
-                            <p class="job-item-meta-data detail">{{ $province_name . $address }}</p>
-                        </div>
-                    </div>
-                    <div class="job-column-block">
-                        <p class="detail-content">
-                            サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章（はじめましての挨拶パート）
-                        </p>
-                    </div>
-                    <div class="job-column-block">
-                        <h3 class="sub-title">業務詳細</h3>
-                        <p class="detail-content">
-                            サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章
-                        </p>
-                    </div>
-                    <div class="job-column-block">
-                        <h3 class="sub-title">注意事項</h3>
-                        <p class="detail-content">
-                            {{ $comment }}
-                        </p>
                     </div>
                 </div>
                 <div class="detail-block">
-                    <div class="job-slider">
-                        <div id="h_slider" class="slider">
-                            <div class="slider-item" style="background-image: url({{ asset('/images/common/job-figure.jpg') }})"></div>
-                            <div class="slider-item" style="background-image: url({{ asset('/images/common/job-figure.jpg') }})"></div>
-                            <div class="slider-item" style="background-image: url({{ asset('/images/common/job-figure.jpg') }})"></div>
-                            <div class="slider-item" style="background-image: url({{ asset('/images/common/job-figure.jpg') }})"></div>
+                    <div class="user-infos">
+                        <p class="user-ttl">{{ $last_name.$first_name }}</p>
+                        <p class="user-place">{{ $province_name.$address }}</p>
+                        <div class="user-item-review">
+                            <p class="user-item-txt">レビュー　4</p>
+                            <i class="fa fa-star st-act"></i>
+                            <i class="fa fa-star st-act"></i>
+                            <i class="fa fa-star st-act"></i>
+                            <i class="fa fa-star st-act"></i>
+                            <i class="fa fa-star"></i>
+                            <p class="user-item-txt">(26件)</p>
                         </div>
                     </div>
-
-                    <div class="job-info-block">
-                        <div class="like-block">
-                            <p>{{ $favourite_count }}&nbsp;<i class="fa fa-heart"></i></p>
+                    <div class="job-item-customer profile">
+                        <div class="job-item-customer-infos profile">
+                            <p class="job-item-customer-ttl">{{ $gender }}</p>
+                            <p class="job-item-customer-place">{{ trans('client.gender') }}</p>
                         </div>
-                        <div class="info-list-block">
-                            <div class="con-block">
-                                <div class="con-title no-border">
-                                    <h3 class="pink">{{ trans('job.detail.detail') }}</h3>
-                                </div>
-                                <div class="con-detail">
-                                    <span>{{ trans('job.job_type') }}</span>
-                                    <div class="con-column"><span>{{ $job_type }}</span></div>
-                                </div>
-                                <div class="con-detail">
-                                    <span>{{ trans('job.certificate') }}</span>
-                                    <div class="con-column"><span>{{ $certificate }}</span></div>
-                                </div>
-                                <div class="con-detail">
-                                    <span>{{ trans('job.accident') }}</span>
-                                    <div class="con-column"><span>{{ $accident }}</span></div>
-                                </div>
-                                <div class="con-detail">
-                                    <span>{{ trans('job.traffic_cost') }}</span>
-                                    <div class="con-column"><span>{{ $traffic_cost }}</span></div>
-                                </div>
-                                <div class="con-detail">
-                                    <span>{{ trans('job.payment_method') }}</span>
-                                    <div class="con-column"><span>{{ $payment_method }}</span></div>
-                                </div>
-                                <div class="con-detail">
-                                    <span>{{ trans('job.coupon') }}</span>
-                                    <div class="con-column"><span>{{ $coupon }}</span></div>
-                                </div>
-                            </div>
+                        <div class="job-item-customer-infos profile">
+                            <p class="job-item-customer-ttl">321</p>
+                            <p class="job-item-customer-place">{{ trans('client.like') }}</p>
                         </div>
-                        <div class="btn-block">
-                            <a class="btn secondary-btn" onclick="identifyPopup()">応募する</a>
-                            <a class="btn primary-btn" onclick="identifyPopup()">お気に入り登録</a>
+                    </div>
+                    <div class="job-column-block">
+                        <h3 class="sub-title underline">{{ trans('client.introduction') }}</h3>
+                        <p class="detail-content">
+                            {{ $introduction }}
+                        </p>
+                    </div>
+                    <div class="job-column-block">
+                        <h3 class="sub-title underline">{{ trans('client.gallery') }}</h3>
+                        <div class="gallery">
+                            <img src="{{ $photo2 }}">
+                            <img src="{{ $photo3 }}">
+                            <img src="{{ $photo4 }}">
+                            <img src="{{ $photo5 }}">
                         </div>
+                    </div>
+                    <div class="btn-block">
+                        <a class="btn primary-btn right-align" onclick="loginPopup()">{{ trans('button.favourite') }}</a>
                     </div>
                 </div>
             </div>
