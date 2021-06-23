@@ -20,6 +20,8 @@ define('FAVOURITE_JOB', 2);
 define('NOTICE_ON', 1);
 define('NOTICE_OFF', 2);
 
+define('JOB_RECRUITING', 1);
+
 return [
     'gender' => [
         ['id' => 1, 'name' => '男性'],

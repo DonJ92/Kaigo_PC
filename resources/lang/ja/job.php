@@ -12,6 +12,8 @@ return [
 
     ],
 
+    'index_placeholder' => '東京都　保育',
+
     'datetime' => '日時',
     'cost' => '時給',
 

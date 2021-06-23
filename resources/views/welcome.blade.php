@@ -159,15 +159,14 @@
                     <div class="job-item">
                         <div class="job-item-customer">
                             <div class="job-item-customer-photo">
-                                <img src="{{ $job_info['photo'] }}" alt="" />
+                                <a href="@auth {{ url('dashboard/client/detail').'/'. $job_info['user_id']}} @else {{ url('client/detail').'/'. $job_info['user_id']}} @endauth"><img src="{{ $job_info['photo'] }}" alt="" /></a>
                             </div>
                             <div class="job-item-customer-infos">
-                                <p class="job-item-customer-ttl">{{ $job_info['last_name'].$job_info['first_name'] }}</p>
+                                <p class="job-item-customer-ttl"><a href="@auth {{ url('dashboard/client/detail').'/'. $job_info['user_id']}} @else {{ url('client/detail').'/'. $job_info['user_id']}} @endauth">{{ $job_info['last_name'].$job_info['first_name'] }}</a></p>
                                 <p class="job-item-customer-place">{{ $job_info['province'].$job_info['address'] }}</p>
                             </div>
                         </div>
-
-                        <h4 class="job-item-ttl">{{ $job_info['title'] }}</h4>
+                        <h4 class="job-item-ttl"><a href="@auth {{ url('dashboard/job/detail').'/'. $job_info['id']}} @else {{ url('job/detail').'/'. $job_info['id']}} @endauth">{{ $job_info['title'] }}</a></h4>
                         <div class="job-item-meta">
                             <p class="job-item-meta-head">{{ trans('common.datetime') }}</p>
                             <p class="job-item-meta-data">{{ $job_info['period'].' '.$job_info['from_time'].'~'.$job_info['to_time'] }}</p>
@@ -224,7 +223,7 @@
                             </div>
                             <div class="worker-item-infos">
                                 <div class="worker-item-ttl">
-                                    <span><a href="{{ url('dashboard/helper/detail/').'/'.$helper_info['id'] }}">{{ $helper_info['last_name'] . $helper_info['first_name'] }}</a></span>
+                                    <span><a href="@auth {{ url('dashboard/helper/detail/').'/'.$helper_info['id'] }} @else {{ url('helper/detail/').'/'.$helper_info['id'] }} @endauth">{{ $helper_info['last_name'] . $helper_info['first_name'] }}</a></span>
                                     <div class="worker-item-review">
                                         <p class="worker-item-txt">{{ trans('common.review') }}　4</p>
                                         <i class="fa fa-star st-act"></i>

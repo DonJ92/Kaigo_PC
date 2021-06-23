@@ -15,9 +15,9 @@
         <div class="main-1-title">
             <h3>{{ trans('job.search.search_panel') }}</h3>
         </div>
-        <form class="search-block">
+        <form class="search-block" id="search_form">
             <div>
-                <input class="form" type="text" placeholder="東京都　保育">
+                <input class="form" type="text" id="index" placeholder="">
             </div>
             <div id="container">
                 <div id="element"></div>
@@ -41,35 +41,55 @@
                     <div class="con-detail">
                         <span>{{ trans('common.address') }}</span>
                         <div class="con-column">
-                            <span>東京都、神奈川</span>
+                            <select class="search-form ui dropdown" dir="rtl" id="province" name="province[]" multiple>
+                                @foreach ($province_list as $province_info)
+                                    <option value="{{ $province_info['id'] }}">{{ $province_info['name'] }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="con-detail">
                         <span>{{ trans('common.time_zone') }}</span>
-                        <div class="con-column"><span>10:00〜20:00</span></div>
+                        <div class="con-column flex-display">
+                            <input type="time" class="search-form" id="from_time">〜<input type="time" class="search-form" id="to_time">
+                        </div>
                     </div>
                     <div class="con-detail">
                         <span>{{ trans('common.job_type') }}</span>
-                        <div class="con-column"><span>生活相談員 ></span></div>
+                        <div class="con-column">
+                            <select class="search-form" dir="rtl" id="job_type" name="job_type">
+                                <option value="">{{ trans('common.all') }}</option>
+                                @foreach ($job_list as $job_info)
+                                    <option value="{{ $job_info['id'] }}">{{ $job_info['job_type'] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="con-detail">
                         <span>{{ trans('common.open_job') }}</span>
                         <div class="con-column">
                             <label class="switch">
-                                <input type="checkbox" checked>
+                                <input type="checkbox" checked id="status">
                                 <span class="switch-slider round"></span>
                             </label>
                         </div>
                     </div>
                     <div class="con-detail">
                         <span>{{ trans('common.age') }}</span>
-                        <div class="con-column"><span>〇〇歳</span></div>
+                        <div class="con-column">
+                            <select class="search-form" dir="rtl" id="age" name="age">
+                                <option value="">{{ trans('common.all') }}</option>
+                                @foreach ($age_list as $age_info)
+                                    <option value="{{ $age_info['id'] }}" @if($age_info['id'] == old('age')) selected @endif>{{ $age_info['name'] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="btn-block">
-                <a class="btn reset-btn" href="#">{{ trans('button.reset') }}</a>
-                <a class="btn secondary-btn" href="#">{{ trans('button.search_for_condition') }}</a>
+                <a class="btn reset-btn" href="#" onclick="reset()">{{ trans('button.reset') }}</a>
+                <a class="btn secondary-btn" href="#" onclick="onSearch()">{{ trans('button.search_for_condition') }}</a>
             </div>
             <div class="btn-map">
                 <a href="#">{{ trans('button.search_for_map') }}&nbsp<i class="ti-location-pin"></i></a>
@@ -80,50 +100,132 @@
         <div class="main-m-title">
             <h3>{{ trans('job.search.list_panel') }}</h3>
         </div>
-        <div class="job-list">
-            @for ($i = 0; $i < 6; $i++)
-            <div class="job-block">
-                <a href="{{ route('job.detail') }}">
-                    <div class="job-item">
-                        <div class="job-item-customer">
-                            <div class="job-item-customer-photo">
-                                <img src="{{ asset('/images/common/photo-01.jpg') }}" alt="" />
-                            </div>
-                            <div class="job-item-customer-infos">
-                                <p class="job-item-customer-ttl">発注者名</p>
-                                <p class="job-item-customer-place">場所</p>
-                            </div>
-                        </div>
-
-                        <h4 class="job-item-ttl">案件タイトル</h4>
-                        <div class="job-item-meta">
-                            <p class="job-item-meta-head">日時</p>
-                            <p class="job-item-meta-data">12/15(金) 14:00~18:00</p>
-                        </div>
-                        <div class="job-item-meta">
-                            <p class="job-item-meta-head">時給</p>
-                            <p class="job-item-meta-data">¥3,000~ / 1h</p>
-                        </div>
-                        <div class="job-item-figure" style="background: url({{ asset('/images/common/job-figure.jpg') }});"></div>
-                        <div class="job-item-share">
-                            <i class="fa fa-share-alt"></i>
-                            <div class="job-item-share-r">
-                                <a href="#">
-                                    <span>{{ trans('button.bid') }}</span>
-                                    <i class="ti-comment "></i>
-                                </a>
-                                <a href="#">
-                                    <span>{{ trans('button.favourite') }}</span>
-                                    <i class="ti-heart"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            @endfor
+        <input type="hidden" id="count" value="0">
+        <div class="job-list" id="job_list">
         </div>
     </div>
 
     <script src="{{ asset('/js/calendar.js') }}"></script>
+    <script>
+        $(window).on('load', function() {
+            @if ($errors->has('failed'))
+            toastr.error('{{ $errors->first('failed') }}', '', { "closeButton": true });
+            @endif
+
+            @if (session()->has('success'))
+            toastr.success('{{ session()->get('success') }}', '', { "closeButton": true });
+            @endif
+
+            getJobList();
+        });
+
+        $('#job_list').scroll(function() {
+            if($(this).html() != '' && $(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+                getJobList();
+            }
+        });
+
+        function getJobList() {
+            var token = $("input[name=_token]").val();
+            var count = $('#count').val();
+            var index = $('#index').val();
+            var province = $('#province').dropdown('get value');
+            var from_time = $('#from_time').val();
+            var to_time = $('#to_time').val();
+            var job_type = $('#job_type').val();
+            var status = $('#status').is(':checked');
+            var age = $('#age').val();
+            var dates = calendar.values;
+
+            if (dates != null)
+            {
+                var period = new Array(dates.length);
+
+                for (var i = 0; i < dates.length; i++)
+                    period[i] = dates[i].getFullYear() + '/' + (dates[i].getMonth() + 1) + '/' + dates[i].getDate();
+            }
+
+            $.ajax({
+                url: '{{ route('dashboard.job.getlist') }}',
+                type: 'POST',
+                data: {_token: token, count: count, index:index, province:province, from_time:from_time, to_time:to_time,
+                    job_type:job_type, status:status, age:age, period:period},
+                dataType: 'JSON',
+                success: function (response) {
+                    datas = new Array();
+                    if (response == undefined || response.length == 0) {
+                    } else {
+                        for (var i = 0; i < response.length; i++) {
+                            if(response[i].favourite_id == null)
+                                var favourite = '<a href="#" id="like_'+ response[i].id +'" onclick="onFavourite(' + response[i].id + ')">\n' +
+                                    '   <span>{{ trans('button.favourite') }}</span>\n' +
+                                    '   <i class="fa fa-heart-o" id="like_ico_'+ response[i].id +'"></i>\n' +
+                                    '</a>\n';
+                            else
+                                var favourite = '<a href="#" id="like_'+ response[i].id +'" onclick="onUnFavourite(' + response[i].id + ')">\n' +
+                                    '   <span>{{ trans('button.favourite') }}</span>\n' +
+                                    '   <i class="fa fa-heart light-pink" id="like_ico_'+ response[i].id +'"></i>\n' +
+                                    '</a>\n';
+
+                            $('#job_list').append(
+                                '<div class="job-block">\n' +
+                                '<div class="job-item">\n' +
+                                '    <div class="job-item-customer">\n' +
+                                '        <div class="job-item-customer-photo">\n' +
+                                '            <a href="{{ url('client/detail') }}/' + response[i].user_id + '"><img src="' + response[i].photo + '" alt="" /></a>\n' +
+                                '        </div>\n' +
+                                '        <div class="job-item-customer-infos">\n' +
+                                '            <p class="job-item-customer-ttl"><a href="{{ url('client/detail') }}/' + response[i].user_id + '">' + response[i].last_name + response[i].first_name + '</a></p>\n' +
+                                '            <p class="job-item-customer-place">' + response[i].province + response[i].address + '</p>\n' +
+                                '        </div>\n' +
+                                '    </div>\n' +
+                                '\n' +
+                                '    <h4 class="job-item-ttl"><a href="{{ url('job/detail') }}/' + response[i].id + '">' + response[i].title + '</a></h4>\n' +
+                                '    <div class="job-item-meta">\n' +
+                                '        <p class="job-item-meta-head">{{ trans('job.datetime') }}</p>\n' +
+                                '        <p class="job-item-meta-data">' + response[i].period + ' ' + response[i].from_time + '~' + response[i].to_time + '</p>\n' +
+                                '    </div>\n' +
+                                '    <div class="job-item-meta">\n' +
+                                '        <p class="job-item-meta-head">{{ trans('job.cost') }}</p>\n' +
+                                '        <p class="job-item-meta-data">' + response[i].cost + '</p>\n' +
+                                '    </div>\n' +
+                                '    <div class="job-item-figure" style="background: url({{ asset('/images/common/job-figure.jpg') }});"></div>\n' +
+                                '    <div class="job-item-share">\n' +
+                                '        <i class="fa fa-share-alt"></i>\n' +
+                                '        <div class="job-item-share-r">\n' +
+                                '           <a onclick="loginPopup()" href="#">\n' +
+                                '              <span>{{ trans('button.bid') }}</span>\n' +
+                                '              <i class="ti-comment "></i>\n' +
+                                '           </a>\n' +
+                                '           <a onclick="loginPopup()" href="#">\n' +
+                                '               <span>{{ trans('button.favourite') }}</span>\n' +
+                                '               <i class="ti-heart"></i>\n' +
+                                '           </a>' +
+                                '        </div>\n' +
+                                '    </div>\n' +
+                                '</div>\n' +
+                                '</div>'
+                            );
+                        }
+                        $('#count').val(parseInt(count) + response.length);
+                    }
+                }
+            });
+        }
+
+        function reset() {
+            $('#search_form')[0].reset();
+            $('#province').dropdown('clear');
+        }
+
+        function onSearch() {
+            $('#job_list').scrollTop(0);
+            $('#count').val(0);
+            $('#job_list').html("");
+            getJobList();
+        }
+
+        $('#province').dropdown();
+        $('.menu').addClass('transition hidden');
+    </script>
 @endsection

@@ -13,84 +13,44 @@
 @section('content')
     <div class="main-l main-block main-block-gray">
         <div class="main-1-title">
-            <h3>案件一覧</h3>
+            <h3>{{ trans('job.detail.list_panel') }}</h3>
         </div>
-        <div class="job-list">
-            @for($i = 0; $i < 4; $i++)
-            <div class="job-block one-list">
-                <a href="{{ route('job.detail') }}">
-                    <div class="job-item">
-                        <div class="job-item-customer">
-                            <div class="job-item-customer-photo">
-                                <img src="{{ asset('/images/common/photo-01.jpg') }}" alt="" />
-                            </div>
-                            <div class="job-item-customer-infos">
-                                <p class="job-item-customer-ttl">発注者名</p>
-                                <p class="job-item-customer-place">場所</p>
-                            </div>
-                        </div>
-
-                        <h4 class="job-item-ttl">案件タイトル</h4>
-                        <div class="job-item-meta">
-                            <p class="job-item-meta-head">日時</p>
-                            <p class="job-item-meta-data">12/15(金) 14:00~18:00</p>
-                        </div>
-                        <div class="job-item-meta">
-                            <p class="job-item-meta-head">時給</p>
-                            <p class="job-item-meta-data">¥3,000~ / 1h</p>
-                        </div>
-                        <div class="job-item-figure" style="background: url({{ asset('/images/common/job-figure.jpg') }});"></div>
-                        <div class="job-item-share">
-                            <i class="fa fa-share-alt"></i>
-                            <div class="job-item-share-r">
-                                <a href="#">
-                                    <span>応募する</span>
-                                    <i class="ti-comment "></i>
-                                </a>
-                                <a href="#">
-                                    <span>お気に入り</span>
-                                    <i class="ti-heart"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            @endfor
+        <input type="hidden" id="count" value="0">
+        <div class="job-list" id="job_list">
         </div>
     </div>
     <div class="main-m main-block main-block-white">
         <div class="main-m-title">
-            <h3>案件詳細</h3>
+            <h3>{{ trans('job.detail.detail_panel') }}</h3>
         </div>
         <div class="job-detail-block">
             <div class="detail-block margin">
-                <h2 class="job-title">案件タイトル案件タイトル案件タイトル</h2>
+                <h2 class="job-title">{{ $title }}</h2>
                 <div class="job-column-block">
-                    <a href="{{ route('client.detail') }}">
+                    <a href="{{ url('client/detail').'/'.$user_id }}">
                         <div class="job-item-customer">
                             <div class="job-item-customer-photo">
-                                <img src="{{ asset('/images/common/photo-01.jpg') }}" alt="" />
+                                <img src="{{ $photo }}" alt="" />
                             </div>
                             <div class="job-item-customer-infos">
-                                <p class="job-item-customer-ttl">発注者名</p>
-                                <p class="job-item-customer-place">場所</p>
+                                <p class="job-item-customer-ttl"><a href="{{ url('client/detail').'/'.$user_id }}">{{ $last_name . $first_name }}</a></p>
+                                <p class="job-item-customer-place">{{ $province_name . $address }}</p>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="job-column-block">
                     <div class="job-item-meta">
-                        <p class="job-item-meta-head detail">日時</p>
-                        <p class="job-item-meta-data detail">12/15(金) 14:00~18:00</p>
+                        <p class="job-item-meta-head detail">{{ trans('job.datetime') }}</p>
+                        <p class="job-item-meta-data detail">{{ $period . ' ' . date('G:i', strtotime($from_time)) . '~' . date('G:i', strtotime($to_time)) }}</p>
                     </div>
                     <div class="job-item-meta">
-                        <p class="job-item-meta-head detail">時給</p>
-                        <p class="job-item-meta-data detail">¥3,000~ / 1h</p>
+                        <p class="job-item-meta-head detail">{{ trans('job.cost') }}</p>
+                        <p class="job-item-meta-data detail">{{ $cost }}</p>
                     </div>
                     <div class="job-item-meta">
-                        <p class="job-item-meta-head detail">場所</p>
-                        <p class="job-item-meta-data detail">東京都渋谷区〜〜</p>
+                        <p class="job-item-meta-head detail">{{ trans('job.place') }}</p>
+                        <p class="job-item-meta-data detail">{{ $province_name . $address }}</p>
                     </div>
                 </div>
                 <div class="job-column-block">
@@ -107,7 +67,7 @@
                 <div class="job-column-block">
                     <h3 class="sub-title">注意事項</h3>
                     <p class="detail-content">
-                        サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章サンプル文章
+                        {{ $comment }}
                     </p>
                 </div>
             </div>
@@ -121,35 +81,127 @@
                     </div>
                 </div>
                 <div class="like-block">
-                    <p>199&nbsp;<i class="fa fa-heart"></i></p>
+                    <p>{{ $favourite_count }}&nbsp;<i class="fa fa-heart"></i></p>
                 </div>
 
                 <div class="info-list-block">
                     <div class="con-block">
                         <div class="con-title no-border">
-                            <h3 class="pink">詳細項目</h3>
+                            <h3 class="pink">{{ trans('job.detail.detail') }}</h3>
                         </div>
                         <div class="con-detail">
-                            <span>会社名</span>
-                            <div class="con-column"><span>株式会社〇〇</span></div>
+                            <span>{{ trans('job.job_type') }}</span>
+                            <div class="con-column"><span>{{ $job_type }}</span></div>
                         </div>
                         <div class="con-detail">
-                            <span>会社名</span>
-                            <div class="con-column"><span>株式会社〇〇</span></div>
+                            <span>{{ trans('job.certificate') }}</span>
+                            <div class="con-column"><span>{{ $certificate }}</span></div>
                         </div>
                         <div class="con-detail">
-                            <span>会社名</span>
-                            <div class="con-column"><span>株式会社〇〇</span></div>
+                            <span>{{ trans('job.accident') }}</span>
+                            <div class="con-column"><span>{{ $accident }}</span></div>
+                        </div>
+                        <div class="con-detail">
+                            <span>{{ trans('job.traffic_cost') }}</span>
+                            <div class="con-column"><span>{{ $traffic_cost }}</span></div>
+                        </div>
+                        <div class="con-detail">
+                            <span>{{ trans('job.payment_method') }}</span>
+                            <div class="con-column"><span>{{ $payment_method }}</span></div>
+                        </div>
+                        <div class="con-detail">
+                            <span>{{ trans('job.coupon') }}</span>
+                            <div class="con-column"><span>{{ $coupon }}</span></div>
                         </div>
                     </div>
                 </div>
                 <div class="btn-block">
-                    <a class="btn secondary-btn" onclick="loginPopup()">応募する</a>
-                    <a class="btn primary-btn" onclick="loginPopup()">お気に入り登録</a>
+                    <a class="btn secondary-btn" onclick="loginPopup()">{{ trans('button.bid') }}</a>
+                    <a class="btn primary-btn" onclick="loginPopup()">{{ trans('button.favourite') }}</a>
                 </div>
             </div>
         </div>
     </div>
 
+    <script>
+        $(window).on('load', function() {
+            @if ($errors->has('failed'))
+            toastr.error('{{ $errors->first('failed') }}', '', { "closeButton": true });
+            @endif
+
+            @if (session()->has('success'))
+            toastr.success('{{ session()->get('success') }}', '', { "closeButton": true });
+            @endif
+
+            getJobList();
+        });
+
+        $('#job_list').scroll(function() {
+            if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+                getJobList();
+            }
+        });
+
+        function getJobList() {
+            var token = $("input[name=_token]").val();
+            var count = $('#count').val();
+
+            $.ajax({
+                url: '{{ route('dashboard.job.getlist') }}',
+                type: 'POST',
+                data: {_token: token, count: count},
+                dataType: 'JSON',
+                success: function (response) {
+                    datas = new Array();
+                    if (response == undefined || response.length == 0) {
+                    } else {
+                        for (var i = 0; i < response.length; i++) {
+
+                            $('#job_list').append(
+                                '<div class="job-block one-list">\n' +
+                                '<div class="job-item">\n' +
+                                '    <div class="job-item-customer">\n' +
+                                '        <div class="job-item-customer-photo">\n' +
+                                '            <a href="{{ url('client/detail') }}/' + response[i].user_id + '"><img src="' + response[i].photo + '" alt="" /></a>\n' +
+                                '        </div>\n' +
+                                '        <div class="job-item-customer-infos">\n' +
+                                '            <p class="job-item-customer-ttl"><a href="{{ url('client/detail') }}/' + response[i].user_id + '">' + response[i].last_name + response[i].first_name + '</a></p>\n' +
+                                '            <p class="job-item-customer-place">' + response[i].province + response[i].address + '</p>\n' +
+                                '        </div>\n' +
+                                '    </div>\n' +
+                                '\n' +
+                                '    <h4 class="job-item-ttl"><a href="{{ url('job/detail') }}/' + response[i].id + '">' + response[i].title + '</a></h4>\n' +
+                                '    <div class="job-item-meta">\n' +
+                                '        <p class="job-item-meta-head">{{ trans('job.datetime') }}</p>\n' +
+                                '        <p class="job-item-meta-data">' + response[i].period + ' ' + response[i].from_time + '~' + response[i].to_time + '</p>\n' +
+                                '    </div>\n' +
+                                '    <div class="job-item-meta">\n' +
+                                '        <p class="job-item-meta-head">{{ trans('job.cost') }}</p>\n' +
+                                '        <p class="job-item-meta-data">' + response[i].cost + '</p>\n' +
+                                '    </div>\n' +
+                                '    <div class="job-item-figure" style="background: url({{ asset('/images/common/job-figure.jpg') }});"></div>\n' +
+                                '    <div class="job-item-share">\n' +
+                                '        <i class="fa fa-share-alt"></i>\n' +
+                                '        <div class="job-item-share-r">\n' +
+                                '            <a href="#" onclick="loginPopup()">\n' +
+                                '                <span>{{ trans('button.bid') }}</span>\n' +
+                                '                <i class="ti-comment "></i>\n' +
+                                '            </a>\n' +
+                                '            <a href="#" onclick="loginPopup()">\n' +
+                                '                <span>{{ trans('button.favourite') }}</span>\n' +
+                                '                <i class="ti-heart"></i>\n' +
+                                '            </a>\n' +
+                                '        </div>\n' +
+                                '    </div>\n' +
+                                '</div>\n' +
+                                '</div>'
+                            );
+                        }
+                        $('#count').val(parseInt(count) + response.length);
+                    }
+                }
+            });
+        }
+    </script>
     <script src="{{ asset('/js/calendar.js') }}"></script>
 @endsection

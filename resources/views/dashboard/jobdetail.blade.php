@@ -23,7 +23,7 @@
         </div>
         <div class="main-m main-block main-block-white">
             <div class="main-m-title">
-                <h3>{{ trans('job.detail.list_panel') }}</h3>
+                <h3>{{ trans('job.detail.detail_panel') }}</h3>
             </div>
             <div class="job-detail-block">
                 <div class="detail-block margin">

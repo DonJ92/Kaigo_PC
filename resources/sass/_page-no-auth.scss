@@ -309,6 +309,7 @@ body.no-auth {
                 font-family: 'Montserrat-Light';
                 font-size: calc(14 / 1920 * 100vw);
                 line-height: calc(25 / 1920 * 100vw);
+                width: 60%;
                 color: #656565;
 
                 &.detail {
@@ -339,20 +340,19 @@ body.no-auth {
 
             .job-item-share-r {
                 @include flex-center-v;
+                color: #656565;
 
                 a {
                     @include flex-center-v;
                     margin: 0 0 0 calc(15 / 1920 * 100vw);
                     font-family: 'AXIS Std-M';
                     font-size: calc(15 / 1920 * 100vw);
-                    color: #656565;
 
                     span {
                         margin-right: calc(10 / 1920 * 100vw);
                     }
 
                     i {
-                        color: #757575;
                     }
                 }
             }
@@ -480,7 +480,7 @@ body.no-auth {
 
                     span {
                         word-break: keep-all;
-                        margin-right: 10px;
+//                        margin-right: 10px;
                     }
 
                     .con-column {
@@ -513,6 +513,10 @@ body.no-auth {
 
                         select {
                             appearance: none;
+                        }
+
+                        &.flex-display {
+                            display: flex;
                         }
                     }
                 }
@@ -1255,6 +1259,7 @@ body.no-auth {
                     font-family: 'Montserrat-Light';
                     font-size: calc(14 / 992 * 100vw);
                     line-height: calc(25 / 992 * 100vw);
+                    width: 60%;
                     color: #656565;
     
                     &.detail {

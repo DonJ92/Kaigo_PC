@@ -6914,6 +6914,7 @@ body.no-auth .primary .job-item-meta .job-item-meta-data {
   font-family: "Montserrat-Light";
   font-size: calc(14 / 1920 * 100vw);
   line-height: calc(25 / 1920 * 100vw);
+  width: 60%;
   color: #656565;
 }
 
@@ -6945,6 +6946,7 @@ body.no-auth .primary .job-item-share .fa-share-alt {
 body.no-auth .primary .job-item-share .job-item-share-r {
   display: flex;
   align-items: center;
+  color: #656565;
 }
 
 body.no-auth .primary .job-item-share .job-item-share-r a {
@@ -6953,15 +6955,10 @@ body.no-auth .primary .job-item-share .job-item-share-r a {
   margin: 0 0 0 calc(15 / 1920 * 100vw);
   font-family: "AXIS Std-M";
   font-size: calc(15 / 1920 * 100vw);
-  color: #656565;
 }
 
 body.no-auth .primary .job-item-share .job-item-share-r a span {
   margin-right: calc(10 / 1920 * 100vw);
-}
-
-body.no-auth .primary .job-item-share .job-item-share-r a i {
-  color: #757575;
 }
 
 body.no-auth .primary .job-column-block {
@@ -7086,7 +7083,6 @@ body.no-auth .primary .con-block div.con-detail {
 
 body.no-auth .primary .con-block div.con-detail span {
   word-break: keep-all;
-  margin-right: 10px;
 }
 
 body.no-auth .primary .con-block div.con-detail .con-column {
@@ -7122,6 +7118,10 @@ body.no-auth .primary .con-block div.con-detail .con-column select {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
+}
+
+body.no-auth .primary .con-block div.con-detail .con-column.flex-display {
+  display: flex;
 }
 
 body.no-auth .primary .btn-block {
@@ -7914,6 +7914,7 @@ body.no-auth .primary main .main-block.main-block-gray {
     font-family: "Montserrat-Light";
     font-size: calc(14 / 992 * 100vw);
     line-height: calc(25 / 992 * 100vw);
+    width: 60%;
     color: #656565;
   }
 
