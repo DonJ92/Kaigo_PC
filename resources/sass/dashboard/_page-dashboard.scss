@@ -532,7 +532,6 @@ body.dashboard {
 
                 span {
                     word-break: keep-all;
-                    margin-right: 10px;
                 }
 
                 .con-column {
@@ -554,6 +553,10 @@ body.dashboard {
 
                     select {
                         appearance: none;
+                    }
+
+                    &.flex-display {
+                      display: flex;
                     }
                 }
             }

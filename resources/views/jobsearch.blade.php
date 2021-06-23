@@ -216,6 +216,7 @@
         function reset() {
             $('#search_form')[0].reset();
             $('#province').dropdown('clear');
+            calendar.values = null;
         }
 
         function onSearch() {

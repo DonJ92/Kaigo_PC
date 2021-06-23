@@ -73,7 +73,11 @@ class JobController extends Controller
     public function dashboardSearch()
     {
         $this->middleware('auth');
-        return view('dashboard.jobsearch');
+
+        $data['province_list'] = $this->getProvinceList();
+        $data['job_list'] = $this->getJobTypeList();
+        $data['age_list'] = Config::get('constants.age');
+        return view('dashboard.jobsearch', $data);
     }
 
     public function getlist(Request $request)

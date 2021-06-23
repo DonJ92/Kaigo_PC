@@ -9122,7 +9122,6 @@ body.dashboard .con-block div.con-detail {
 
 body.dashboard .con-block div.con-detail span {
   word-break: keep-all;
-  margin-right: 10px;
 }
 
 body.dashboard .con-block div.con-detail .con-column {
@@ -9147,6 +9146,10 @@ body.dashboard .con-block div.con-detail .con-column select {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
+}
+
+body.dashboard .con-block div.con-detail .con-column.flex-display {
+  display: flex;
 }
 
 body.dashboard .btn-block {
